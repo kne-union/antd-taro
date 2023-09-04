@@ -1,0 +1,102 @@
+$class-prefix-dropdown: 'adm-dropdown';
+$class-prefix-dropdown-item: 'adm-dropdown-item';
+
+.#{$class-prefix-dropdown} {
+  background-color: var(--adm-color-background);
+
+  .#{$class-prefix-dropdown}-nav {
+    display: flex;
+    border-bottom: 2px solid transparent;
+  }
+
+  .#{$class-prefix-dropdown}-other-mask {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  &-open {
+    .#{$class-prefix-dropdown}-nav {
+      border-bottom-color: var(--adm-color-border);
+    }
+  }
+
+  &-item {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+    cursor: pointer;
+
+    .#{$class-prefix-dropdown-item}-title {
+      display: flex;
+      align-items: center;
+      position: relative;
+      max-width: 100%;
+      font-size: var(--adm-font-size-main);
+      padding: 24px;
+
+      &-text {
+        margin-right: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      &-arrow {
+        color: var(--adm-color-light);
+        transform: rotate(0deg) translateY(2px);
+        transition: all ease 0.2s;
+        font-size: 18px;
+
+        &-active {
+          transform: rotate(-180deg) translateY(-2px);
+        }
+      }
+
+      &:active {
+        opacity: 0.7;
+      }
+    }
+
+    &-highlight {
+      color: var(--adm-color-primary);
+    }
+
+    &-active {
+      .#{$class-prefix-dropdown-item}-title:after {
+        margin-top: -2px;
+        transform: rotate(135deg);
+      }
+    }
+
+    &-content {
+      width: 100%;
+      background: var(--adm-color-background);
+
+      &-hidden {
+        display: none;
+      }
+    }
+  }
+
+  &-popup {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .#{$class-prefix-dropdown}-popup-mask {
+      position: absolute;
+    }
+
+    .#{$class-prefix-dropdown}-popup-body {
+      --max-height: calc(90vh - var(--top, 0px));
+      position: absolute;
+      max-height: var(--max-height);
+      overflow: hidden;
+    }
+  }
+}

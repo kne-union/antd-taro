@@ -1,0 +1,29 @@
+$class-prefix-collapse: 'adm-collapse';
+
+.#{$class-prefix-collapse} {
+  &-panel-header {
+    & .adm-list-item-content-main {
+      padding: 24px 0;
+    }
+  }
+
+  .iconfont{
+    color:#999;
+    font-size: 24px;
+
+  }
+
+
+  &-panel-content {
+    font-size: var(--adm-font-size-main);
+    color: var(--adm-color-weak);
+    overflow: hidden;
+    height: 0;
+    transition: height ease 0.3s;
+
+    &-active {
+      height: auto;
+      height: var(--item-height);
+    }
+  }
+}

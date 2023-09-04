@@ -1,0 +1,35 @@
+$class-prefix-ellipsis: 'adm-ellipsis';
+
+.#{$class-prefix-ellipsis} {
+  --background: #FFF;
+  line-height: 1.5;
+  position: relative;
+  background: var(--background);
+  font-size: var(--adm-font-size-6);
+}
+
+.#{$class-prefix-ellipsis}-tail {
+  display: inline;
+  visibility: hidden;
+}
+
+.#{$class-prefix-ellipsis}-content-collapse {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--clamp-line, 2);
+  text-overflow: ellipsis;
+}
+
+.#{$class-prefix-ellipsis}-action {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--background);
+}
+
+.#{$class-prefix-ellipsis}-action-text {
+  color: var(--adm-color-primary);
+  display: inline;
+  margin-left: 10px;
+}

@@ -1,0 +1,25 @@
+import './style.scss';
+import React from 'react'
+import classNames from 'classnames'
+import {View} from '@tarojs/components'
+import ListItem from './ListItem';
+
+const classPrefix = `adm-list`
+
+const List = ({className, ...props}) => {
+  return <View className={classNames(classPrefix, `${classPrefix}-${props.mode}`, className)}>
+    {props.header && (<View className={`${classPrefix}-header`}>{props.header}</View>)}
+    <View className={`${classPrefix}-body`}>
+      {props.children}
+      {/*<View className={`${classPrefix}-body-inner`}>{props.children}</View>*/}
+    </View>
+  </View>
+};
+
+List.defaultProps={
+  mode: 'default',
+};
+
+List.Item = ListItem;
+
+export default List;

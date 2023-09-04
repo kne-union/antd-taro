@@ -1,0 +1,99 @@
+$class-prefix-grid: 'adm-grid';
+$class-prefix-item: 'adm-grid-item';
+
+@mixin loop-grid-columns($index,$class,$grid-columns) {
+  .#{$class-prefix-item}#{$class}-#{$index} {
+    display: block;
+    flex: 0 0 percentage(($index / $grid-columns));
+    max-width: percentage(($index / $grid-columns));
+  }
+  .#{$class-prefix-item}#{$class}-push-#{$index} {
+    left: percentage(($index / $grid-columns));
+  }
+  .#{$class-prefix-item}#{$class}-pull-#{$index} {
+    right: percentage(($index / $grid-columns));
+  }
+  .#{$class-prefix-item}#{$class}-offset-#{$index} {
+    margin-left: percentage(($index / $grid-columns));
+  }
+  .#{$class-prefix-item}#{$class}-order-#{$index} {
+    order: $index;
+  }
+}
+
+@mixin make-grid($class:'',$grid-columns:24) {
+  @for $index from 1 through $grid-columns {
+    @include loop-grid-columns($index, $class, $grid-columns);
+  }
+}
+
+.#{$class-prefix-grid} {
+  --gap: 0;
+  --gap-horizontal: var(--gap);
+  --gap-vertical: var(--gap);
+
+  display: flex;
+  flex-flow: row wrap;
+  min-width: 0;
+  box-sizing: border-box;
+  &:before,
+  &:after {
+    display: flex;
+  }
+
+  &-no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  @include make-grid();
+  row-gap: var(--gap-vertical);
+}
+
+.#{$class-prefix-grid}-start {
+  justify-content: flex-start;
+}
+
+// x轴居中
+.#{$class-prefix-grid}-center {
+  justify-content: center;
+}
+
+// x轴反方向
+.#{$class-prefix-grid}-end {
+  justify-content: flex-end;
+}
+
+// x轴平分
+.#{$class-prefix-grid}-space-between {
+  justify-content: space-between;
+}
+
+// x轴有间隔地平分
+.#{$class-prefix-grid}-space-around {
+  justify-content: space-around;
+}
+
+// x轴有间隔地均分
+.#{$class-prefix-grid}-space-evenly {
+  justify-content: space-evenly;
+}
+
+// 顶部对齐
+.#{$class-prefix-grid}-top {
+  align-items: flex-start;
+}
+
+// 居中对齐
+.#{$class-prefix-grid}-middle {
+  align-items: center;
+}
+
+// 底部对齐
+.#{$class-prefix-grid}-bottom {
+  align-items: flex-end;
+}
+
+.#{$class-prefix-item} {
+  max-width: 100%;
+  box-sizing: border-box;
+}

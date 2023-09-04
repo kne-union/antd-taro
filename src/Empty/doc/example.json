@@ -1,0 +1,16 @@
+{
+  "isFull": false,
+  "list": [
+    {
+      "title": "这里填写示例标题",
+      "description": "这里填写示例说明",
+      "code": "./base.js",
+      "scope": [
+        {
+          "name": "_Empty",
+          "packageName": "@components/Empty"
+        }
+      ]
+    }
+  ]
+}
