@@ -69,9 +69,10 @@ const TabBar = ({className, openType, onChange, ...props}) => {
             </View>
           </Navigator>) : <View
           key={item.key}
-          onClick={() => {
+          onClick={(e) => {
             const {key} = item
             if (key === undefined || key === null) return
+            onChange && onChange(key.toString(), e);
             setActiveKey(key.toString())
           }}
           className={classnames(`${classPrefix}-item`, {
