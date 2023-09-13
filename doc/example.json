@@ -24,6 +24,20 @@
           "packageName": "@tarojs/components"
         }
       ]
+    },
+    {
+      "title": "弹出页",
+      "description": "展示弹出页",
+      "code": "./popup.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },{
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
     }
   ]
 }
