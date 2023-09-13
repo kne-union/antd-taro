@@ -13,6 +13,11 @@ $class-prefix-popup: 'adm-popup';
 
     .#{$class-prefix-popup}-body {
       transform: translate3d(0, 0, 0);
+
+      &-position-center {
+        transform: translate3d(-50%, -50%, 0);
+        opacity: 1;
+      }
     }
   }
 }
@@ -73,6 +78,17 @@ $class-prefix-popup: 'adm-popup';
     .#{$class-prefix-popup}-close-icon {
       left: 16px;
       top: 16px;
+    }
+  }
+
+  &-position-center {
+    top: 50%;
+    left: 50%;
+    transition: opacity 300ms;
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.95);
+    .#{$class-prefix-popup}-close-icon {
+      display: none;
     }
   }
 }
