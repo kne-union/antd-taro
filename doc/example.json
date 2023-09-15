@@ -64,6 +64,19 @@
           "packageName": "@tarojs/components"
         }
       ]
+    },{
+      "title": "头像",
+      "description": "展示头像",
+      "code": "./avatar.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },{
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
     }
   ]
 }
