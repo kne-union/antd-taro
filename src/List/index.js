@@ -9,7 +9,7 @@ const classPrefix = `adm-list`
 const List = ({className, ...props}) => {
     return <View className={classNames(classPrefix, `${classPrefix}-${props.mode}`, className)}>
         {props.header && (<View className={`${classPrefix}-header`}>{props.header}</View>)}
-        {props.mode ? <View className={`${classPrefix}-body`}>
+        {props.mode === 'card' ? <View className={`${classPrefix}-body`}>
             {props.children}
         </View> : props.children}
     </View>
