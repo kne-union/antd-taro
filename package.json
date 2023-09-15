@@ -1,6 +1,6 @@
 {
   "name": "@kne/antd-taro",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "dependencies": {
     "@kne/lodash-wechat": "^4.17.21",
     "@kne/use-control-value": "^0.1.8",
@@ -20,10 +20,10 @@
     "test": "run-s test:unit test:lint test:build",
     "eject": "react-scripts eject",
     "init": "cd example &&npm i --legacy-peer-deps",
-    "build:lib": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --alias lodash=@kne/lodash-wechat",
+    "build:lib": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --alias lodash=@kne/lodash-wechat --assertType inline",
     "build:md": "create-md",
     "start:md": "create-md --watch",
-    "start:lib": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --alias lodash=@kne/lodash-wechat",
+    "start:lib": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --alias lodash=@kne/lodash-wechat --assertType inline",
     "test:build": "run-s build",
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
@@ -31,7 +31,7 @@
     "build:doc": "cd example && npm run build:doc",
     "start:doc": "cd example && npm run build:doc -- --watch",
     "build:example": "cd example && npm run build:weapp",
-    "start:example": "cd example && cross-env NODE_ENV=production npm run build:weapp -- --watch",
+    "start:example": "cd example && npm run build:weapp -- --watch",
     "deploy": "gh-pages -d example/build",
     "prettier": "prettier --config .prettierrc --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
@@ -75,9 +75,9 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.7",
-    "@kne/mini-core": "^1.0.4",
     "@kne/md-doc": "^0.1.8",
-    "@kne/microbundle": "^0.15.4",
+    "@kne/microbundle": "^0.15.5",
+    "@kne/mini-core": "^1.0.4",
     "@kne/modules-dev": "^0.1.14",
     "@tarojs/components": "^3.6.15",
     "@tarojs/helper": "3.6.15",
