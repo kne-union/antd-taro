@@ -38,6 +38,32 @@
           "packageName": "@tarojs/components"
         }
       ]
+    },{
+      "title": "日期范围选择",
+      "description": "展示日期范围选择",
+      "code": "./date-range-picker.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },{
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },{
+      "title": "选择组",
+      "description": "展示选择组",
+      "code": "./selector.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },{
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
     }
   ]
 }
