@@ -93,6 +93,43 @@ render(<BaseExample/>);
 
 ```
 
+- 日期范围选择
+- 展示日期范围选择
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Button} = taroComponent;
+const {useState} = React;
+const {DateRangePicker} = antdTaro;
+
+const BaseExample = () => {
+    const [open,setOpen] = useState(false);
+    return <>
+        <Button onClick={()=>{
+            setOpen(true);
+        }}>打开</Button>
+        <DateRangePicker open={open} onOpenChange={setOpen}/>
+    </>;
+};
+
+render(<BaseExample/>);
+
+```
+
+- 选择组
+- 展示选择组
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Selector} = antdTaro;
+const BaseExample = () => {
+    return <Selector options={[{label: '男', value: '0'}, {label: '女', value: '1'}]}/>;
+};
+
+render(<BaseExample/>);
+
+```
+
 
 ### API
 
