@@ -59,7 +59,7 @@ const Picker = (props) => {
     const timer = useRef(null);
 
 
-    return <Popup className={`${classPrefix}-popup`} isRootPortal={props.isRootPortal}
+    return <Popup className={`${classPrefix}-popup`} bodyClassName={classPrefix} isRootPortal={props.isRootPortal}
                   position="bottom" open={active}
                   hasSafeArea={false}
                   onOpenChange={(open) => {
@@ -69,60 +69,58 @@ const Picker = (props) => {
                       setActive(false);
                       onClose?.();
                   }}>
-        <View className={classPrefix}>
-            <View className={`${classPrefix}-header`}>
-                <View
-                    className={`${classPrefix}-header-button`}
-                    onClick={() => {
-                        onCancel?.();
-                        setActive(false);
-                        onClose?.();
-                    }}
-                >
-                    {cancelText}
-                </View>
-                <View className={`${classPrefix}-header-title`}>{title}</View>
-                <View
-                    className={classnames(`${classPrefix}-header-button`, loading && `${classPrefix}-header-button-disabled`)}
-                    onClick={() => {
-                        if (loading) return;
-                        onChange(indexToValue(innerValue));
-                        setActive(false);
-                        onClose?.();
-                    }}
-                >
-                    {confirmText}
-                </View>
+        <View className={`${classPrefix}-header`}>
+            <View
+                className={`${classPrefix}-header-button`}
+                onClick={() => {
+                    onCancel?.();
+                    setActive(false);
+                    onClose?.();
+                }}
+            >
+                {cancelText}
             </View>
-            <View className={`${classPrefix}-body`}>
-                <PickerView className={`${classPrefix}-column`} immediateChange indicatorStyle={`height:${lineHeight};`}
-                            value={innerValue}
-                            onChange={(e) => {
-                                const value = e.detail.value;
-                                setInnerValue(value);
-                                clearTimeout(timer.current);
-                                timer.current = setTimeout(() => {
-                                    //当columns有级联关系时，检查修改后取值是否正常，如果不正常给index赋初值
-                                    indexToValue(value).forEach((value, index) => {
-                                        if (value === void 0) {
-                                            setInnerValue((value) => {
-                                                const newValue = value.slice(0);
-                                                newValue[index] = 0;
-                                                return newValue;
-                                            });
-                                        }
-                                    });
-                                }, 200);
-                            }}>
-                    {columns.map((column, colIndex) => {
-                        return <PickerViewColumn
-                            className={`${classPrefix}-column-item`}>{column.map(({label}, index) => <View
-                            style={{lineHeight}} className={classnames(`${classPrefix}-column-view`, {
-                            'is-active': get(innerValue, colIndex, 0) === index
-                        })}>{label}</View>)}</PickerViewColumn>
-                    })}
-                </PickerView>
+            <View className={`${classPrefix}-header-title`}>{title}</View>
+            <View
+                className={classnames(`${classPrefix}-header-button`, loading && `${classPrefix}-header-button-disabled`)}
+                onClick={() => {
+                    if (loading) return;
+                    onChange(indexToValue(innerValue));
+                    setActive(false);
+                    onClose?.();
+                }}
+            >
+                {confirmText}
             </View>
+        </View>
+        <View className={`${classPrefix}-body`}>
+            <PickerView className={`${classPrefix}-column`} immediateChange indicatorStyle={`height:${lineHeight};`}
+                        value={innerValue}
+                        onChange={(e) => {
+                            const value = e.detail.value;
+                            setInnerValue(value);
+                            clearTimeout(timer.current);
+                            timer.current = setTimeout(() => {
+                                //当columns有级联关系时，检查修改后取值是否正常，如果不正常给index赋初值
+                                indexToValue(value).forEach((value, index) => {
+                                    if (value === void 0) {
+                                        setInnerValue((value) => {
+                                            const newValue = value.slice(0);
+                                            newValue[index] = 0;
+                                            return newValue;
+                                        });
+                                    }
+                                });
+                            }, 200);
+                        }}>
+                {columns.map((column, colIndex) => {
+                    return <PickerViewColumn
+                        className={`${classPrefix}-column-item`}>{column.map(({label}, index) => <View
+                        style={{lineHeight}} className={classnames(`${classPrefix}-column-view`, {
+                        'is-active': get(innerValue, colIndex, 0) === index
+                    })}>{label}</View>)}</PickerViewColumn>
+                })}
+            </PickerView>
         </View>
     </Popup>;
 };

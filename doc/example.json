@@ -77,6 +77,32 @@
           "packageName": "@tarojs/components"
         }
       ]
+    },{
+      "title": "卡片",
+      "description": "展示卡片",
+      "code": "./card.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },{
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },{
+      "title": "列表",
+      "description": "展示列表",
+      "code": "./list.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },{
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
     }
   ]
 }

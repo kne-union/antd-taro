@@ -30,8 +30,8 @@
 
   &-default {
     .adm-list-body {
-      border-top: var(--border-top);
-      border-bottom: var(--border-bottom);
+      //border-top: var(--border-top);
+      //border-bottom: var(--border-bottom);
     }
   }
 
@@ -105,10 +105,6 @@
     cursor: not-allowed;
     opacity: 0.4;
     pointer-events: none;
-    //& > .adm-list-item-content {
-    //  opacity: 0.4;
-    //  pointer-events: none;
-    //}
   }
 }
 
