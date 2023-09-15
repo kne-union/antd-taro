@@ -130,6 +130,20 @@ render(<BaseExample/>);
 
 ```
 
+- 头像
+- 展示头像
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Avatar} = antdTaro;
+const BaseExample = ()=>{
+    return <Avatar />;
+};
+
+render(<BaseExample />);
+
+```
+
 
 ### API
 
