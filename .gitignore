@@ -109,3 +109,4 @@ build
 .swc
 project.private.config.json
 components-doc.js
+example
