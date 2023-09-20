@@ -1,17 +1,22 @@
 $class-prefix-tabs: 'adm-tabs';
 
-.#{$class-prefix-tabs} {
+@mixin common {
   --title-font-size: var(--adm-font-size-9);
   --content-padding: 24px;
   --active-line-height: 4px;
   --active-line-border-radius: var(--active-line-height);
   --active-line-color: var(--adm-color-primary);
   --active-title-color: var(--adm-color-primary);
+}
+
+.#{$class-prefix-tabs} {
+  @include common;
   position: relative;
   // Hack for auto scroll fail when the parent element is a flex layout
   min-width: 0;
 
   &-header {
+    @include common;
     position: relative;
     display: flex;
     border-bottom: solid 2px var(--adm-color-border);

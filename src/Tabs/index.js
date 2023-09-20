@@ -99,7 +99,7 @@ const Tabs = (props) => {
     </View>;
 };
 
-Tabs.TabsHeader = TabsHeader;
+Tabs.Header = TabsHeader;
 
 Tabs.defaultProps = {
     stretch: true, swiperOpen: false
