@@ -19,7 +19,38 @@
         {
           "name": "antdTaro",
           "packageName": "@kne/antd-taro"
-        },{
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "步骤条",
+      "description": "步骤条",
+      "code": "./steps.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "折叠面板",
+      "description": "折叠面板",
+      "code": "./collapse.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
           "name": "taroComponent",
           "packageName": "@tarojs/components"
         }

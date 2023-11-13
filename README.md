@@ -63,6 +63,61 @@ render(<BaseExample/>);
 
 ```
 
+- 步骤条
+- 步骤条
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Steps} = antdTaro;
+const BaseExample = () => {
+    return <>
+        <Steps current={2} items={[{
+            title: '第一步', description: '完成时间：2020-12-01 12:30'
+        }, {
+            title: '第二步', description: '完成时间：2020-12-01 12:30'
+        }, {
+            title: '第三步', status: 'error', description: '完成时间：2020-12-01 12:30'
+        }, {
+            title: '第四步', description: '完成时间：2020-12-01 12:30'
+        }]}/>
+        <Steps direction="vertical" current={2} items={[{
+            title: '第一步', description: '完成时间：2020-12-01 12:30'
+        }, {
+            title: '第二步', description: '完成时间：2020-12-01 12:30'
+        }, {
+            title: '第三步', status: 'error', description: '完成时间：2020-12-01 12:30'
+        }, {
+            title: '第四步', description: '完成时间：2020-12-01 12:30'
+        }]}/>
+    </>;
+};
+
+render(<BaseExample/>);
+
+```
+
+- 折叠面板
+- 折叠面板
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Collapse} = antdTaro;
+const BaseExample = () => {
+    return <>
+        <Collapse defaultActiveKey={['1']} items={[{
+            key: '1', title: '第一项', children: '第一项第一项第一项第一项第一项第一项第一项第一项'
+        }, {
+            key: '2', title: '第二项', children: '第二项第二项第二项第二项第二项第二项第二项第二项'
+        }, {
+            key: '3', title: '第三项', children: '第三项第三项第三项第三项第三项第三项第三项第三项第三项'
+        }]}/>
+    </>;
+};
+
+render(<BaseExample/>);
+
+```
+
 
 ### API
 
