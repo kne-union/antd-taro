@@ -26,6 +26,7 @@ export {default as SearchBar} from './SearchBar';
 export {default as Selector} from './Selector';
 export {default as Slider} from './Slider';
 export {default as Space} from './Space';
+export {default as Steps} from './Steps';
 export {default as Switch} from './Switch';
 export {default as TabBar} from './TabBar';
 export {default as Tabs} from './Tabs';

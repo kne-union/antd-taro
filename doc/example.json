@@ -10,6 +10,65 @@
         "name": "这里填写包导出名称(这是一个注释字段，需要添加到[scope]中)",
         "packageName": "这里填写包名(这是一个注释字段，需要添加到[scope]中)"
       }
+    },
+    {
+      "title": "这里填写示例标题",
+      "description": "这里填写示例说明",
+      "code": "./tabs.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "步骤条",
+      "description": "步骤条",
+      "code": "./steps.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "折叠面板",
+      "description": "折叠面板",
+      "code": "./collapse.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "Selector",
+      "description": "这里填写示例说明",
+      "code": "./selector.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },{
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
     }
   ]
 }

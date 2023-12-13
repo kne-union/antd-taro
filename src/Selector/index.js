@@ -30,26 +30,28 @@ const Selector = (props) => {
       [`${classPrefix}-item-disabled`]: disabled,
     })
 
-    return (<View
-      key={option.value}
-      className={itemCls}
-      onClick={() => {
-        if (disabled) {
-          return
-        }
-        if (props.multiple) {
-          const val = active ? value.filter(v => v !== option.value) : [...value, option.value]
-          setValue(val)
-        } else {
-          const val = active ? [] : [option.value]
-          setValue(val)
-        }
-      }}
-    >
-      {option.label}
-      {option.description && (<View className={`${classPrefix}-item-description`}>
-        {option.description}
-      </View>)}
+    return (<View className={`${classPrefix}-item-wrapper`}>
+      <View
+        key={option.value}
+        className={itemCls}
+        onClick={() => {
+          if (disabled) {
+            return
+          }
+          if (props.multiple) {
+            const val = active ? value.filter(v => v !== option.value) : [...value, option.value]
+            setValue(val)
+          } else {
+            const val = active ? [] : [option.value]
+            setValue(val)
+          }
+        }}
+      >
+        {option.label}
+        {option.description && (<View className={`${classPrefix}-item-description`}>
+          {option.description}
+        </View>)}
+      </View>
       {active && props.showCheckMark && (<View className={`${classPrefix}-check-mark-wrapper`}>
         <Icon type="check-mark" className="adm-component"/>
       </View>)}

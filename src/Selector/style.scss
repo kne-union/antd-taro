@@ -18,66 +18,72 @@ $class-prefix-selector: 'adm-selector';
   font-size: var(--adm-font-size-7);
   line-height: 1.4;
 
-.adm-space.adm-space {
-  --gap: 24px;
-}
-
-.adm-grid {
-  --gap: var(---gap);
-  --gap-horizontal: var(---gap-horizontal);
-  --gap-vertical: var(---gap-vertical);
-}
-
-&-item {
-  padding: var(--padding);
-  position: relative;
-  background-color: var(--color);
-  border: var(--border);
-  border-radius: var(--border-radius);
-  color: var(--text-color);
-  opacity: 1;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  overflow: hidden;
-  vertical-align: top;
-
-  &-description {
-    font-size: var(--adm-font-size-main);
-    color: var(--adm-color-weak);
+  .adm-space.adm-space {
+    --gap: 24px;
   }
 
-  &-active,
-  &-multiple-active {
-    color: var(--checked-text-color);
-    background-color: var(--checked-color);
-    border: var(--checked-border);
+  .adm-grid {
+    --gap: var(---gap);
+    --gap-horizontal: var(---gap-horizontal);
+    --gap-vertical: var(---gap-vertical);
   }
 
-  .#{$class-prefix-selector}-check-mark-wrapper {
-                             position: absolute;
-                             right: 0;
-                             bottom: 0;
-                             width: 0;
-                             height: 0;
-                             border-top: solid 16px transparent;
-                             border-bottom: solid 16px var(--adm-color-primary);
-                             border-left: solid 20px transparent;
-                             border-right: solid 20px var(--adm-color-primary);
-                             > .adm-icon {
-                               position: absolute;
-                               left: 0;
-                               top: 0;
-                               height: 12px;
-                               width: 16px;
-                               font-size: 16px;
-                               --color: #FFF;
-                             }
-                           }
+  &-item {
+    padding: var(--padding);
+    position: relative;
+    background-color: var(--color);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    opacity: 1;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: top;
+    min-width: 162px;
 
-  &-disabled {
-    cursor: not-allowed;
-    opacity: 0.4;
+    &-description {
+      font-size: var(--adm-font-size-main);
+      color: var(--adm-color-weak);
+    }
+
+    &-active,
+    &-multiple-active {
+      color: var(--checked-text-color);
+      background-color: var(--checked-color);
+      border: var(--checked-border);
+    }
+
+    &-disabled {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
   }
-}
+
+  &-item-wrapper {
+    position: relative;
+
+    .#{$class-prefix-selector}-check-mark-wrapper {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-top: solid 16px transparent;
+      border-bottom: solid 16px var(--adm-color-primary);
+      border-left: solid 20px transparent;
+      border-right: solid 20px var(--adm-color-primary);
+      border-radius: var(--border-radius);
+      > .adm-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 12px;
+        width: 16px;
+        font-size: 16px;
+        --color: #FFF;
+      }
+    }
+  }
 }

@@ -106,3 +106,7 @@ dist
 package-lock.json
 .DS_Store
 build
+.swc
+project.private.config.json
+components-doc.js
+example
