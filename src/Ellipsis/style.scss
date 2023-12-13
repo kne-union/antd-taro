@@ -6,6 +6,7 @@ $class-prefix-ellipsis: 'adm-ellipsis';
   position: relative;
   background: var(--background);
   font-size: var(--adm-font-size-6);
+  white-space: pre-wrap;
 }
 
 .#{$class-prefix-ellipsis}-tail {
