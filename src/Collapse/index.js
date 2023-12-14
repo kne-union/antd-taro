@@ -82,7 +82,8 @@ const Collapse = (props) => {
                         })}
                         onClick={handleClick}
                         disabled={panel.disabled}
-                        arrow={<Icon type={active ? 'arrow-thin-up' : 'arrow-thin-down'} className={"iconfont"}
+                        arrow={<Icon type={active ? 'arrow-thin-up' : 'arrow-thin-down'}
+                                     className={classnames("iconfont", "arrow-icon")}
                                      onClick={handleClick}/>}
                     >
                         {panel.title}
