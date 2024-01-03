@@ -69,6 +69,20 @@
           "packageName": "@tarojs/components"
         }
       ]
+    },
+    {
+      "title": "Input",
+      "description": "这里填写示例说明",
+      "code": "./input.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },{
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
     }
   ]
 }
