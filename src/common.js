@@ -93,7 +93,7 @@ export const getMonthDayCount = (year, month) => {
     return 30;
 };
 
-export const useDateRange = ({max, min, value, renderLabel, soFar, precision}) => {
+export const useDateRange = ({max, min, value, renderLabel, soFar, soFarText, precision}) => {
     const currentDate = dayjs(value), currentYear = currentDate.year(), currentMonth = currentDate.month(),
         currentDay = currentDate.date(), currentHour = currentDate.hour();
     const minDate = dayjs(min), minYear = minDate.year(), minMonth = minDate.month(), minDay = minDate.date(),
@@ -107,7 +107,7 @@ export const useDateRange = ({max, min, value, renderLabel, soFar, precision}) =
             };
         });
         soFar && list.push({
-            value: -1, label: '至今'
+            value: -1, label: soFarText || '至今'
         });
         return list;
     }, [minYear, maxYear, renderLabel, soFar]);
