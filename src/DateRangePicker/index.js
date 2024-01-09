@@ -6,7 +6,7 @@ import useControlValue from "@kne/use-control-value";
 const classPrefix = `adm-date-picker`;
 
 const DateRangePicker = (props) => {
-    const {precision, max, min, renderLabel, soFar, ...others} = props;
+    const {precision, max, min, renderLabel, soFar, soFarText, ...others} = props;
     const [valueProp, onChange] = useControlValue(props);
     const value = valueProp || others.defaultValue;
     const [innerValue, setInnerValueChange] = useState([dateToValue(value[0], precision), dateToValue(value[1]), precision]);
@@ -16,10 +16,16 @@ const DateRangePicker = (props) => {
     }, [precision, value]);
 
     const rangeStart = useDateRange({
-        precision, value: valueToDate(innerValue[0]), max, min, renderLabel
+        precision, value: valueToDate(innerValue[0]), max, min, renderLabel, soFarText
     });
     const rangeEnd = useDateRange({
-        precision, value: valueToDate(innerValue[1]), max, min: valueToDate(innerValue[0]), renderLabel, soFar
+        precision,
+        value: valueToDate(innerValue[1]),
+        max,
+        min: valueToDate(innerValue[0]),
+        renderLabel,
+        soFar,
+        soFarText
     });
 
     const length = precisionToLength(precision);
