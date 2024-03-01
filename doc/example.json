@@ -38,6 +38,21 @@
       ]
     },
     {
+      "title": "Button",
+      "description": "Button",
+      "code": "./button.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
       "title": "Card",
       "description": "Card",
       "code": "./card.js",
