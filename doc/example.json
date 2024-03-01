@@ -12,8 +12,8 @@
       }
     },
     {
-      "title": "Avatar",
-      "description": "Avatar",
+      "title": "头像",
+      "description": "头像",
       "code": "./avatar.js",
       "scope": [
         {
@@ -27,8 +27,8 @@
       ]
     },
     {
-      "title": "Badge",
-      "description": "Badge",
+      "title": "徽标",
+      "description": "徽标",
       "code": "./badge.js",
       "scope": [
         {
@@ -38,8 +38,8 @@
       ]
     },
     {
-      "title": "Button",
-      "description": "Button",
+      "title": "按钮",
+      "description": "按钮",
       "code": "./button.js",
       "scope": [
         {
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "title": "Card",
-      "description": "Card",
+      "title": "卡片",
+      "description": "卡片",
       "code": "./card.js",
       "scope": [
         {
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "title": "DateRangePicker",
+      "title": "日期范围选择器",
       "description": "日期范围选择器",
       "code": "./date-range-picker.js",
       "scope": [
@@ -94,8 +94,8 @@
       ]
     },
     {
-      "title": "Input",
-      "description": "Input",
+      "title": "输入框",
+      "description": "输入框",
       "code": "./input.js",
       "scope": [
         {
@@ -109,8 +109,8 @@
       ]
     },
     {
-      "title": "List",
-      "description": "List",
+      "title": "列表",
+      "description": "列表",
       "code": "./list.js",
       "scope": [
         {
@@ -120,8 +120,8 @@
       ]
     },
     {
-      "title": "Popup",
-      "description": "Popup",
+      "title": "弹出菜单",
+      "description": "弹出菜单",
       "code": "./popup.js",
       "scope": [
         {
@@ -131,8 +131,8 @@
       ]
     },
     {
-      "title": "Selector",
-      "description": "这里填写示例说明",
+      "title": "选择器",
+      "description": "选择器",
       "code": "./selector.js",
       "scope": [
         {

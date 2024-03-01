@@ -111,8 +111,8 @@ render(<BaseExample />);
 
 ```
 
-- Avatar
-- Avatar
+- 头像
+- 头像
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
@@ -125,8 +125,8 @@ render(<BaseExample />);
 
 ```
 
-- Badge
-- Badge
+- 徽标
+- 徽标
 - antdTaro(@kne/antd-taro)
 
 ```jsx
@@ -147,8 +147,8 @@ render(<BaseExample />);
 
 ```
 
-- Button
-- Button
+- 按钮
+- 按钮
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
@@ -199,8 +199,8 @@ render(<BaseExample />);
 
 ```
 
-- Card
-- Card
+- 卡片
+- 卡片
 - antdTaro(@kne/antd-taro)
 
 ```jsx
@@ -237,7 +237,7 @@ render(<BaseExample/>);
 
 ```
 
-- DateRangePicker
+- 日期范围选择器
 - 日期范围选择器
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
@@ -260,8 +260,8 @@ render(<BaseExample/>);
 
 ```
 
-- Input
-- Input
+- 输入框
+- 输入框
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
@@ -279,8 +279,8 @@ render(<BaseExample/>);
 
 ```
 
-- List
-- List
+- 列表
+- 列表
 - antdTaro(@kne/antd-taro)
 
 ```jsx
@@ -336,8 +336,8 @@ render(<BaseExample/>);
 
 ```
 
-- Popup
-- Popup
+- 弹出菜单
+- 弹出菜单
 - antdTaro(@kne/antd-taro)
 
 ```jsx
@@ -369,8 +369,8 @@ render(<BaseExample/>);
 
 ```
 
-- Selector
-- 这里填写示例说明
+- 选择器
+- 选择器
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
