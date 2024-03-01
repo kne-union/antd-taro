@@ -12,9 +12,102 @@
       }
     },
     {
-      "title": "这里填写示例标题",
+      "title": "Avatar",
+      "description": "Avatar",
+      "code": "./avatar.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "Card",
+      "description": "Card",
+      "code": "./card.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
+      "title": "折叠面板",
+      "description": "折叠面板",
+      "code": "./collapse.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "DateRangePicker",
+      "description": "日期范围选择器",
+      "code": "./date-range-picker.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "Input",
+      "description": "Input",
+      "code": "./input.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "List",
+      "description": "List",
+      "code": "./list.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
+      "title": "Popup",
+      "description": "Popup",
+      "code": "./popup.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
+      "title": "Selector",
       "description": "这里填写示例说明",
-      "code": "./tabs.js",
+      "code": "./selector.js",
       "scope": [
         {
           "name": "antdTaro",
@@ -42,43 +135,15 @@
       ]
     },
     {
-      "title": "折叠面板",
-      "description": "折叠面板",
-      "code": "./collapse.js",
+      "title": "选项卡",
+      "description": "选项卡",
+      "code": "./tabs.js",
       "scope": [
         {
           "name": "antdTaro",
           "packageName": "@kne/antd-taro"
         },
         {
-          "name": "taroComponent",
-          "packageName": "@tarojs/components"
-        }
-      ]
-    },
-    {
-      "title": "Selector",
-      "description": "这里填写示例说明",
-      "code": "./selector.js",
-      "scope": [
-        {
-          "name": "antdTaro",
-          "packageName": "@kne/antd-taro"
-        },{
-          "name": "taroComponent",
-          "packageName": "@tarojs/components"
-        }
-      ]
-    },
-    {
-      "title": "Input",
-      "description": "这里填写示例说明",
-      "code": "./input.js",
-      "scope": [
-        {
-          "name": "antdTaro",
-          "packageName": "@kne/antd-taro"
-        },{
           "name": "taroComponent",
           "packageName": "@tarojs/components"
         }
