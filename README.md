@@ -237,6 +237,29 @@ render(<BaseExample/>);
 
 ```
 
+- 日期选择器
+- 日期选择器
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Button} = taroComponent;
+const {useState} = React;
+const {DatePicker} = antdTaro;
+
+const BaseExample = () => {
+  const [open,setOpen] = useState(false);
+  return <>
+    <Button onClick={()=>{
+      setOpen(true);
+    }}>打开</Button>
+    <DatePicker open={open} onOpenChange={setOpen}/>
+  </>;
+};
+
+render(<BaseExample/>);
+
+```
+
 - 日期范围选择器
 - 日期范围选择器
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
