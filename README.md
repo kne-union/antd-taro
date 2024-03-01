@@ -283,6 +283,35 @@ render(<BaseExample/>);
 
 ```
 
+- 分隔线
+- 分隔线
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Divider, Space} = antdTaro;
+const {View} = taroComponent;
+
+const BaseExample = ()=>{
+  return (
+    <Space direction={'vertical'}>
+      <Space>
+        <View>horizontal</View>
+        <Divider direction={'horizontal'} />
+        <View>horizontal</View>
+      </Space>
+      <Space>
+        <View>vertical</View>
+        <Divider direction={'vertical'} />
+        <View>vertical</View>
+      </Space>
+    </Space>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
 - 输入框
 - 输入框
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
