@@ -312,6 +312,22 @@ render(<BaseExample />);
 
 ```
 
+- 点状加载图标
+- 点状加载图标
+- antdTaro(@kne/antd-taro)
+
+```jsx
+const {DotLoading} = antdTaro;
+const BaseExample = () => {
+  return (
+    <DotLoading>loading dot</DotLoading>
+  );
+};
+
+render(<BaseExample/>);
+
+```
+
 - 输入框
 - 输入框
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)

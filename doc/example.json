@@ -124,6 +124,17 @@
       ]
     },
     {
+      "title": "点状加载图标",
+      "description": "点状加载图标",
+      "code": "./dot-loading.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
       "title": "输入框",
       "description": "输入框",
       "code": "./input.js",
