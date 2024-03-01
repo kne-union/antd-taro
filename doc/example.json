@@ -27,6 +27,17 @@
       ]
     },
     {
+      "title": "Badge",
+      "description": "Badge",
+      "code": "./badge.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
       "title": "Card",
       "description": "Card",
       "code": "./card.js",
