@@ -111,8 +111,8 @@ render(<BaseExample />);
 
 ```
 
-- Avatar
-- Avatar
+- 头像
+- 头像
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
@@ -125,8 +125,82 @@ render(<BaseExample />);
 
 ```
 
-- Card
-- Card
+- 徽标
+- 徽标
+- antdTaro(@kne/antd-taro)
+
+```jsx
+const {Badge, Space} = antdTaro;
+const BaseExample = ()=>{
+  return (
+    <Space>
+      <Badge content={1} >Badge</Badge>
+      <Badge content={0} bordered>Badge</Badge>
+      <Badge color={'blue'} content={3} />
+      <Badge color={'blue'} content={<>content</>}>Badge</Badge>
+      <Badge content={<>5</>}>Badge</Badge>
+    </Space>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
+- 按钮
+- 按钮
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Button, Space} = antdTaro;
+const {View} = taroComponent;
+const BaseExample = ()=>{
+  return (
+    <Space direction={'vertical'}>
+      <View>size</View>
+      <Space>
+        <Button size={'small'}>small</Button>
+        <Button size={'middle'}>default middle</Button>
+        <Button size={'large'}>large</Button>
+      </Space>
+      <View>fill</View>
+      <Space>
+        <Button fill={'solid'}>default</Button>
+        <Button fill={'outline'}>outline</Button>
+        <Button fill={'none'}>none</Button>
+      </Space>
+      <View>loading</View>
+      <Space>
+        <Button loading>loading</Button>
+        <Button loading loadingText={'loadingText'}>loading</Button>
+        <Button loading loadingIcon={"@"}>loading</Button>
+      </Space>
+      <View>disabled</View>
+      <Space>
+        <Button disabled>disabled</Button>
+      </Space>
+      <View>shape</View>
+      <Space>
+        <Button shape={'rounded'}>rounded</Button>
+        <Button shape={'rectangular'}>rectangular</Button>
+      </Space>
+      <View>color</View>
+      <Space>
+        <Button color={'primary'}>primary</Button>
+        <Button color={'success'}>success</Button>
+        <Button color={'danger'}>danger</Button>
+        <Button color={'warning'}>warning</Button>
+      </Space>
+    </Space>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
+- 卡片
+- 卡片
 - antdTaro(@kne/antd-taro)
 
 ```jsx
@@ -163,7 +237,7 @@ render(<BaseExample/>);
 
 ```
 
-- DateRangePicker
+- 日期范围选择器
 - 日期范围选择器
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
@@ -186,8 +260,8 @@ render(<BaseExample/>);
 
 ```
 
-- Input
-- Input
+- 输入框
+- 输入框
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
@@ -205,8 +279,8 @@ render(<BaseExample/>);
 
 ```
 
-- List
-- List
+- 列表
+- 列表
 - antdTaro(@kne/antd-taro)
 
 ```jsx
@@ -262,8 +336,8 @@ render(<BaseExample/>);
 
 ```
 
-- Popup
-- Popup
+- 弹出菜单
+- 弹出菜单
 - antdTaro(@kne/antd-taro)
 
 ```jsx
@@ -295,8 +369,8 @@ render(<BaseExample/>);
 
 ```
 
-- Selector
-- 这里填写示例说明
+- 选择器
+- 选择器
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
