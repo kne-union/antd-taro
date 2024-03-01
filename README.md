@@ -237,6 +237,29 @@ render(<BaseExample/>);
 
 ```
 
+- 日期选择器
+- 日期选择器
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Button} = taroComponent;
+const {useState} = React;
+const {DatePicker} = antdTaro;
+
+const BaseExample = () => {
+  const [open,setOpen] = useState(false);
+  return <>
+    <Button onClick={()=>{
+      setOpen(true);
+    }}>打开</Button>
+    <DatePicker open={open} onOpenChange={setOpen}/>
+  </>;
+};
+
+render(<BaseExample/>);
+
+```
+
 - 日期范围选择器
 - 日期范围选择器
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
@@ -254,6 +277,51 @@ const BaseExample = () => {
         }}>打开</Button>
         <DateRangePicker open={open} onOpenChange={setOpen}/>
     </>;
+};
+
+render(<BaseExample/>);
+
+```
+
+- 分隔线
+- 分隔线
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Divider, Space} = antdTaro;
+const {View} = taroComponent;
+
+const BaseExample = ()=>{
+  return (
+    <Space direction={'vertical'}>
+      <Space>
+        <View>horizontal</View>
+        <Divider direction={'horizontal'} />
+        <View>horizontal</View>
+      </Space>
+      <Space>
+        <View>vertical</View>
+        <Divider direction={'vertical'} />
+        <View>vertical</View>
+      </Space>
+    </Space>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
+- 点状加载图标
+- 点状加载图标
+- antdTaro(@kne/antd-taro)
+
+```jsx
+const {DotLoading} = antdTaro;
+const BaseExample = () => {
+  return (
+    <DotLoading>loading dot</DotLoading>
+  );
 };
 
 render(<BaseExample/>);
