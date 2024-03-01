@@ -12,9 +12,169 @@
       }
     },
     {
-      "title": "这里填写示例标题",
-      "description": "这里填写示例说明",
-      "code": "./tabs.js",
+      "title": "头像",
+      "description": "头像",
+      "code": "./avatar.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "徽标",
+      "description": "徽标",
+      "code": "./badge.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
+      "title": "按钮",
+      "description": "按钮",
+      "code": "./button.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "卡片",
+      "description": "卡片",
+      "code": "./card.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
+      "title": "折叠面板",
+      "description": "折叠面板",
+      "code": "./collapse.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "日期选择器",
+      "description": "日期选择器",
+      "code": "./date-picker.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "日期范围选择器",
+      "description": "日期范围选择器",
+      "code": "./date-range-picker.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "分隔线",
+      "description": "分隔线",
+      "code": "./divider.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "点状加载图标",
+      "description": "点状加载图标",
+      "code": "./dot-loading.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
+      "title": "输入框",
+      "description": "输入框",
+      "code": "./input.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "列表",
+      "description": "列表",
+      "code": "./list.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
+      "title": "弹出菜单",
+      "description": "弹出菜单",
+      "code": "./popup.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        }
+      ]
+    },
+    {
+      "title": "选择器",
+      "description": "选择器",
+      "code": "./selector.js",
       "scope": [
         {
           "name": "antdTaro",
@@ -42,43 +202,15 @@
       ]
     },
     {
-      "title": "折叠面板",
-      "description": "折叠面板",
-      "code": "./collapse.js",
+      "title": "选项卡",
+      "description": "选项卡",
+      "code": "./tabs.js",
       "scope": [
         {
           "name": "antdTaro",
           "packageName": "@kne/antd-taro"
         },
         {
-          "name": "taroComponent",
-          "packageName": "@tarojs/components"
-        }
-      ]
-    },
-    {
-      "title": "Selector",
-      "description": "这里填写示例说明",
-      "code": "./selector.js",
-      "scope": [
-        {
-          "name": "antdTaro",
-          "packageName": "@kne/antd-taro"
-        },{
-          "name": "taroComponent",
-          "packageName": "@tarojs/components"
-        }
-      ]
-    },
-    {
-      "title": "Input",
-      "description": "这里填写示例说明",
-      "code": "./input.js",
-      "scope": [
-        {
-          "name": "antdTaro",
-          "packageName": "@kne/antd-taro"
-        },{
           "name": "taroComponent",
           "packageName": "@tarojs/components"
         }
