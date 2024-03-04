@@ -277,6 +277,21 @@
       ]
     },
     {
+      "title": "Result 结果",
+      "description": "Result 结果",
+      "code": "./result.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
       "title": "Selector 选择组",
       "description": "Selector 选择组",
       "code": "./selector.js",
