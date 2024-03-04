@@ -484,6 +484,27 @@ render(<BaseExample />);
 
 ```
 
+- Icon 图标
+- Icon 图标
+- antdTaro(@kne/antd-taro)
+
+```jsx
+const {Icon, Space} = antdTaro;
+
+const BaseExample = ()=>{
+  return (
+    <Space>
+      <Icon type={'clockCircleFill'} />
+      <Icon type={'gongsi'} />
+      <Icon type={'down-outline'} />
+    </Space>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
 - Input 输入框
 - Input 输入框
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
