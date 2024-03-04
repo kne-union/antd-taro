@@ -14,6 +14,7 @@ const NavBar = (props) => {
         {backArrow && (<View className={`${classPrefix}-back-arrow`}>
           {backArrow === true ? <Icon type="left-outline" className="adm-component"/> : backArrow}
         </View>)}
+        {back}
       </View>)}
       {props.left}
     </View>
