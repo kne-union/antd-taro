@@ -232,6 +232,25 @@
       ]
     },
     {
+      "title": "Navbar 导航栏",
+      "description": "Navbar 导航栏",
+      "code": "./navbar.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        },
+        {
+          "name": "tarojs",
+          "packageName": "@tarojs/taro"
+        }
+      ]
+    },
+    {
       "title": "Popup 弹出菜单",
       "description": "Popup 弹出菜单",
       "code": "./popup.js",
