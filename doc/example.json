@@ -180,6 +180,21 @@
       ]
     },
     {
+      "title": "Grid 栅格",
+      "description": "Grid 栅格",
+      "code": "./grid.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
       "title": "Input 输入框",
       "description": "Input 输入框",
       "code": "./input.js",
