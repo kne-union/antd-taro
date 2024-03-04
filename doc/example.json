@@ -135,6 +135,21 @@
       ]
     },
     {
+      "title": "下拉菜单",
+      "description": "下拉菜单",
+      "code": "./dropdown.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
       "title": "输入框",
       "description": "输入框",
       "code": "./input.js",

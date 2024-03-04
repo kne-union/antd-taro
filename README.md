@@ -328,6 +328,31 @@ render(<BaseExample/>);
 
 ```
 
+- 下拉菜单
+- 下拉菜单
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Dropdown} = antdTaro;
+const {View} = taroComponent;
+
+const BaseExample = () => {
+  return (
+    <View>
+      <Dropdown items={[{key: 'apple', title: 'apple', children: 'apple'}]}/>
+      <Dropdown items={[{key: 'apple', title: 'apple', children: 'apple'}, {key: 'banana', title: 'banana', children: 'banana'}]}/>
+      <Dropdown
+        activeKey={'orange'}
+        items={[{key: 'apple', title: 'apple', children: 'apple'}, {key: 'banana', title: 'banana', children: 'banana'}, {key: 'orange', title: 'orange', children: 'orange'}]}
+      />
+    </View>
+  );
+};
+
+render(<BaseExample/>);
+
+```
+
 - 输入框
 - 输入框
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
