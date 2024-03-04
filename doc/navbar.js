@@ -1,6 +1,6 @@
 const {NavBar, Space} = antdTaro;
 const {View} = taroComponent;
-const {showToast} = tarojs;
+const {showToast} = tarojsTaro;
 
 const BaseExample = () => {
   const back = () => showToast({
