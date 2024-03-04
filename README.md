@@ -735,6 +735,41 @@ render(<BaseExample/>);
 
 ```
 
+- Result 结果
+- Result 结果
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Result, Space} = antdTaro;
+const {View} = taroComponent;
+
+const BaseExample = ()=>{
+  return (
+    <Space direction={'vertical'}>
+      <Space wrap direction={'vertical'}>
+        <View>Status</View>
+        <Result status={'success'} description={'success'}/>
+        <Result status={'error'} description={'error'}/>
+        <Result status={'info'} description={'info'}/>
+        <Result status={'waiting'} description={'waiting'}/>
+        <Result status={'warning'} description={'warning'}/>
+      </Space>
+      <Space wrap direction={'vertical'}>
+        <View>Title</View>
+        <Result status={'success'} description={'success'} title={'success'}/>
+        <Result status={'error'} description={'error'} title={'error'}/>
+        <Result status={'info'} description={'info'} title={'info'}/>
+        <Result status={'waiting'} description={'waiting'} title={'waiting'}/>
+        <Result status={'warning'} description={'warning'} title={'warning'}/>
+      </Space>
+    </Space>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
 - Selector 选择组
 - Selector 选择组
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
