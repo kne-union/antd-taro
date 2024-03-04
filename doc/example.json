@@ -245,8 +245,23 @@
           "packageName": "@tarojs/components"
         },
         {
-          "name": "tarojs",
+          "name": "tarojsTaro",
           "packageName": "@tarojs/taro"
+        }
+      ]
+    },
+    {
+      "title": "Picker 选择器",
+      "description": "Picker 选择器",
+      "code": "./picker.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
         }
       ]
     },
@@ -262,8 +277,8 @@
       ]
     },
     {
-      "title": "Selector 选择器",
-      "description": "Selector 选择器",
+      "title": "Selector 选择组",
+      "description": "Selector 选择组",
       "code": "./selector.js",
       "scope": [
         {
