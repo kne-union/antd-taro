@@ -9,6 +9,10 @@ import Icon from '../Icon';
 
 const classPrefix = `adm-search-bar`;
 
+/**
+ * 本重构的 SearchBar 由于业务需求，取消了对应 “@tarojs/components” 中 SearchBar 的取消按钮
+ * 将原 取消 按钮改为了 “搜索”
+ */
 const SearchBar = forwardRef((props, ref) => {
   const [value, setValue] = useControlValue(props);
   const [hasFocus, setHasFocus] = useState(false)
@@ -31,19 +35,19 @@ const SearchBar = forwardRef((props, ref) => {
     if (!hasFocus) currentIsSearchButton.current = false;
   }, [hasFocus]);
 
-  const renderCancelButton = () => {
-    let isShowCancel;
+  const renderSearchButton = () => {
+    let isShowSearch;
 
-    if (typeof props.showCancelButton === 'function') {
-      isShowCancel = props.showCancelButton(hasFocus, value)
+    if (typeof props.showSearchButton === 'function') {
+      isShowSearch = props.showSearchButton(hasFocus, value)
     } else {
-      isShowCancel = props.showCancelButton && hasFocus
+      isShowSearch = props.showSearchButton && hasFocus
     }
 
-    return (isShowCancel && (<View className={`${classPrefix}-suffix`}>
+    return (isShowSearch && (<View className={`${classPrefix}-suffix`}>
       <Button
         fill="none"
-        className={`${classPrefix}-cancel-button`}
+        className={`${classPrefix}-search-button`}
         onClick={() => {
           currentIsSearchButton.current = true;
           return Promise.resolve(props.onSearch && props.onSearch(value)).then((res) => {
@@ -90,6 +94,7 @@ const SearchBar = forwardRef((props, ref) => {
             }
             setHasFocus(false);
             props.onBlur?.(e);
+            inputRef.current.blur();
             currentIsSearchButton.current = false;
           }, 200);
         }}
@@ -104,17 +109,16 @@ const SearchBar = forwardRef((props, ref) => {
         }}
       />
     </View>
-    {renderCancelButton()}
+    {renderSearchButton()}
   </View>;
 });
 
 SearchBar.defaultProps = {
   clearable: true,
   onlyShowClearWhenFocus: false,
-  showCancelButton: true,
+  showSearchButton: true,
   defaultValue: '',
   autoFocus: false,
-  clearOnCancel: true,
   placeholder: '请输入搜索内容',
   icon: <Icon type="searchOutline" className="adm-component"/>,
   searchText: '搜索',

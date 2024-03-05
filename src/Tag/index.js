@@ -5,16 +5,17 @@ import {View} from '@tarojs/components'
 
 const classPrefix = `adm-tag`
 
-const Tag = ({className, opacity, colorRecord, ...props}) => {
+const Tag = ({className, opacity, colorRecord, style, ...props}) => {
   const color = colorRecord[props.color] ? colorRecord[props.color] : props.color
 
-  const style = {
-    'borderColor': opacity ? 'none' : color,
-    'color': (props.fill === 'outline' || opacity) ? color : 'rgba(255,255,255,0.06)',
-    'backgroundColor': props.fill === 'outline' ? 'transparent' : (opacity ? `rgba(${color}, 0.06)` : color),
-  }
+  const initStyle = {
+    'borderColor': props.fill === 'outline' ? color : opacity ? 'none' : color,
+    'color': (props.fill === 'outline' || opacity) ? color : 'rgb(255,255,255)',
+    'backgroundColor': (opacity ? `${color}0F` : props.fill === 'outline' ? 'transparent' : color),
+  };
+
   return <View
-    style={style}
+    style={Object.assign({}, initStyle, style)}
     onClick={props.onClick}
     className={classNames(classPrefix, {
       [`${classPrefix}-round`]: props.round,
@@ -27,11 +28,11 @@ const Tag = ({className, opacity, colorRecord, ...props}) => {
 Tag.defaultProps = {
   color: 'default', fill: 'solid', round: false, opacity: false, colorRecord: {
     default: '#666666',
-    primary: 'var(--adm-color-primary, #1677ff)',
-    info: 'var(--adm-color-info, #155ACF)',
-    success: 'var(--adm-color-success, #00b578)',
-    warning: 'var(--adm-color-warning, #ff8f1f)',
-    danger: 'var(--adm-color-danger, #ff3141)',
+    primary: '#1677ff',
+    info: '#155ACF',
+    success: '#00b578',
+    warning: '#ff8f1f',
+    danger: '#ff3141',
   }
 };
 

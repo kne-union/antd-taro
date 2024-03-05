@@ -292,9 +292,77 @@
       ]
     },
     {
+      "title": "SafeArea 安全区",
+      "description": "SafeArea 安全区",
+      "code": "./safe-area.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "SearchBar 搜索框",
+      "description": "SearchBar 搜索框",
+      "code": "./search-bar.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        },
+        {
+          "name": "tarojsTaro",
+          "packageName": "@tarojs/taro"
+        }
+      ]
+    },
+    {
       "title": "Selector 选择组",
       "description": "Selector 选择组",
       "code": "./selector.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "Slider 滑动输入条",
+      "description": "Slider 滑动输入条",
+      "code": "./slider.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        },
+        {
+          "name": "tarojsTaro",
+          "packageName": "@tarojs/taro"
+        }
+      ]
+    },
+    {
+      "title": "Space 间距",
+      "description": "Space 间距",
+      "code": "./space.js",
       "scope": [
         {
           "name": "antdTaro",
@@ -322,9 +390,54 @@
       ]
     },
     {
+      "title": "Switch 开关",
+      "description": "Switch 开关",
+      "code": "./switch.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "TabBar 标签栏",
+      "description": "TabBar 标签栏",
+      "code": "./tab-bar.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
       "title": "Tabs 选项卡",
       "description": "Tabs 选项卡",
       "code": "./tabs.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "Tag 标签",
+      "description": "Tag 标签",
+      "code": "./tag.js",
       "scope": [
         {
           "name": "antdTaro",
