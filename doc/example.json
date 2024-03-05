@@ -326,21 +326,6 @@
       ]
     },
     {
-      "title": "Selector 选择组",
-      "description": "Selector 选择组",
-      "code": "./selector.js",
-      "scope": [
-        {
-          "name": "antdTaro",
-          "packageName": "@kne/antd-taro"
-        },
-        {
-          "name": "taroComponent",
-          "packageName": "@tarojs/components"
-        }
-      ]
-    },
-    {
       "title": "Slider 滑动输入条",
       "description": "Slider 滑动输入条",
       "code": "./slider.js",
@@ -363,21 +348,6 @@
       "title": "Space 间距",
       "description": "Space 间距",
       "code": "./space.js",
-      "scope": [
-        {
-          "name": "antdTaro",
-          "packageName": "@kne/antd-taro"
-        },
-        {
-          "name": "taroComponent",
-          "packageName": "@tarojs/components"
-        }
-      ]
-    },
-    {
-      "title": "Steps 步骤条",
-      "description": "Steps 步骤条",
-      "code": "./steps.js",
       "scope": [
         {
           "name": "antdTaro",
