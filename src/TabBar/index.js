@@ -41,7 +41,7 @@ const TabBarItem = (props) => {
   return null;
 };
 
-const TabBar = ({className, openType, onChange, ...props}) => {
+const TabBar = ({className, openType, onChange, children, ...props}) => {
   const [activeKeyBase, setActiveKey] = useControlValue(props, {
     defaultValue: 'defaultActiveKey', value: 'activeKey'
   });
@@ -82,6 +82,7 @@ const TabBar = ({className, openType, onChange, ...props}) => {
           <TabBarItem active={active} {...item}/>
         </View>
       })}
+      {children}
     </View>
     {props.safeArea && <SafeArea position='bottom'/>}
   </View>;

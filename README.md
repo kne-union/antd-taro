@@ -770,6 +770,104 @@ render(<BaseExample />);
 
 ```
 
+- SafeArea 安全区
+- SafeArea 安全区
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {SafeArea, Space} = antdTaro;
+const {View} = taroComponent;
+
+const BaseExample = ()=>{
+  return (
+    <View>
+      <View style={{background: '#eee'}}><SafeArea position={'top'}/></View>
+      <View>Aliqua consectetur enim commodo labore Lorem in cillum fugiat amet fugiat nulla laboris nulla. Exercitation mollit do culpa deserunt. Culpa ad dolor culpa sunt adipisicing magna nostrud pariatur aliqua et est ullamco. Enim voluptate ea cillum minim et commodo qui officia. Nisi labore laborum consectetur culpa ut. Esse dolor culpa officia elit nisi amet eiusmod sunt ipsum. Ut ex Lorem consectetur cupidatat duis do. Ad officia duis laborum enim veniam fugiat elit eu cillum anim reprehenderit. Ex quis est amet cupidatat laboris nisi nisi veniam ea voluptate culpa. Do nisi fugiat laboris. Dolore ut laborum sint exercitation eiusmod consectetur anim. Esse reprehenderit ex aute tempor eiusmod do proident minim cillum incididunt. Est aliquip aute non id tempor aliqua. Culpa labore id elit velit qui minim reprehenderit. Voluptate esse aliquip ullamco fugiat occaecat Lorem non pariatur cupidatat ullamco esse ex. Quis exercitation enim aliquip proident magna occaecat sint quis. Fugiat pariatur ad nisi eiusmod culpa dolor. Enim in aliquip magna anim duis adipisicing duis quis fugiat ad nulla. Ullamco eu reprehenderit exercitation eu aliqua aliquip. Cupidatat consectetur cupidatat dolore eiusmod do tempor sint in deserunt velit amet id excepteur pariatur. Irure nostrud labore cupidatat consectetur cupidatat qui non ullamco cupidatat cillum. Labore Lorem proident fugiat occaecat laborum sint sint in pariatur sit irure. Velit aliquip occaecat magna id aliqua laboris adipisicing amet eiusmod do sint consectetur culpa culpa. Culpa nostrud ad occaecat consequat. Mollit irure voluptate in reprehenderit Lorem duis nisi velit duis. Sunt veniam et cupidatat tempor laborum sint deserunt eiusmod cillum commodo cupidatat Lorem sit ut. Qui dolor ea do aliquip dolore esse culpa minim velit qui nulla nisi est. Dolor Lorem eiusmod aliquip fugiat aliqua sint irure qui esse aliquip in ut ad. Ipsum ullamco culpa non incididunt Lorem labore occaecat. Nostrud enim ipsum sit. Ipsum quis occaecat consequat amet incididunt amet veniam ea dolor ullamco reprehenderit est quis nisi reprehenderit. Ipsum occaecat mollit voluptate sint est culpa elit magna dolor id occaecat veniam eiusmod ad proident. Sit adipisicing elit est culpa laborum magna nostrud aliqua laboris sint eiusmod elit nulla. Voluptate fugiat dolore dolore pariatur ut. Eiusmod cillum duis deserunt culpa eiusmod aliqua amet Lorem esse amet est est. Do fugiat pariatur eiusmod labore. Sint anim dolore amet aliquip enim labore commodo veniam esse consectetur culpa mollit proident et velit. Eiusmod ut duis eiusmod aliqua dolore exercitation elit voluptate ipsum voluptate incididunt consectetur adipisicing. Ad id et mollit aliqua elit elit ut in tempor consectetur dolore pariatur velit reprehenderit duis. Nulla occaecat velit aliquip in. Incididunt eiusmod minim ea fugiat esse fugiat fugiat enim amet. Incididunt ipsum in labore esse aliqua exercitation ex elit id ullamco. Laborum ipsum sint mollit aliqua incididunt labore cillum anim et exercitation ullamco Lorem mollit. Sit enim enim consequat sit id elit non. Dolor mollit nisi qui elit minim minim velit ex incididunt elit ullamco et dolore dolor. Aliqua magna non id minim mollit est et irure duis aliqua. Ut sint amet et sint. Aliqua reprehenderit duis sit labore. Nostrud eu velit aute et qui. Quis sit ullamco deserunt excepteur. Eiusmod est Lorem quis incididunt aute ipsum elit ea sit culpa velit quis ullamco aliqua. Laboris aute sit quis non. Exercitation ullamco elit et minim. Excepteur veniam incididunt ex nisi ex sint non. Quis sit aute aliqua sunt in voluptate sint velit sit laboris ipsum. Commodo labore dolor fugiat ex. Do officia cillum adipisicing velit commodo minim cupidatat cillum dolor exercitation magna consequat sunt commodo aute. Veniam non reprehenderit enim est amet laborum nisi duis ut deserunt aute eu. Laboris mollit sit aliquip elit laboris mollit nisi eu voluptate minim cillum. Do incididunt reprehenderit nisi anim ad. Qui reprehenderit non laboris. Sint proident proident commodo laboris sit ullamco. Minim dolore sunt ut nostrud.</View>
+      <View style={{background: '#eee'}}><SafeArea position={'bottom'}/></View>
+    </View>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
+- SearchBar 搜索框
+- SearchBar 搜索框
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components),tarojsTaro(@tarojs/taro)
+
+```jsx
+const {SearchBar, Space, Button} = antdTaro;
+const {View} = taroComponent;
+const {useRef} = React;
+const {showToast} = tarojsTaro;
+
+const BaseExample = ()=>{
+  const searchRef = useRef(null);
+  return (
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>基础用法</View>
+        <SearchBar placeholder='请输入内容' />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>不显示搜索按钮</View>
+        <SearchBar showSearchButton={false} />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义搜索按钮</View>
+        <SearchBar autoFocus searchText='立即搜索' />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>搜索按钮长显</View>
+        <SearchBar placeholder='请输入内容' showSearchButton={() => true} />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>事件监听和 Ref</View>
+        <SearchBar
+          ref={searchRef}
+          placeholder='请输入内容'
+          onSearch={val => {
+            console.log('你搜索了')
+            showToast({title: `你搜索了：${val}`, icon: 'none'})
+          }}
+          onFocus={() => {
+            console.log('获得焦点')
+            setTimeout(() => searchRef.current?.focus(), 300)
+
+          }}
+          onBlur={() => {
+            console.log('失去焦点')
+          }}
+          onCancel={() => {
+            console.log('取消搜索')
+          }}
+        />
+        <Space>
+          <Button
+            onClick={() => {
+              searchRef.current?.clear()
+            }}
+          >
+            清空内容
+          </Button>
+          <Button
+            onClick={() => {
+              searchRef.current?.focus()
+            }}
+          >
+            激活
+          </Button>
+        </Space>
+      </Space>
+    </Space>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
 - Selector 选择组
 - Selector 选择组
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
@@ -789,6 +887,141 @@ const BaseExample = () => {
       {label: '选项5', value: '5'}
     ]}/>
   </View>;
+};
+
+render(<BaseExample/>);
+
+```
+
+- Slider 滑动输入条
+- Slider 滑动输入条
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components),tarojsTaro(@tarojs/taro)
+
+```jsx
+const {Slider, Space} = antdTaro;
+const {View} = taroComponent;
+const {showToast} = tarojsTaro;
+
+const BaseExample = ()=>{
+  const toastValue = (value) => {
+    let text = ''
+    if (typeof value === 'number') {
+      text = `${value}`
+    } else {
+      text = `[${value.join(',')}]`
+    }
+    showToast({icon: 'none', title: `当前选中值为：${text}`});
+    console.log(value);
+  }
+
+  return (
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>基础用法</View>
+        <Slider onChange={toastValue} />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>设置 step</View>
+        <Slider ticks step={10} />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>显示当前 value</View>
+        <Slider step={1} value={50} showValue/>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>设置最小/最大值</View>
+        <Slider step={1} value={100} showValue min={50} max={200}/>
+      </Space>
+    </Space>
+  );
+};
+
+render(<BaseExample />);
+
+```
+
+- Space 间距
+- Space 间距
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {Space, Button} = antdTaro;
+const {View} = taroComponent;
+
+const style = `{
+  font-size: 12px;
+  background: #ddd;
+  padding: 20px;
+  box-sizing: border-box;
+}`;
+
+const styleWidth = `{
+  font-size: 12px;
+  max-width: 80px;
+}`;
+
+const BaseExample = () => {
+  return (
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>水平方向的间距</View>
+        <Space>
+          <View style={style}>horizontal</View>
+          <View style={style}>horizontal</View>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>换行</View>
+        <Space wrap>
+          {
+            Array(10).fill().map((_item, index) => (
+              <View style={style} key={`view${index}`}>view{index}</View>
+            ))
+          }
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>垂直方向的间距</View>
+        <Space direction={'vertical'}>
+          <View style={style}>vertical</View>
+          <View style={style}>vertical</View>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义间距大小</View>
+        <Space size={16} wrap>
+          <View style={style}>horizontal</View>
+          <View style={style}>horizontal</View>
+          <View style={style}>horizontal</View>
+          <View style={style}>horizontal</View>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>渲染为块级元素</View>
+        <Space direction='vertical' block>
+          <Button>按钮1</Button>
+          <Button>按钮2</Button>
+          <Button>按钮3</Button>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>主轴对齐方式</View>
+        <Space justify='center' block>
+          <View style={style + styleWidth}>1</View>
+          <View style={style + styleWidth}>2{`\n`}2{`\n`}2</View>
+          <View style={style + styleWidth}>3{`\n`}3{`\n`}3{`\n`}3{`\n`}3</View>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>交叉轴对齐方式</View>
+        <Space justify='center' block>
+          <View style={style + styleWidth}>1</View>
+          <View style={style + styleWidth}>2{`\n`}2{`\n`}2</View>
+          <View style={style + styleWidth}>3{`\n`}3{`\n`}3{`\n`}3{`\n`}3</View>
+        </Space>
+      </Space>
+    </Space>
+  );
 };
 
 render(<BaseExample/>);
@@ -828,6 +1061,109 @@ render(<BaseExample/>);
 
 ```
 
+- Switch 开关
+- Switch 开关
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {View} = taroComponent;
+const {Switch, Space} = antdTaro;
+
+const BaseExample = () => {
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Switch />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>有默认值</View>
+      <Switch checked />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>禁用</View>
+      <Switch disabled />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>type 为 checkbox</View>
+      <Switch checked type={'checkbox'} />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>color</View>
+      <Switch checked color={'#04BE02'} />
+    </Space>
+  </Space>;
+};
+
+render(<BaseExample/>);
+
+```
+
+- TabBar 标签栏
+- TabBar 标签栏
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {View} = taroComponent;
+const {useState} = React;
+const {TabBar, Space, Icon, Badge} = antdTaro;
+
+const tabs = [
+  {key: 'index', title: '首页', icon: <Icon type={'clockCircleFill'} className="adm-component" />},
+  {key: 'info', title: '信息', icon: <Icon type={'informationCircleFill'} className="adm-component" />},
+  {key: 'question', title: '问题', icon: <Icon type={'exclamationCircleFill'} className="adm-component" />},
+];
+
+const tabsPath = [
+  {key: 'index', title: '首页', icon: <Icon type={'clockCircleFill'} className="adm-component" />, path: '/'},
+  {key: 'info', title: '信息', icon: <Icon type={'informationCircleFill'} className="adm-component" />, path: '/info'},
+  {key: 'question', title: '问题', icon: <Icon type={'exclamationCircleFill'} className="adm-component" />, path: '/question'},
+];
+
+const tabsBadge = [
+  {key: 'index', title: '首页', icon: <Icon type={'clockCircleFill'} className="adm-component" />, badge: Badge.dot},
+  {key: 'info', title: '信息', icon: <Icon type={'informationCircleFill'} className="adm-component" />, badge: 5},
+  {key: 'question', title: '问题', icon: <Icon type={'exclamationCircleFill'} className="adm-component" />, badge: '99+'},
+  {key: 'check', title: 'Check', icon: <Icon type={'checkCircleFill'} className="adm-component" />},
+];
+
+const BaseExample = () => {
+  const [activeKey, setActiveKey] = useState('info')
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <TabBar items={tabs}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>徽标</View>
+      <TabBar items={tabsPath}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>徽标</View>
+      <TabBar items={tabsBadge}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>仅图标</View>
+      <TabBar items={tabs.map(({title, ...item}) => item)}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>仅标题</View>
+      <TabBar items={tabs.map(({icon, ...item}) => item)}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>受控组件</View>
+      <TabBar items={tabs} activeKey={activeKey} onChange={setActiveKey}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>开启安全区</View>
+      <TabBar items={tabs} safeArea/>
+    </Space>
+  </Space>;
+};
+
+render(<BaseExample/>);
+
+```
+
 - Tabs 选项卡
 - Tabs 选项卡
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
@@ -854,6 +1190,74 @@ const BaseExample = () => {
             </>
         }]}/>
     </>;
+};
+
+render(<BaseExample/>);
+
+```
+
+- Tag 标签
+- Tag 标签
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {View} = taroComponent;
+const {Tag, Space} = antdTaro;
+
+const BaseExample = () => {
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Tag>123</Tag>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>线框标签</View>
+      <Space wrap>
+        <Tag color='primary' fill='outline'>Primary</Tag>
+        <Tag color='#87d068' fill='outline'>#87d068</Tag>
+        <Tag color='#ff6430' fill='outline'>#ff6430</Tag>
+      </Space>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>语义标签</View>
+      <Space wrap>
+        <Tag color='default'>Default</Tag>
+        <Tag color='primary'>测试</Tag>
+        <Tag color='success'>Success</Tag>
+        <Tag color='warning'>Warning</Tag>
+        <Tag color='danger'>Danger</Tag>
+      </Space>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>圆角标签</View>
+      <Tag round color='#2db7f5'>圆角标签</Tag>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>自定义颜色</View>
+      <Space>
+        <Tag color='#2db7f5'>#2db7f5</Tag>
+        <Tag color='#87d068'>#87d068</Tag>
+        <Tag color='#108ee9'>#108ee9</Tag>
+      </Space>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>背景色透明度</View>
+      <Space>
+        <Tag color='#2db7f5' opacity>#2db7f5</Tag>
+        <Tag color='#87d068' opacity>#87d068</Tag>
+        <Tag color='#108ee9' opacity>#108ee9</Tag>
+      </Space>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>通过 CSS 变量个性化</View>
+      <Space>
+        <Tag color='primary' fill='outline' style={{ '--border-radius': '6px' }}>Primary</Tag>
+        <Tag color='success' fill='outline' style={{ '--background-color': '#c8f7cFFF' }}>Success</Tag>
+        <Tag color='warning' style={{ '--text-color': 'var(--adm-color-text)' }}>Warning</Tag>
+        <Tag color='danger' fill='outline' style={{ '--border-color': 'var(--adm-color-weak)' }}>Danger</Tag>
+      </Space>
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
