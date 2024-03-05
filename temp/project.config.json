@@ -1,0 +1,36 @@
+{
+  "miniprogramRoot": "dist/",
+  "description": "antd-taro示例程序",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "compileHotReLoad": false,
+    "postcss": false,
+    "minified": true,
+    "ignoreUploadUnusedFiles": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "condition": false,
+    "packNpmRelationList": [],
+    "coverView": false,
+    "showShadowRootInWxmlPanel": false
+  },
+  "compileType": "miniprogram",
+  "srcMiniprogramRoot": "dist/",
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "libVersion": "2.24.6",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "projectname": "antd-taro",
+  "appid": "wx66bb88142df0830e"
+}

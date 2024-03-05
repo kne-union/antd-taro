@@ -18,9 +18,14 @@ $class-prefix-input: 'adm-input';
   background-color: var(--background-color);
 
   &-disabled {
-    opacity: 0.4;
     cursor: not-allowed;
   }
+}
+
+.adm-input-placeholder {
+  color: var(--placeholder-color);
+  font-family: inherit;
+  font-size: var(--font-size);
 }
 
 .#{$class-prefix-input}-element {
@@ -41,11 +46,6 @@ $class-prefix-input: 'adm-input';
   appearance: none;
   min-height: 1.5em;
   text-align: var(--text-align);
-
-  &::placeholder {
-    color: var(--placeholder-color);
-    font-family: inherit;
-  }
 
   &:-webkit-autofill {
     background-color: transparent;

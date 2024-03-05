@@ -57,7 +57,7 @@ const Input = forwardRef((props, ref) => {
       id={props.id}
       placeholder={props.placeholder}
       placeholderStyle={props.placeholderStyle}
-      placeholderClass={props.placeholderClass}
+      placeholderClass={classnames(`${classPrefix}-placeholder`, props.placeholderClass)}
       placeholderTextColor={props.placeholderTextColor}
       password={props.password}
       cursorSpacing={props.cursorSpacing}
