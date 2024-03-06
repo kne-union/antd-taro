@@ -116,9 +116,59 @@ render(<BaseExample />);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Avatar} = antdTaro;
+const {Avatar, Space} = antdTaro;
+const {View, Text} = taroComponent;
+
+const demoAvatarImages = [
+  'https://github.githubassets.com/assets/app-icon-512-7f9c4ff2e960.png',
+  'https://avatars.githubusercontent.com/u/37367461?v=4',
+];
+
 const BaseExample = ()=>{
-    return <Avatar />;
+    return (
+      <Space direction={'vertical'} size={30}>
+        <Space direction={'vertical'}>
+          <View>基础用法</View>
+          <Space>
+            <Avatar src={demoAvatarImages[0]} />
+            <Avatar src={demoAvatarImages[1]} />
+          </Space>
+        </Space>
+        <Space direction={'vertical'}>
+          <View>占位头像</View>
+          <Avatar />
+          <Text style={{color: '#666', fontSize: '14px'}}>如果你不传图片，或者不传性别，或者图片加载失败，那么会显示一个默认的图像</Text>
+        </Space>
+        <Space direction={'vertical'}>
+          <View>性别默认头像</View>
+          <Space>
+            <Avatar gender={'F'} />
+            <Avatar gender={'f'} />
+            <Avatar gender={'female'} />
+          </Space>
+          <Space>
+            <Avatar gender={'M'} />
+            <Avatar gender={'m'} />
+            <Avatar gender={'male'} />
+          </Space>
+        </Space>
+        <Space direction={'vertical'}>
+          <View>自定义尺寸</View>
+          <Space>
+            <Avatar gender={'F'} />
+            <Avatar gender={'f'} size={64} />
+            <Avatar gender={'female'} size={80} />
+          </Space>
+        </Space>
+        <Space direction={'vertical'}>
+          <View>自定义圆角</View>
+          <Space>
+            <Avatar src={demoAvatarImages[0]} style={{'--border-radius': '10%'}} />
+            <Avatar src={demoAvatarImages[1]} style={{'--border-radius': '12px'}} />
+          </Space>
+        </Space>
+      </Space>
+    );
 };
 
 render(<BaseExample />);
@@ -127,18 +177,52 @@ render(<BaseExample />);
 
 - Badge 徽标
 - Badge 徽标
-- antdTaro(@kne/antd-taro)
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
 const {Badge, Space} = antdTaro;
+const {View} = taroComponent;
+
+const style = `
+  {
+    display: block;
+    background: #666666;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+`;
 const BaseExample = ()=>{
   return (
-    <Space>
-      <Badge content={1} >Badge</Badge>
-      <Badge content={0} bordered>Badge</Badge>
-      <Badge color={'blue'} content={3} />
-      <Badge color={'blue'} content={<>content</>}>Badge</Badge>
-      <Badge content={<>5</>}>Badge</Badge>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>基础用法</View>
+        <Space>
+          <Badge content={1}>Badge</Badge>
+          <Badge content={'新'}><View style={style}/></Badge>
+          <Badge content={Badge.dot}><View style={style}/></Badge>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>带边框</View>
+        <Badge content={'更新啦'} bordered><View style={style}/></Badge>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>独立使用</View>
+        <Space>
+          <Badge content='99+' />
+          <Badge content='新消息!' />
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义颜色</View>
+        <Space>
+          <Badge color='#108ee9' content={Badge.dot}><View style={style}/></Badge>
+          <Badge color='#87d068' content={Badge.dot}><View style={style}/></Badge>
+          <Badge content={Badge.dot}><View style={style}/></Badge>
+          <Badge color='orange' content={Badge.dot}><View style={style}/></Badge>
+        </Space>
+      </Space>
     </Space>
   );
 };
@@ -152,39 +236,39 @@ render(<BaseExample />);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Button, Space} = antdTaro;
+const {Button, Space, DotLoading, Icon} = antdTaro;
 const {View} = taroComponent;
 const BaseExample = ()=>{
   return (
     <Space direction={'vertical'}>
-      <View>size</View>
+      <View>按钮尺寸</View>
       <Space>
         <Button size={'small'}>small</Button>
         <Button size={'middle'}>default middle</Button>
         <Button size={'large'}>large</Button>
       </Space>
-      <View>fill</View>
+      <View>填充模式</View>
       <Space>
         <Button fill={'solid'}>default</Button>
         <Button fill={'outline'}>outline</Button>
         <Button fill={'none'}>none</Button>
       </Space>
-      <View>loading</View>
+      <View>加载状态</View>
       <Space>
-        <Button loading>loading</Button>
+        <Button loading loadingIcon={<DotLoading />}/>
         <Button loading loadingText={'loadingText'}>loading</Button>
-        <Button loading loadingIcon={"@"}>loading</Button>
+        <Button loading loadingIcon={<Icon className={"adm-component"} type="clockCircleFill"/>}>loading</Button>
       </Space>
-      <View>disabled</View>
+      <View>禁用状态</View>
       <Space>
         <Button disabled>disabled</Button>
       </Space>
-      <View>shape</View>
+      <View>形状</View>
       <Space>
         <Button shape={'rounded'}>rounded</Button>
         <Button shape={'rectangular'}>rectangular</Button>
       </Space>
-      <View>color</View>
+      <View>语义按钮</View>
       <Space>
         <Button color={'primary'}>primary</Button>
         <Button color={'success'}>success</Button>
@@ -201,14 +285,83 @@ render(<BaseExample />);
 
 - Card 卡片
 - Card 卡片
-- antdTaro(@kne/antd-taro)
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components),tarojsTaro(@tarojs/taro)
 
 ```jsx
-const {Card} = antdTaro;
+const {Card, Space, Icon, Button} = antdTaro;
+const {View} = taroComponent;
+const {showToast} = tarojsTaro;
+
+const styles = {
+  content: {
+    height: '50px'
+  },
+  footer: {
+    paddingTop: '11px',
+    borderTop: '1px solid #e5e5e5',
+    display: 'flex',
+    justifyContent: 'flex-end'
+  },
+  customBody: {
+    color: '#00b578'
+  },
+};
+
 const BaseExample = () => {
-    return <Card title="我是title">
-        我是Card内容
-    </Card>;
+  const onClick = () => {
+    showToast({title: '点击了卡片', icon: 'none'});
+  };
+
+  const onHeaderClick = () => {
+    showToast({title: '点击了卡片Header区域', icon: 'none'});
+  };
+
+  const onBodyClick = () => {
+    showToast({title: '点击了卡片Body区域', icon: 'none'});
+  };
+
+  return (
+    <Space direction={'vertical'} size={30} style={{backgroundColor: '#ddd', padding: '20px', boxSizing: 'border-box'}}>
+      <Space direction={'vertical'}>
+        <View>基础用法</View>
+        <Card title="我是title">我是Card内容</Card>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>没有卡片标题</View>
+        <Card>我是Card内容</Card>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义卡片样式</View>
+        <Card
+          headerStyle={{color: '#1677ff'}}
+          title='卡片标题'
+        >
+          <View style={styles.customBody}>我是Card内容</View>
+        </Card>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义卡片内容</View>
+        <Card
+          title={<View><Icon className={"adm-component"} type="informationCircleFill"/>卡片标题</View>}
+          extra={<Icon className={"adm-component"} type="right-outline"/>}
+          onBodyClick={onBodyClick}
+          onHeaderClick={onHeaderClick}
+        >
+          <View style={styles.content}>我是Card内容</View>
+          <View style={styles.footer} onClick={e => e.stopPropagation()}>
+            <Button
+              color='primary'
+              onClick={() => {
+                showToast({title: '点击了底部按钮', icon: 'none'});
+              }}
+            >
+              底部按钮
+            </Button>
+          </View>
+        </Card>
+      </Space>
+    </Space>
+  );
 };
 
 render(<BaseExample/>);
@@ -1349,6 +1502,132 @@ render(<BaseExample/>);
 
 ### API
 
-|属性名|说明|类型|默认值|
-|  ---  | ---  | --- | --- |
+### Avatar 头像
+
+#### 属性
+
+| 属性名  | 说明                           | 类型     | 默认值 |
+|------|------------------------------|--------|-----|
+| src  | 头像的图片地址                      | string | -   |
+| size | 大小，宽度和高度，等效于设置 --size CSS 变量 | number | 48  |
+
+#### CSS 变量
+
+| 属性名             | 说明       | 默认值  | 全局变量                       |
+|-----------------|----------|------|----------------------------|
+| --border-radius | 圆角       | 50%  | --adm-avatar-border-radius |
+| --size          | 大小，宽度和高度 | 48px | --adm-avatar-size          |
+
+### Badge 徽标
+
+#### 属性
+
+| 属性名              | 说明                                                         | 类型                                   | 默认值   |
+|------------------|------------------------------------------------------------|--------------------------------------|-------|
+| bordered         | 是否增加描边                                                     | boolean                              | false |
+| color            | 徽标背景色，等效于设置 --color CSS 变量                                 | string                               | -     |
+| content          | 徽标内容：如果传 null undefined '' 或不传，则不显示徽标；如果传 Badge.dot，会显示小红点 | React.ReactNode  \| typeof Badge.dot | -     |
+| wrapperClassName | Badge wrap 自定义类名                                           | string                               | -     |
+| wrapperStyle     | Badge wrap 自定义样式                                           | React.CSSProperties                  | -     |
+
+#### CSS 变量
+
+| 属性名     | 说明            | 默认值     | 全局变量              |
+|---------|---------------|---------|-------------------|
+| --color | 徽标背景色         | #ff411c | --adm-badge-color |
+| --right | 相对于最右边，向左的偏移量 | 0       | -                 |
+| --top   | 相对于最上边，向下的偏移量 | 0       | -                 |
+
+### Button 按钮
+
+#### 属性
+
+| 属性名         | 说明                                                     | 类型                                                           | 默认值                                 |
+|-------------|--------------------------------------------------------|--------------------------------------------------------------|-------------------------------------|
+| block       | 是否是块级元素                                                | boolean                                                      | false                               |
+| color       | 按钮的颜色                                                  | 'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' | 'default'                           |
+| disabled    | 是否禁用                                                   | boolean                                                      | false                               |
+| fill        | 填充模式                                                   | 'solid' \| 'outline' \| 'none'                               | 'solid'                             |
+| loading     | 是否处于加载状态，'auto' 模式会监听 onClick 的 Promise 状态自动更新 loading | boolean \| 'auto'                                            | false                               |
+| loadingIcon | 加载状态下的 icon 图标                                         | ReactNode                                                    | <DotLoading color='currentColor' /> |
+| loadingText | 加载状态下额外展示的文字                                           | string                                                       | -                                   |
+| shape       | 按钮的形状                                                  | 'default' \| 'rounded' \| 'rectangular'                      | 	'default'                          |
+| size        | 大小                                                     | 'mini' \| 'small' \| 'middle' \| 'large'                     | 	'middle'                           |
+| type        | 原生 button 元素的 type 属性                                  | 'submit' \| 'reset' \| 'button'                              | 	'button'                           |
+| onClick     | 点击事件                                                   | (event: React.MouseEvent) => void \| Promise                 | -                                   |
+
+***此外，还支持原生 button 元素的以下属性：onMouseDown onMouseUp onTouchStart onTouchEnd。***
+
+#### CSS 变量
+
+| 属性名                | 说明   | 默认值                                 | 全局变量                          |
+|--------------------|------|-------------------------------------|-------------------------------|
+| --background-color | 背景颜色 | var(--adm-color-background) #ffffff | --adm-button-background-color |
+| --border-color     | 边框颜色 | var(--adm-color-border) #f1f1f1     | --adm-button-border-color     |
+| --border-radius    | 圆角大小 | 8px                                 | --adm-button-border-radius    |
+| --border-style     | 边框样式 | solid                               | --adm-button-border-style     |
+| --border-width     | 边框样式 | 2px                                 | --adm-button-border-width     |
+| --text-color       | 文字颜色 | var(--adm-color-text) '#333333'     | --adm-button-text-color       |
+
+## Card 卡片
+
+#### 属性
+
+| 属性名             | 说明            | 类型                                | 默认值 |
+|-----------------|---------------|-----------------------------------|-----|
+| bodyClassName   | body 自定义类名    | string                            | -   |
+| bodyStyle       | body 自定义样式    | React.CSSProperties               | -   |
+| extra           | header 右边区域   | ReactNode                         | -   |
+| headerClassName | header 自定义类名  | string                            | -   |
+| headerStyle     | header 自定义样式  | React.CSSProperties               | -   |
+| onBodyClick     | body 区域点击事件   | (event: React.MouseEvent) => void | -   |
+| onClick         | 卡片点击事件        | (event: React.MouseEvent) => void | -   |
+| onHeaderClick   | header 区域点击事件 | (event: React.MouseEvent) => void | -   |
+| title           | header 左边区域   | ReactNode                         | -   |
+
+## CheckList 可勾选列表
+
+#### 属性
+
+| 属性名          | 说明     | 类型                             | 默认值              |
+|--------------|--------|--------------------------------|------------------|
+| activeIcon   | 选中图标   | ReactNode                      | <CheckOutline /> |
+| extra        | 列表右侧区域 | (active: boolean) => ReactNode | -                |
+| defaultValue | 默认项    | string[]                       | []               |
+| disabled     | 是否禁用   | boolean                        | false            |
+| multiple     | 是否允许多选 | boolean                        | false            |
+| onChange     | 选项改变时触 | (value: string[]) => void      | false            |
+| readOnly     | 是否只读   | boolean                        | false            |
+| value        | 选中项    | string[]                       | []               |
+
+此外，还支持 List 的 mode 属性
+
+### CheckListItem
+
+#### 属性
+
+| 属性名      | 说明   | 类型       | 默认值   |
+|----------|------|----------|-------|
+| disabled | 是否禁用 | boolean  | false |
+| readOnly | 是否只读 | boolean  | false |
+| value    | 选项值  | string[] | []    |
+
+#### CSS 变量
+***同 List.Item***
+
+| 属性名                       | 说明                   | 默认值                               |
+|---------------------------|----------------------|-----------------------------------|
+| --active-background-color | 点击时的背景颜色             | var(--adm-color-border)           |
+| --align-items             | 列表项的 align-item      | center                            |
+| --border-bottom           | 列表容器底部的边框样式          | solid 2px var(--adm-color-border) |
+| --border-inner            | 列表项底部的边框样式           | solid 2px var(--adm-color-border) |
+| --border-top              | 列表容器顶部的边框样式          | solid 2px var(--adm-color-border) |
+| --extra-max-width         | extra 部分的最大宽度        | 70%                               |
+| --font-size               | Body 内容的字体大小         | var(--adm-font-size-9) 34px       |
+| --header-font-size        | 头部的字体大小              | var(--adm-font-size-7) 30px       |
+| --padding-left            | 列表项和列表头部左侧的 padding  | 24px                              |
+| --padding-right           | 列表项和列表头部右侧的 padding  | 24px                              |
+| --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
+| --prefix-width            | prefix 部分的宽度         | auto                              |
+
 
