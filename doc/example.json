@@ -448,6 +448,21 @@
           "packageName": "@tarojs/components"
         }
       ]
+    },
+    {
+      "title": "TextArea 文本域",
+      "description": "TextArea 文本域",
+      "code": "./text-area.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
     }
   ]
 }
