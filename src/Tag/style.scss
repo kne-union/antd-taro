@@ -1,6 +1,12 @@
 $class-prefix-tag: 'adm-tag';
 
 .#{$class-prefix-tag} {
+  --adm-color-primary: #1677ff;
+  --adm-color-info: #155ACF;
+  --adm-color-success: #00b578;
+  --adm-color-warning: #ff8f1f;
+  --adm-color-danger: #ff3141;
+
   --border-radius: var(--adm-tag-border-radius, 4px);
   padding: 4px 8px;
   font-size: var(--adm-font-size-3);
