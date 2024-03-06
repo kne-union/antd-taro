@@ -8,13 +8,13 @@ import classnames from 'classnames'
 
 const classPrefix = 'adm-avatar'
 
-const Avatar = ({className, ...props}) => {
+const Avatar = ({className, style, ...props}) => {
   // gender
   return <Image
     className={classnames(classPrefix, className)}
     src={props.src || (props.gender && (["F", "female", "f"].indexOf(props.gender) > -1 ? female : male)) || fallback}
     alt={props.alt}
-    style={{'--adm-avatar-size': `${props?.size || 48}px`}}
+    style={Object.assign({}, style, {'--adm-avatar-size': `${props?.size || 48}px`})}
     onClick={props.onClick}
     onError={props.onError}
   />;
