@@ -1,4 +1,4 @@
-### Avatar
+### Avatar 头像
 
 #### 属性
 
@@ -14,7 +14,7 @@
 | --border-radius | 圆角       | 50%  | --adm-avatar-border-radius |
 | --size          | 大小，宽度和高度 | 48px | --adm-avatar-size          |
 
-### Badge
+### Badge 徽标
 
 #### 属性
 
@@ -34,7 +34,7 @@
 | --right | 相对于最右边，向左的偏移量 | 0       | -                 |
 | --top   | 相对于最上边，向下的偏移量 | 0       | -                 |
 
-### Button
+### Button 按钮
 
 #### 属性
 
@@ -65,7 +65,6 @@
 | --border-width     | 边框样式 | 2px                                 | --adm-button-border-width     |
 | --text-color       | 文字颜色 | var(--adm-color-text) '#333333'     | --adm-button-text-color       |
 
-
 ## Card 卡片
 
 #### 属性
@@ -81,3 +80,49 @@
 | onClick         | 卡片点击事件        | (event: React.MouseEvent) => void | -   |
 | onHeaderClick   | header 区域点击事件 | (event: React.MouseEvent) => void | -   |
 | title           | header 左边区域   | ReactNode                         | -   |
+
+## CheckList 可勾选列表
+
+#### 属性
+
+| 属性名          | 说明     | 类型                             | 默认值              |
+|--------------|--------|--------------------------------|------------------|
+| activeIcon   | 选中图标   | ReactNode                      | <CheckOutline /> |
+| extra        | 列表右侧区域 | (active: boolean) => ReactNode | -                |
+| defaultValue | 默认项    | string[]                       | []               |
+| disabled     | 是否禁用   | boolean                        | false            |
+| multiple     | 是否允许多选 | boolean                        | false            |
+| onChange     | 选项改变时触 | (value: string[]) => void      | false            |
+| readOnly     | 是否只读   | boolean                        | false            |
+| value        | 选中项    | string[]                       | []               |
+
+此外，还支持 List 的 mode 属性
+
+### CheckListItem
+
+#### 属性
+
+| 属性名      | 说明   | 类型       | 默认值   |
+|----------|------|----------|-------|
+| disabled | 是否禁用 | boolean  | false |
+| readOnly | 是否只读 | boolean  | false |
+| value    | 选项值  | string[] | []    |
+
+#### CSS 变量
+***同 List.Item***
+
+| 属性名                       | 说明                   | 默认值                               |
+|---------------------------|----------------------|-----------------------------------|
+| --active-background-color | 点击时的背景颜色             | var(--adm-color-border)           |
+| --align-items             | 列表项的 align-item      | center                            |
+| --border-bottom           | 列表容器底部的边框样式          | solid 2px var(--adm-color-border) |
+| --border-inner            | 列表项底部的边框样式           | solid 2px var(--adm-color-border) |
+| --border-top              | 列表容器顶部的边框样式          | solid 2px var(--adm-color-border) |
+| --extra-max-width         | extra 部分的最大宽度        | 70%                               |
+| --font-size               | Body 内容的字体大小         | var(--adm-font-size-9) 34px       |
+| --header-font-size        | 头部的字体大小              | var(--adm-font-size-7) 30px       |
+| --padding-left            | 列表项和列表头部左侧的 padding  | 24px                              |
+| --padding-right           | 列表项和列表头部右侧的 padding  | 24px                              |
+| --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
+| --prefix-width            | prefix 部分的宽度         | auto                              |
+
