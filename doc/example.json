@@ -64,6 +64,21 @@
       ]
     },
     {
+      "title": "CheckList 可勾选列表",
+      "description": "CheckList 可勾选列表",
+      "code": "./check-list.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
       "title": "Collapse 折叠面板",
       "description": "Collapse 折叠面板",
       "code": "./collapse.js",
