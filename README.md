@@ -236,39 +236,39 @@ render(<BaseExample />);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Button, Space} = antdTaro;
+const {Button, Space, DotLoading, Icon} = antdTaro;
 const {View} = taroComponent;
 const BaseExample = ()=>{
   return (
     <Space direction={'vertical'}>
-      <View>size</View>
+      <View>按钮尺寸</View>
       <Space>
         <Button size={'small'}>small</Button>
         <Button size={'middle'}>default middle</Button>
         <Button size={'large'}>large</Button>
       </Space>
-      <View>fill</View>
+      <View>填充模式</View>
       <Space>
         <Button fill={'solid'}>default</Button>
         <Button fill={'outline'}>outline</Button>
         <Button fill={'none'}>none</Button>
       </Space>
-      <View>loading</View>
+      <View>加载状态</View>
       <Space>
-        <Button loading>loading</Button>
+        <Button loading loadingIcon={<DotLoading />}/>
         <Button loading loadingText={'loadingText'}>loading</Button>
-        <Button loading loadingIcon={"@"}>loading</Button>
+        <Button loading loadingIcon={<Icon className={"adm-component"} type="clockCircleFill"/>}>loading</Button>
       </Space>
-      <View>disabled</View>
+      <View>禁用状态</View>
       <Space>
         <Button disabled>disabled</Button>
       </Space>
-      <View>shape</View>
+      <View>形状</View>
       <Space>
         <Button shape={'rounded'}>rounded</Button>
         <Button shape={'rectangular'}>rectangular</Button>
       </Space>
-      <View>color</View>
+      <View>语义按钮</View>
       <Space>
         <Button color={'primary'}>primary</Button>
         <Button color={'success'}>success</Button>
@@ -1434,37 +1434,70 @@ render(<BaseExample/>);
 ### API
 
 ### Avatar
+
 #### 属性
 
-|属性名| 说明        | 类型     | 默认值 |
-|  ---  |-----------|--------|-----|
-|  src  | 头像的图片地址   | string | -   |
-|  size  | 大小，宽度和高度，等效于设置 --size CSS 变量 | number | 48   |
+| 属性名  | 说明                           | 类型     | 默认值 |
+|------|------------------------------|--------|-----|
+| src  | 头像的图片地址                      | string | -   |
+| size | 大小，宽度和高度，等效于设置 --size CSS 变量 | number | 48  |
 
 #### CSS 变量
 
-|属性名|说明| 默认值  | 全局变量                       |
-|  ---  | ---  |------|----------------------------|
-|  --border-radius  | 圆角  | 50%  | --adm-avatar-border-radius |
-|  --size  | 大小，宽度和高度  | 48px | --adm-avatar-size |
-
+| 属性名             | 说明       | 默认值  | 全局变量                       |
+|-----------------|----------|------|----------------------------|
+| --border-radius | 圆角       | 50%  | --adm-avatar-border-radius |
+| --size          | 大小，宽度和高度 | 48px | --adm-avatar-size          |
 
 ### Badge
+
 #### 属性
 
-|属性名| 说明    | 类型                                   | 默认值   |
-|  ---  |-------|--------------------------------------|-------|
-|  bordered  | 是否增加描边 | boolean                              | false |
-|  color  | 徽标背景色，等效于设置 --color CSS 变量 | string                               | -     |
-|  content  | 徽标内容：如果传 null undefined '' 或不传，则不显示徽标；如果传 Badge.dot，会显示小红点 | React.ReactNode  \| typeof Badge.dot | -     |
-|  wrapperClassName  | Badge wrap 自定义类名 | string | -     |
-|  wrapperStyle  | Badge wrap 自定义样式 | React.CSSProperties | -     |
+| 属性名              | 说明                                                         | 类型                                   | 默认值   |
+|------------------|------------------------------------------------------------|--------------------------------------|-------|
+| bordered         | 是否增加描边                                                     | boolean                              | false |
+| color            | 徽标背景色，等效于设置 --color CSS 变量                                 | string                               | -     |
+| content          | 徽标内容：如果传 null undefined '' 或不传，则不显示徽标；如果传 Badge.dot，会显示小红点 | React.ReactNode  \| typeof Badge.dot | -     |
+| wrapperClassName | Badge wrap 自定义类名                                           | string                               | -     |
+| wrapperStyle     | Badge wrap 自定义样式                                           | React.CSSProperties                  | -     |
 
 #### CSS 变量
 
-|属性名|说明| 默认值     | 全局变量                       |
-|  ---  | ---  |---------|----------------------------|
-|  --color  | 徽标背景色  | #ff411c | --adm-badge-color |
-|  --right  | 相对于最右边，向左的偏移量  | 0       | - |
-|  --top  | 相对于最上边，向下的偏移量  | 0       | - |
+| 属性名     | 说明            | 默认值     | 全局变量              |
+|---------|---------------|---------|-------------------|
+| --color | 徽标背景色         | #ff411c | --adm-badge-color |
+| --right | 相对于最右边，向左的偏移量 | 0       | -                 |
+| --top   | 相对于最上边，向下的偏移量 | 0       | -                 |
+
+
+### Button
+
+#### 属性
+
+| 属性名         | 说明                                                     | 类型                                                           | 默认值                                 |
+|-------------|--------------------------------------------------------|--------------------------------------------------------------|-------------------------------------|
+| block       | 是否是块级元素                                                | boolean                                                      | false                               |
+| color       | 按钮的颜色                                                  | 'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' | 'default'                           |
+| disabled    | 是否禁用                                                   | boolean                                                      | false                               |
+| fill        | 填充模式                                                   | 'solid' \| 'outline' \| 'none'                               | 'solid'                             |
+| loading     | 是否处于加载状态，'auto' 模式会监听 onClick 的 Promise 状态自动更新 loading | boolean \| 'auto'                                            | false                               |
+| loadingIcon | 加载状态下的 icon 图标                                         | ReactNode                                                    | <DotLoading color='currentColor' /> |
+| loadingText | 加载状态下额外展示的文字                                           | string                                                       | -                                   |
+| shape       | 按钮的形状                                                  | 'default' \| 'rounded' \| 'rectangular'                      | 	'default'                          |
+| size        | 大小                                                     | 'mini' \| 'small' \| 'middle' \| 'large'                     | 	'middle'                           |
+| type        | 原生 button 元素的 type 属性                                  | 'submit' \| 'reset' \| 'button'                              | 	'button'                           |
+| onClick     | 点击事件                                                   | (event: React.MouseEvent) => void \| Promise                 | -                                   |
+
+***此外，还支持原生 button 元素的以下属性：onMouseDown onMouseUp onTouchStart onTouchEnd。***
+
+#### CSS 变量
+
+| 属性名                | 说明   | 默认值                                 | 全局变量                          |
+|--------------------|------|-------------------------------------|-------------------------------|
+| --background-color | 背景颜色 | var(--adm-color-background) #ffffff | --adm-button-background-color |
+| --border-color     | 边框颜色 | var(--adm-color-border) #f1f1f1     | --adm-button-border-color     |
+| --border-radius    | 圆角大小 | 8px                                 | --adm-button-border-radius    |
+| --border-style     | 边框样式 | solid                               | --adm-button-border-style     |
+| --border-width     | 边框样式 | 2px                                 | --adm-button-border-width     |
+| --text-color       | 文字颜色 | var(--adm-color-text) '#333333'     | --adm-button-text-color       |
 

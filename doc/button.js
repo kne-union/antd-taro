@@ -1,36 +1,36 @@
-const {Button, Space} = antdTaro;
+const {Button, Space, DotLoading, Icon} = antdTaro;
 const {View} = taroComponent;
 const BaseExample = ()=>{
   return (
     <Space direction={'vertical'}>
-      <View>size</View>
+      <View>按钮尺寸</View>
       <Space>
         <Button size={'small'}>small</Button>
         <Button size={'middle'}>default middle</Button>
         <Button size={'large'}>large</Button>
       </Space>
-      <View>fill</View>
+      <View>填充模式</View>
       <Space>
         <Button fill={'solid'}>default</Button>
         <Button fill={'outline'}>outline</Button>
         <Button fill={'none'}>none</Button>
       </Space>
-      <View>loading</View>
+      <View>加载状态</View>
       <Space>
-        <Button loading>loading</Button>
+        <Button loading loadingIcon={<DotLoading />}/>
         <Button loading loadingText={'loadingText'}>loading</Button>
-        <Button loading loadingIcon={"@"}>loading</Button>
+        <Button loading loadingIcon={<Icon className={"adm-component"} type="clockCircleFill"/>}>loading</Button>
       </Space>
-      <View>disabled</View>
+      <View>禁用状态</View>
       <Space>
         <Button disabled>disabled</Button>
       </Space>
-      <View>shape</View>
+      <View>形状</View>
       <Space>
         <Button shape={'rounded'}>rounded</Button>
         <Button shape={'rectangular'}>rectangular</Button>
       </Space>
-      <View>color</View>
+      <View>语义按钮</View>
       <Space>
         <Button color={'primary'}>primary</Button>
         <Button color={'success'}>success</Button>
