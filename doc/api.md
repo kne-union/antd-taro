@@ -34,7 +34,6 @@
 | --right | 相对于最右边，向左的偏移量 | 0       | -                 |
 | --top   | 相对于最上边，向下的偏移量 | 0       | -                 |
 
-
 ### Button
 
 #### 属性
@@ -65,3 +64,20 @@
 | --border-style     | 边框样式 | solid                               | --adm-button-border-style     |
 | --border-width     | 边框样式 | 2px                                 | --adm-button-border-width     |
 | --text-color       | 文字颜色 | var(--adm-color-text) '#333333'     | --adm-button-text-color       |
+
+
+## Card 卡片
+
+#### 属性
+
+| 属性名             | 说明            | 类型                                | 默认值 |
+|-----------------|---------------|-----------------------------------|-----|
+| bodyClassName   | body 自定义类名    | string                            | -   |
+| bodyStyle       | body 自定义样式    | React.CSSProperties               | -   |
+| extra           | header 右边区域   | ReactNode                         | -   |
+| headerClassName | header 自定义类名  | string                            | -   |
+| headerStyle     | header 自定义样式  | React.CSSProperties               | -   |
+| onBodyClick     | body 区域点击事件   | (event: React.MouseEvent) => void | -   |
+| onClick         | 卡片点击事件        | (event: React.MouseEvent) => void | -   |
+| onHeaderClick   | header 区域点击事件 | (event: React.MouseEvent) => void | -   |
+| title           | header 左边区域   | ReactNode                         | -   |

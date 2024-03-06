@@ -64,6 +64,14 @@
         {
           "name": "antdTaro",
           "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        },
+        {
+          "name": "tarojsTaro",
+          "packageName": "@tarojs/taro"
         }
       ]
     },
