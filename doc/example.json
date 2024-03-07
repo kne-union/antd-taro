@@ -136,6 +136,10 @@
         {
           "name": "taroComponent",
           "packageName": "@tarojs/components"
+        },
+        {
+          "name": "tarojsTaro",
+          "packageName": "@tarojs/taro"
         }
       ]
     },
