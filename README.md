@@ -418,17 +418,46 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Collapse} = antdTaro;
+const {Collapse, Space, Icon} = antdTaro;
+const {View} = taroComponent;
+
+const items = [{
+  key: '1', title: '第一项', children: '第一项第一项第一项第一项第一项第一项第一项第一项'
+}, {
+  key: '2', title: '第二项', children: '第二项第二项第二项第二项第二项第二项第二项第二项'
+}, {
+  key: '3', title: '第三项', children: '第三项第三项第三项第三项第三项第三项第三项第三项第三项'
+}];
+
 const BaseExample = () => {
-    return <>
-        <Collapse defaultActiveKey={['1']} items={[{
-            key: '1', title: '第一项', children: '第一项第一项第一项第一项第一项第一项第一项第一项'
-        }, {
-            key: '2', title: '第二项', children: '第二项第二项第二项第二项第二项第二项第二项第二项'
-        }, {
-            key: '3', title: '第三项', children: '第三项第三项第三项第三项第三项第三项第三项第三项第三项'
-        }]}/>
-    </>;
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Collapse defaultActiveKey={['1']} items={items}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>手风琴模式</View>
+      <Collapse accordion items={items}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>禁用</View>
+      <Collapse accordion items={items.slice(0, 2).concat([Object.assign({}, items[2], {disabled: true})])}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>自定义折叠图标</View>
+      <Collapse
+        arrow={active => <Icon type={active ? "checkCircleFill" : 'closeCircleFill'} className="adm-component"/>}
+        items={[
+          items[0],
+          Object.assign({}, items[1], {arrow: <Icon type='exclamationCircleFill' className="adm-component"/>}),
+          Object.assign({}, items[2], {
+            arrow: active => <Icon type={active ? "informationCircleFill" : 'clockCircleFill'}
+                                   className="adm-component"/>
+          }),
+        ]}
+      />
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -1613,6 +1642,7 @@ render(<BaseExample/>);
 | value    | 选项值  | string[] | []    |
 
 #### CSS 变量
+
 ***同 List.Item***
 
 | 属性名                       | 说明                   | 默认值                               |
@@ -1630,4 +1660,29 @@ render(<BaseExample/>);
 | --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
 | --prefix-width            | prefix 部分的宽度         | auto                              |
 
+## Collapse
+
+#### 属性
+
+| 属性名              | 说明                                               | 类型                                                                                  | 默认值                                          |
+|------------------|--------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+| accordion        | 是否开启手风琴模式                                        | boolean                                                                             | false                                        |
+| activeKey        | 当前展开面板的 key                                      | 手风琴模式：string \| null<br/> 非手风琴模式：string[]                                           | -                                            |
+| arrow            | 自定义箭头，如果是 ReactNode，那么 antd-mobile 会自动为你增加旋转动画效果 | ReactNode                                                                           | ((active: boolean) => React.ReactNode) \| [] | -|
+| defaultActiveKey | 默认展开面板的 key                                      | 手风琴模式：string \| null<br/> 非手风琴模式：string[] \| []                                     | -                                            |
+| onChange         | 切换面板时触发                                          | 手风琴模式：(activeKey: string \| null) => void<br/> 非手风琴模式：(activeKey: string[]) => void | -                                            |
+
+#### Collapse.Panel
+
+#### 属性
+
+| 属性名            | 说明              | 类型                                                  | 默认值   |
+|----------------|-----------------|-----------------------------------------------------|-------|
+| arrow          | 自定义箭头           | ReactNode \| ((active: boolean) => React.ReactNode) | -     |
+| destroyOnClose | 不可见时是否销毁 DOM 结构 | boolean                                             | false |
+| disabled       | 是否为禁用状态         | boolean                                             | false |
+| forceRender    | 被隐藏时是否渲染 DOM 结构 | boolean                                             | false |
+| key            | 唯一标识符           | string                                              | -     |
+| onClick        | 标题栏的点击事件        | (event: React.MouseEvent) => void                   | -     |
+| title          | 标题栏左侧内容         | ReactNode                                           | -     |
 
