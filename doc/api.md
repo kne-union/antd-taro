@@ -152,3 +152,19 @@
 | key            | 唯一标识符           | string                                              | -     |
 | onClick        | 标题栏的点击事件        | (event: React.MouseEvent) => void                   | -     |
 | title          | 标题栏左侧内容         | ReactNode                                           | -     |
+
+### DatePicker
+
+#### 属性
+
+| 属性名          | 说明                                                            | 类型                                                    | 默认值                    |
+|--------------|---------------------------------------------------------------|-------------------------------------------------------|------------------------|
+| defaultValue | 默认选中值                                                         | PickerDate                                            | new Date() 今天          |
+| max          | 最大值                                                           | PickerDate                                            | new Date() 今天          |
+| min          | 最小值                                                           | PickerDate                                            | new Date('1949-10-01') |
+| onChange     | 确认时触发                                                         | (value: PickerDate) => void                           | -                      |
+| precision    | 精度                                                            | 'month' \| 'day' \| 'hour' \| 'minute'                | -                      |
+| renderLabel  | 自定义渲染每列展示的内容。其中 type 参数为 precision 中的任意值或 now，data 参数为默认渲染的数字 | (type: Precision \| 'now', data: number) => ReactNode | -                      |
+| value        | 选中值                                                           | PickerDate                                            | -                      |
+
+此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
