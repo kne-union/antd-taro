@@ -673,15 +673,44 @@ render(<BaseExample />);
 
 ```
 
-- Dot Loading 点状加载图标
-- Dot Loading 点状加载图标
-- antdTaro(@kne/antd-taro)
+- DotLoading 点状加载图标
+- DotLoading 点状加载图标
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {DotLoading} = antdTaro;
+const {DotLoading, Space} = antdTaro;
+const {View} = taroComponent;
 const BaseExample = () => {
   return (
-    <DotLoading>loading dot</DotLoading>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>默认颜色 Loading</View>
+        <DotLoading/>
+        <View>主题色 Loading</View>
+        <DotLoading color='primary'/>
+        <View>白色 Loading</View>
+        <View style={{backgroundColor: '#ddd'}}>
+          <DotLoading color='white'/>
+        </View>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义颜色 Loading</View>
+        <Space>
+          <DotLoading color='#155ACF'/>
+          <DotLoading color='#00b578'/>
+          <DotLoading color='#ff8f1f'/>
+          <DotLoading color='#ff3141'/>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自动适配字号</View>
+        <Space>
+          <View style={{fontSize: 14}}><DotLoading/></View>
+          <View style={{fontSize: 18}}><DotLoading/></View>
+          <View style={{fontSize: 24}}><DotLoading/></View>
+        </Space>
+      </Space>
+    </Space>
   );
 };
 
@@ -1852,12 +1881,20 @@ render(<BaseExample/>);
 
 此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
 
-## Divider 分隔线
+## DotLoading 点状加载图标
 
 #### 属性
 
-| 属性名             | 说明                                 | 类型                            | 默认值          |
-|-----------------|------------------------------------|-------------------------------|--------------|
-| contentPosition | 内容位置，仅在 direction 为 horizontal 时有效 | 'center' \| 'left' \| 'right' | 'center'     |
-| direction       | 水平还是垂直类型                           | 'horizontal' \| 'vertical'    | 'horizontal' |
+| 属性名   | 说明                          | 类型                                          | 默认值       |
+|-------|-----------------------------|---------------------------------------------|-----------|
+| color | 线条颜色，等效于手动设置 --color CSS 变量 | 'default' \| 'primary' \| 'white' \| string | 'default' |
+
+DotLoading 的大小会自动根据当前的文字大小进行调整。
+
+#### CSS 变量
+
+| 属性名     | 说明   | 默认值                   |
+|---------|------|-----------------------|
+| --color | 线条颜色 | var(--adm-color-weak) |
+| --size  | 大小   | 32px                  |
 
