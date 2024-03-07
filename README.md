@@ -723,19 +723,38 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Dropdown} = antdTaro;
+const {Dropdown, Space, Icon} = antdTaro;
 const {View} = taroComponent;
+
+const items = [
+  {key: 'apple', title: 'apple', children: 'apple'},
+  {key: 'banana', title: 'banana', children: 'banana'},
+  {key: 'orange', title: 'orange', children: 'orange'}
+];
 
 const BaseExample = () => {
   return (
-    <View>
-      <Dropdown items={[{key: 'apple', title: 'apple', children: 'apple'}]}/>
-      <Dropdown items={[{key: 'apple', title: 'apple', children: 'apple'}, {key: 'banana', title: 'banana', children: 'banana'}]}/>
-      <Dropdown
-        activeKey={'orange'}
-        items={[{key: 'apple', title: 'apple', children: 'apple'}, {key: 'banana', title: 'banana', children: 'banana'}, {key: 'orange', title: 'orange', children: 'orange'}]}
-      />
-    </View>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>一列</View>
+        <Dropdown items={items.slice(0, 1)}/>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>两列</View>
+        <Dropdown items={items.slice(0, 2)}/>
+      </Space>
+      <Space direction={'vertical'} closeOnMaskClick={false}>
+        <View>三列</View>
+        <Dropdown items={items}/>
+      </Space>
+      <Space direction={'vertical'} closeOnMaskClick={false}>
+        <View>自定义箭头</View>
+        <Dropdown
+          arrow={<Icon className={"adm-component"} type="check-mark"/>}
+          items={[...items.slice(0, 2), Object.assign({}, items[2], {arrow: <Icon className={"adm-component"} type="checkCircleFill"/>})]}
+        />
+      </Space>
+    </Space>
   );
 };
 
@@ -1897,4 +1916,30 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |---------|------|-----------------------|
 | --color | 线条颜色 | var(--adm-color-weak) |
 | --size  | 大小   | 32px                  |
+
+## Dropdown 下拉菜单
+
+#### 属性
+
+| 属性名      | 说明              | 类型                                 | 默认值 |
+|----------|-----------------|------------------------------------|-----|
+| arrow    | 自定义 arrow       | React.ReactNode                    | -   |
+| onChange | activeKey 变化时触发 | (activeKey: string \| null)=> void | -   |
+| items    | 列               | DropdownItem[]                     | -   |
+
+#### Ref
+
+| 属性    | 说明     | 类型         |
+|-------|--------|------------|
+| close | 关闭下拉菜单 | () => void |
+
+### DropdownItem
+
+| 属性名       | 说明        | 类型                                | 默认值   |
+|-----------|-----------|-----------------------------------|-------|
+| arrow     | 自定义 arrow | React.ReactNode                   | -     |
+| highlight | 高亮        | boolean                           | false |
+| key       | 唯一值       | string                            | -     |
+| title     | 标题        | ReactNode                         | -     |
+| onClick   | 点击事件      | (event: React.MouseEvent) => void | -     |
 

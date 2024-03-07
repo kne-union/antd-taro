@@ -41,7 +41,7 @@ const Dropdown = forwardRef((props, ref) => {
   const navs = props.items.map(({key, ...others}) => {
     return <Item key={key} {...others} active={key === value} onClick={() => {
       changeActive(key);
-    }} arrow={props.arrow === undefined ? props.arrow : others.arrow}/>
+    }} arrow={others.arrow || props.arrow}/>
   });
 
   useImperativeHandle(ref, () => ({

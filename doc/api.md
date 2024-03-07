@@ -201,3 +201,29 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |---------|------|-----------------------|
 | --color | 线条颜色 | var(--adm-color-weak) |
 | --size  | 大小   | 32px                  |
+
+## Dropdown 下拉菜单
+
+#### 属性
+
+| 属性名      | 说明              | 类型                                 | 默认值 |
+|----------|-----------------|------------------------------------|-----|
+| arrow    | 自定义 arrow       | React.ReactNode                    | -   |
+| onChange | activeKey 变化时触发 | (activeKey: string \| null)=> void | -   |
+| items    | 列               | DropdownItem[]                     | -   |
+
+#### Ref
+
+| 属性    | 说明     | 类型         |
+|-------|--------|------------|
+| close | 关闭下拉菜单 | () => void |
+
+### DropdownItem
+
+| 属性名       | 说明        | 类型                                | 默认值   |
+|-----------|-----------|-----------------------------------|-------|
+| arrow     | 自定义 arrow | React.ReactNode                   | -     |
+| highlight | 高亮        | boolean                           | false |
+| key       | 唯一值       | string                            | -     |
+| title     | 标题        | ReactNode                         | -     |
+| onClick   | 点击事件      | (event: React.MouseEvent) => void | -     |
