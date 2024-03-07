@@ -109,6 +109,7 @@
 | value    | 选项值  | string[] | []    |
 
 #### CSS 变量
+
 ***同 List.Item***
 
 | 属性名                       | 说明                   | 默认值                               |
@@ -126,3 +127,103 @@
 | --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
 | --prefix-width            | prefix 部分的宽度         | auto                              |
 
+## Collapse 折叠面板
+
+#### 属性
+
+| 属性名              | 说明                                               | 类型                                                                                  | 默认值                                          |
+|------------------|--------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+| accordion        | 是否开启手风琴模式                                        | boolean                                                                             | false                                        |
+| activeKey        | 当前展开面板的 key                                      | 手风琴模式：string \| null<br/> 非手风琴模式：string[]                                           | -                                            |
+| arrow            | 自定义箭头，如果是 ReactNode，那么 antd-mobile 会自动为你增加旋转动画效果 | ReactNode                                                                           | ((active: boolean) => React.ReactNode) \| [] | -|
+| defaultActiveKey | 默认展开面板的 key                                      | 手风琴模式：string \| null<br/> 非手风琴模式：string[] \| []                                     | -                                            |
+| onChange         | 切换面板时触发                                          | 手风琴模式：(activeKey: string \| null) => void<br/> 非手风琴模式：(activeKey: string[]) => void | -                                            |
+
+#### Collapse.Panel
+
+#### 属性
+
+| 属性名            | 说明              | 类型                                                  | 默认值   |
+|----------------|-----------------|-----------------------------------------------------|-------|
+| arrow          | 自定义箭头           | ReactNode \| ((active: boolean) => React.ReactNode) | -     |
+| destroyOnClose | 不可见时是否销毁 DOM 结构 | boolean                                             | false |
+| disabled       | 是否为禁用状态         | boolean                                             | false |
+| forceRender    | 被隐藏时是否渲染 DOM 结构 | boolean                                             | false |
+| key            | 唯一标识符           | string                                              | -     |
+| onClick        | 标题栏的点击事件        | (event: React.MouseEvent) => void                   | -     |
+| title          | 标题栏左侧内容         | ReactNode                                           | -     |
+
+## DatePicker日期选择器
+
+#### 属性
+
+| 属性名          | 说明                                                            | 类型                                                    | 默认值                    |
+|--------------|---------------------------------------------------------------|-------------------------------------------------------|------------------------|
+| defaultValue | 默认选中值                                                         | PickerDate                                            | new Date() 今天          |
+| max          | 最大值                                                           | PickerDate                                            | new Date() 今天          |
+| min          | 最小值                                                           | PickerDate                                            | new Date('1949-10-01') |
+| onChange     | 确认时触发                                                         | (value: PickerDate) => void                           | -                      |
+| precision    | 精度                                                            | 'month' \| 'day' \| 'hour' \| 'minute'                | -                      |
+| renderLabel  | 自定义渲染每列展示的内容。其中 type 参数为 precision 中的任意值或 now，data 参数为默认渲染的数字 | (type: Precision \| 'now', data: number) => ReactNode | -                      |
+| value        | 选中值                                                           | PickerDate                                            | -                      |
+
+此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
+
+## DateRangePicker 日期范围选择器
+
+#### 属性
+
+| 属性名          | 说明                                                            | 类型                                                    | 默认值                         |
+|--------------|---------------------------------------------------------------|-------------------------------------------------------|-----------------------------|
+| defaultValue | 默认选中值                                                         | [PickerDate, PickerDate]                              | [new Date(), new Date()] 今天 |
+| max          | 最大值                                                           | PickerDate                                            | new Date() 今天               |
+| min          | 最小值                                                           | PickerDate                                            | new Date('1949-10-01')      |
+| onChange     | 确认时触发                                                         | (value: PickerDate) => void                           | -                           |
+| precision    | 精度                                                            | 'month' \| 'day' \| 'hour' \| 'minute'                | -                           |
+| renderLabel  | 自定义渲染每列展示的内容。其中 type 参数为 precision 中的任意值或 now，data 参数为默认渲染的数字 | (type: Precision \| 'now', data: number) => ReactNode | -                           |
+| value        | 选中值                                                           | [PickerDate, PickerDate]                              | -                           |
+
+此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
+
+## DotLoading 点状加载图标
+
+#### 属性
+
+| 属性名   | 说明                          | 类型                                          | 默认值       |
+|-------|-----------------------------|---------------------------------------------|-----------|
+| color | 线条颜色，等效于手动设置 --color CSS 变量 | 'default' \| 'primary' \| 'white' \| string | 'default' |
+
+DotLoading 的大小会自动根据当前的文字大小进行调整。
+
+#### CSS 变量
+
+| 属性名     | 说明   | 默认值                   |
+|---------|------|-----------------------|
+| --color | 线条颜色 | var(--adm-color-weak) |
+| --size  | 大小   | 32px                  |
+
+## Dropdown 下拉菜单
+
+#### 属性
+
+| 属性名      | 说明              | 类型                                 | 默认值 |
+|----------|-----------------|------------------------------------|-----|
+| arrow    | 自定义 arrow       | React.ReactNode                    | -   |
+| onChange | activeKey 变化时触发 | (activeKey: string \| null)=> void | -   |
+| items    | 列               | DropdownItem[]                     | -   |
+
+#### Ref
+
+| 属性    | 说明     | 类型         |
+|-------|--------|------------|
+| close | 关闭下拉菜单 | () => void |
+
+### DropdownItem
+
+| 属性名       | 说明        | 类型                                | 默认值   |
+|-----------|-----------|-----------------------------------|-------|
+| arrow     | 自定义 arrow | React.ReactNode                   | -     |
+| highlight | 高亮        | boolean                           | false |
+| key       | 唯一值       | string                            | -     |
+| title     | 标题        | ReactNode                         | -     |
+| onClick   | 点击事件      | (event: React.MouseEvent) => void | -     |

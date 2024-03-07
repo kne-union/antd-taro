@@ -418,17 +418,46 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Collapse} = antdTaro;
+const {Collapse, Space, Icon} = antdTaro;
+const {View} = taroComponent;
+
+const items = [{
+  key: '1', title: '第一项', children: '第一项第一项第一项第一项第一项第一项第一项第一项'
+}, {
+  key: '2', title: '第二项', children: '第二项第二项第二项第二项第二项第二项第二项第二项'
+}, {
+  key: '3', title: '第三项', children: '第三项第三项第三项第三项第三项第三项第三项第三项第三项'
+}];
+
 const BaseExample = () => {
-    return <>
-        <Collapse defaultActiveKey={['1']} items={[{
-            key: '1', title: '第一项', children: '第一项第一项第一项第一项第一项第一项第一项第一项'
-        }, {
-            key: '2', title: '第二项', children: '第二项第二项第二项第二项第二项第二项第二项第二项'
-        }, {
-            key: '3', title: '第三项', children: '第三项第三项第三项第三项第三项第三项第三项第三项第三项'
-        }]}/>
-    </>;
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Collapse defaultActiveKey={['1']} items={items}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>手风琴模式</View>
+      <Collapse accordion items={items}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>禁用</View>
+      <Collapse accordion items={items.slice(0, 2).concat([Object.assign({}, items[2], {disabled: true})])}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>自定义折叠图标</View>
+      <Collapse
+        arrow={active => <Icon type={active ? "checkCircleFill" : 'closeCircleFill'} className="adm-component"/>}
+        items={[
+          items[0],
+          Object.assign({}, items[1], {arrow: <Icon type='exclamationCircleFill' className="adm-component"/>}),
+          Object.assign({}, items[2], {
+            arrow: active => <Icon type={active ? "informationCircleFill" : 'clockCircleFill'}
+                                   className="adm-component"/>
+          }),
+        ]}
+      />
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -437,44 +466,156 @@ render(<BaseExample/>);
 
 - DatePicker 日期选择器
 - DatePicker 日期选择器
-- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components),tarojsTaro(@tarojs/taro)
 
 ```jsx
-const {Button} = taroComponent;
+const {Button, View} = taroComponent;
 const {useState} = React;
-const {DatePicker} = antdTaro;
+const {DatePicker, Space} = antdTaro;
+const {showToast} = tarojsTaro;
 
 const BaseExample = () => {
-  const [open,setOpen] = useState(false);
-  return <>
-    <Button onClick={()=>{
-      setOpen(true);
-    }}>打开</Button>
-    <DatePicker open={open} onOpenChange={setOpen}/>
-  </>;
-};
-
-render(<BaseExample/>);
-
-```
-
-- DateRangePicker 日期范围选择器
-- DateRangePicker 日期范围选择器
-- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
-
-```jsx
-const {Button} = taroComponent;
-const {useState} = React;
-const {DateRangePicker} = antdTaro;
-
-const BaseExample = () => {
-    const [open,setOpen] = useState(false);
-    return <>
-        <Button onClick={()=>{
-            setOpen(true);
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
+  const [value, setValue] = useState('');
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Button onClick={() => {
+        setOpen(true);
+      }}>打开</Button>
+      <DatePicker
+        title='时间选择'
+        open={open}
+        onOpenChange={setOpen}
+        onChange={val => {
+          showToast({icon: 'none', title: val.toDateString()})
+        }}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>渲染所选值</View>
+      <Space>
+        <Button onClick={() => {
+          setOpen2(true);
         }}>打开</Button>
-        <DateRangePicker open={open} onOpenChange={setOpen}/>
-    </>;
+        <View>{value}</View>
+      </Space>
+      <DatePicker
+        open={open2}
+        onOpenChange={setOpen2}
+        onChange={val => setValue(val.toDateString())}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>控制选择精度</View>
+      <Button onClick={() => {
+        setOpen3(true);
+      }}>年-月</Button>
+      <DatePicker
+        title='时间选择'
+        open={open3}
+        onOpenChange={setOpen3}
+        precision='month'
+        onChange={val => {
+          showToast({icon: 'none', title: val.toDateString()})
+        }}
+      />
+      <Button onClick={() => {
+        setOpen4(true);
+      }}>年-月-日-时-分</Button>
+      <DatePicker
+        title='时间选择'
+        open={open4}
+        onOpenChange={setOpen4}
+        precision='minute'
+        onChange={val => {
+          showToast({icon: 'none', title: val.toDateString()})
+        }}
+      />
+    </Space>
+  </Space>;
+};
+
+render(<BaseExample/>);
+
+```
+
+- DateRangePicker 日期范围选择器
+- DateRangePicker 日期范围选择器
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components),tarojsTaro(@tarojs/taro)
+
+```jsx
+const {Button, View} = taroComponent;
+const {useState} = React;
+const {DateRangePicker, Space} = antdTaro;
+const {showToast} = tarojsTaro;
+
+const BaseExample = () => {
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
+  const [value, setValue] = useState([]);
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Button onClick={() => {
+        setOpen(true);
+      }}>打开</Button>
+      <DateRangePicker
+        title='时间选择'
+        open={open}
+        onOpenChange={setOpen}
+        onChange={val => {
+          showToast({icon: 'none', title: val?.map(item => item.toDateString())?.join(' ~ ')})
+        }}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>渲染所选值</View>
+      <Space>
+        <Button onClick={() => {
+          setOpen2(true);
+        }}>打开</Button>
+        <View>{(value || [])?.map(item => item.toLocaleDateString())?.join(' ~ ')}</View>
+      </Space>
+      <DateRangePicker
+        open={open2}
+        onOpenChange={setOpen2}
+        onChange={val => setValue(val)}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>控制选择精度</View>
+      <Button onClick={() => {
+        setOpen3(true);
+      }}>年-月</Button>
+      <DateRangePicker
+        title='时间选择'
+        open={open3}
+        onOpenChange={setOpen3}
+        precision='month'
+        onChange={val => {
+          showToast({icon: 'none', title: val?.map(item => item.toLocaleDateString())?.join(' ~ ')})
+        }}
+      />
+      <Button onClick={() => {
+        setOpen4(true);
+      }}>年-月-日-时-分</Button>
+      <DateRangePicker
+        title='时间选择'
+        open={open4}
+        onOpenChange={setOpen4}
+        precision='minute'
+        onChange={val => {
+          showToast({icon: 'none', title: val?.map(item => item.toTimeString())?.join(' ~ ')})
+        }}
+      />
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -491,16 +632,38 @@ const {View} = taroComponent;
 
 const BaseExample = ()=>{
   return (
-    <Space direction={'vertical'}>
-      <Space>
-        <View>horizontal</View>
-        <Divider direction={'horizontal'} />
-        <View>horizontal</View>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>基础分割线</View>
+        <Divider />
       </Space>
-      <Space>
-        <View>vertical</View>
-        <Divider direction={'vertical'} />
-        <View>vertical</View>
+      <Space direction={'vertical'}>
+        <View>带内容的分割线</View>
+        <Divider>内容在中间</Divider>
+        <Divider contentPosition='left'>左侧内容</Divider>
+        <Divider contentPosition='right'>右侧内容</Divider>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>竖向分割线1</View>
+        <Space>
+          <View>Text1</View>
+          <Divider direction={'vertical'} />
+          <View>Text2</View>
+          <Divider direction={'vertical'} />
+          <View>Text3</View>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义样式</View>
+        <Divider
+          style={{
+            color: '#1677ff',
+            borderColor: '#1677ff',
+            borderStyle: 'dashed',
+          }}
+        >
+          自定义样式
+        </Divider>
       </Space>
     </Space>
   );
@@ -510,15 +673,44 @@ render(<BaseExample />);
 
 ```
 
-- Dot Loading 点状加载图标
-- Dot Loading 点状加载图标
-- antdTaro(@kne/antd-taro)
+- DotLoading 点状加载图标
+- DotLoading 点状加载图标
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {DotLoading} = antdTaro;
+const {DotLoading, Space} = antdTaro;
+const {View} = taroComponent;
 const BaseExample = () => {
   return (
-    <DotLoading>loading dot</DotLoading>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>默认颜色 Loading</View>
+        <DotLoading/>
+        <View>主题色 Loading</View>
+        <DotLoading color='primary'/>
+        <View>白色 Loading</View>
+        <View style={{backgroundColor: '#ddd'}}>
+          <DotLoading color='white'/>
+        </View>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义颜色 Loading</View>
+        <Space>
+          <DotLoading color='#155ACF'/>
+          <DotLoading color='#00b578'/>
+          <DotLoading color='#ff8f1f'/>
+          <DotLoading color='#ff3141'/>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自动适配字号</View>
+        <Space>
+          <View style={{fontSize: 14}}><DotLoading/></View>
+          <View style={{fontSize: 18}}><DotLoading/></View>
+          <View style={{fontSize: 24}}><DotLoading/></View>
+        </Space>
+      </Space>
+    </Space>
   );
 };
 
@@ -531,19 +723,38 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Dropdown} = antdTaro;
+const {Dropdown, Space, Icon} = antdTaro;
 const {View} = taroComponent;
+
+const items = [
+  {key: 'apple', title: 'apple', children: 'apple'},
+  {key: 'banana', title: 'banana', children: 'banana'},
+  {key: 'orange', title: 'orange', children: 'orange'}
+];
 
 const BaseExample = () => {
   return (
-    <View>
-      <Dropdown items={[{key: 'apple', title: 'apple', children: 'apple'}]}/>
-      <Dropdown items={[{key: 'apple', title: 'apple', children: 'apple'}, {key: 'banana', title: 'banana', children: 'banana'}]}/>
-      <Dropdown
-        activeKey={'orange'}
-        items={[{key: 'apple', title: 'apple', children: 'apple'}, {key: 'banana', title: 'banana', children: 'banana'}, {key: 'orange', title: 'orange', children: 'orange'}]}
-      />
-    </View>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>一列</View>
+        <Dropdown items={items.slice(0, 1)}/>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>两列</View>
+        <Dropdown items={items.slice(0, 2)}/>
+      </Space>
+      <Space direction={'vertical'} closeOnMaskClick={false}>
+        <View>三列</View>
+        <Dropdown items={items}/>
+      </Space>
+      <Space direction={'vertical'} closeOnMaskClick={false}>
+        <View>自定义箭头</View>
+        <Dropdown
+          arrow={<Icon className={"adm-component"} type="check-mark"/>}
+          items={[...items.slice(0, 2), Object.assign({}, items[2], {arrow: <Icon className={"adm-component"} type="checkCircleFill"/>})]}
+        />
+      </Space>
+    </Space>
   );
 };
 
@@ -1613,6 +1824,7 @@ render(<BaseExample/>);
 | value    | 选项值  | string[] | []    |
 
 #### CSS 变量
+
 ***同 List.Item***
 
 | 属性名                       | 说明                   | 默认值                               |
@@ -1630,4 +1842,104 @@ render(<BaseExample/>);
 | --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
 | --prefix-width            | prefix 部分的宽度         | auto                              |
 
+## Collapse 折叠面板
+
+#### 属性
+
+| 属性名              | 说明                                               | 类型                                                                                  | 默认值                                          |
+|------------------|--------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+| accordion        | 是否开启手风琴模式                                        | boolean                                                                             | false                                        |
+| activeKey        | 当前展开面板的 key                                      | 手风琴模式：string \| null<br/> 非手风琴模式：string[]                                           | -                                            |
+| arrow            | 自定义箭头，如果是 ReactNode，那么 antd-mobile 会自动为你增加旋转动画效果 | ReactNode                                                                           | ((active: boolean) => React.ReactNode) \| [] | -|
+| defaultActiveKey | 默认展开面板的 key                                      | 手风琴模式：string \| null<br/> 非手风琴模式：string[] \| []                                     | -                                            |
+| onChange         | 切换面板时触发                                          | 手风琴模式：(activeKey: string \| null) => void<br/> 非手风琴模式：(activeKey: string[]) => void | -                                            |
+
+#### Collapse.Panel
+
+#### 属性
+
+| 属性名            | 说明              | 类型                                                  | 默认值   |
+|----------------|-----------------|-----------------------------------------------------|-------|
+| arrow          | 自定义箭头           | ReactNode \| ((active: boolean) => React.ReactNode) | -     |
+| destroyOnClose | 不可见时是否销毁 DOM 结构 | boolean                                             | false |
+| disabled       | 是否为禁用状态         | boolean                                             | false |
+| forceRender    | 被隐藏时是否渲染 DOM 结构 | boolean                                             | false |
+| key            | 唯一标识符           | string                                              | -     |
+| onClick        | 标题栏的点击事件        | (event: React.MouseEvent) => void                   | -     |
+| title          | 标题栏左侧内容         | ReactNode                                           | -     |
+
+## DatePicker日期选择器
+
+#### 属性
+
+| 属性名          | 说明                                                            | 类型                                                    | 默认值                    |
+|--------------|---------------------------------------------------------------|-------------------------------------------------------|------------------------|
+| defaultValue | 默认选中值                                                         | PickerDate                                            | new Date() 今天          |
+| max          | 最大值                                                           | PickerDate                                            | new Date() 今天          |
+| min          | 最小值                                                           | PickerDate                                            | new Date('1949-10-01') |
+| onChange     | 确认时触发                                                         | (value: PickerDate) => void                           | -                      |
+| precision    | 精度                                                            | 'month' \| 'day' \| 'hour' \| 'minute'                | -                      |
+| renderLabel  | 自定义渲染每列展示的内容。其中 type 参数为 precision 中的任意值或 now，data 参数为默认渲染的数字 | (type: Precision \| 'now', data: number) => ReactNode | -                      |
+| value        | 选中值                                                           | PickerDate                                            | -                      |
+
+此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
+
+## DateRangePicker 日期范围选择器
+
+#### 属性
+
+| 属性名          | 说明                                                            | 类型                                                    | 默认值                         |
+|--------------|---------------------------------------------------------------|-------------------------------------------------------|-----------------------------|
+| defaultValue | 默认选中值                                                         | [PickerDate, PickerDate]                              | [new Date(), new Date()] 今天 |
+| max          | 最大值                                                           | PickerDate                                            | new Date() 今天               |
+| min          | 最小值                                                           | PickerDate                                            | new Date('1949-10-01')      |
+| onChange     | 确认时触发                                                         | (value: PickerDate) => void                           | -                           |
+| precision    | 精度                                                            | 'month' \| 'day' \| 'hour' \| 'minute'                | -                           |
+| renderLabel  | 自定义渲染每列展示的内容。其中 type 参数为 precision 中的任意值或 now，data 参数为默认渲染的数字 | (type: Precision \| 'now', data: number) => ReactNode | -                           |
+| value        | 选中值                                                           | [PickerDate, PickerDate]                              | -                           |
+
+此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
+
+## DotLoading 点状加载图标
+
+#### 属性
+
+| 属性名   | 说明                          | 类型                                          | 默认值       |
+|-------|-----------------------------|---------------------------------------------|-----------|
+| color | 线条颜色，等效于手动设置 --color CSS 变量 | 'default' \| 'primary' \| 'white' \| string | 'default' |
+
+DotLoading 的大小会自动根据当前的文字大小进行调整。
+
+#### CSS 变量
+
+| 属性名     | 说明   | 默认值                   |
+|---------|------|-----------------------|
+| --color | 线条颜色 | var(--adm-color-weak) |
+| --size  | 大小   | 32px                  |
+
+## Dropdown 下拉菜单
+
+#### 属性
+
+| 属性名      | 说明              | 类型                                 | 默认值 |
+|----------|-----------------|------------------------------------|-----|
+| arrow    | 自定义 arrow       | React.ReactNode                    | -   |
+| onChange | activeKey 变化时触发 | (activeKey: string \| null)=> void | -   |
+| items    | 列               | DropdownItem[]                     | -   |
+
+#### Ref
+
+| 属性    | 说明     | 类型         |
+|-------|--------|------------|
+| close | 关闭下拉菜单 | () => void |
+
+### DropdownItem
+
+| 属性名       | 说明        | 类型                                | 默认值   |
+|-----------|-----------|-----------------------------------|-------|
+| arrow     | 自定义 arrow | React.ReactNode                   | -     |
+| highlight | 高亮        | boolean                           | false |
+| key       | 唯一值       | string                            | -     |
+| title     | 标题        | ReactNode                         | -     |
+| onClick   | 点击事件      | (event: React.MouseEvent) => void | -     |
 

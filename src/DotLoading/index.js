@@ -6,15 +6,26 @@ import classnames from 'classnames'
 
 const classPrefix = `adm-dot-loading`
 
-const DotLoading = (props) => {
+const DotLoading = ({colorRecord, ...props}) => {
   return <View
     style={props.hasOwnProperty('color') ? {
-      color: props.color,
+      '--color': colorRecord[props.color] ? colorRecord[props.color] : props.color,
     } : {}}
     className={classnames('adm-loading', classPrefix)}
   >
-    <Image className="adm-dot-loading-image" src={loadingWhite}/>
+    <View className={classnames('adm-dot-loading-box')}>
+      <Image className="adm-dot-loading-image" src={loadingWhite}/>
+    </View>
   </View>;
 };
+
+DotLoading.defaultProps = {
+  color: 'default',
+  colorRecord: {
+    default: '#CCCCCC',
+    primary: '#1677ff',
+    white: '#FFFFFF',
+  }
+}
 
 export default DotLoading;
