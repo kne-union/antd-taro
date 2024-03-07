@@ -127,7 +127,7 @@
 | --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
 | --prefix-width            | prefix 部分的宽度         | auto                              |
 
-## Collapse
+## Collapse 折叠面板
 
 #### 属性
 
@@ -153,7 +153,7 @@
 | onClick        | 标题栏的点击事件        | (event: React.MouseEvent) => void                   | -     |
 | title          | 标题栏左侧内容         | ReactNode                                           | -     |
 
-### DatePicker
+## DatePicker日期选择器
 
 #### 属性
 
@@ -169,7 +169,7 @@
 
 此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
 
-### DateRangePicker
+## DateRangePicker 日期范围选择器
 
 #### 属性
 
@@ -184,3 +184,12 @@
 | value        | 选中值                                                           | [PickerDate, PickerDate]                              | -                           |
 
 此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
+
+## Divider 分隔线
+
+#### 属性
+
+| 属性名             | 说明                                 | 类型                            | 默认值          |
+|-----------------|------------------------------------|-------------------------------|--------------|
+| contentPosition | 内容位置，仅在 direction 为 horizontal 时有效 | 'center' \| 'left' \| 'right' | 'center'     |
+| direction       | 水平还是垂直类型                           | 'horizontal' \| 'vertical'    | 'horizontal' |

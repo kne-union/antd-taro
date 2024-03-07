@@ -632,16 +632,38 @@ const {View} = taroComponent;
 
 const BaseExample = ()=>{
   return (
-    <Space direction={'vertical'}>
-      <Space>
-        <View>horizontal</View>
-        <Divider direction={'horizontal'} />
-        <View>horizontal</View>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>基础分割线</View>
+        <Divider />
       </Space>
-      <Space>
-        <View>vertical</View>
-        <Divider direction={'vertical'} />
-        <View>vertical</View>
+      <Space direction={'vertical'}>
+        <View>带内容的分割线</View>
+        <Divider>内容在中间</Divider>
+        <Divider contentPosition='left'>左侧内容</Divider>
+        <Divider contentPosition='right'>右侧内容</Divider>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>竖向分割线1</View>
+        <Space>
+          <View>Text1</View>
+          <Divider direction={'vertical'} />
+          <View>Text2</View>
+          <Divider direction={'vertical'} />
+          <View>Text3</View>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义样式</View>
+        <Divider
+          style={{
+            color: '#1677ff',
+            borderColor: '#1677ff',
+            borderStyle: 'dashed',
+          }}
+        >
+          自定义样式
+        </Divider>
       </Space>
     </Space>
   );
@@ -1772,7 +1794,7 @@ render(<BaseExample/>);
 | --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
 | --prefix-width            | prefix 部分的宽度         | auto                              |
 
-## Collapse
+## Collapse 折叠面板
 
 #### 属性
 
@@ -1798,7 +1820,7 @@ render(<BaseExample/>);
 | onClick        | 标题栏的点击事件        | (event: React.MouseEvent) => void                   | -     |
 | title          | 标题栏左侧内容         | ReactNode                                           | -     |
 
-### DatePicker
+## DatePicker日期选择器
 
 #### 属性
 
@@ -1814,7 +1836,7 @@ render(<BaseExample/>);
 
 此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
 
-### DateRangePicker
+## DateRangePicker 日期范围选择器
 
 #### 属性
 
@@ -1829,3 +1851,13 @@ render(<BaseExample/>);
 | value        | 选中值                                                           | [PickerDate, PickerDate]                              | -                           |
 
 此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
+
+## Divider 分隔线
+
+#### 属性
+
+| 属性名             | 说明                                 | 类型                            | 默认值          |
+|-----------------|------------------------------------|-------------------------------|--------------|
+| contentPosition | 内容位置，仅在 direction 为 horizontal 时有效 | 'center' \| 'left' \| 'right' | 'center'     |
+| direction       | 水平还是垂直类型                           | 'horizontal' \| 'vertical'    | 'horizontal' |
+
