@@ -903,17 +903,39 @@ render(<BaseExample />);
 
 - Icon 图标
 - Icon 图标
-- antdTaro(@kne/antd-taro)
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
 const {Icon, Space} = antdTaro;
+const {View} = taroComponent;
 
 const BaseExample = ()=>{
   return (
-    <Space>
-      <Icon type={'clockCircleFill'} />
-      <Icon type={'gongsi'} />
-      <Icon type={'down-outline'} />
+    <Space direction={'vertical'}>
+      <Space direction = {'vertical'}>
+        <View>基础用法</View>
+        <Space>
+          <Icon type={'clockCircleFill'} className="adm-component" />
+          <Icon type={'informationCircleFill'} className="adm-component" />
+          <Icon type={'checkCircleFill'} className="adm-component" />
+        </Space>
+      </Space>
+      <Space direction = {'vertical'}>
+        <View>自定义尺寸</View>
+        <Space>
+          <Icon type={'clockCircleFill'} className="adm-component" size={'24px'} />
+          <Icon type={'informationCircleFill'} className="adm-component" size={'32px'} />
+          <Icon type={'checkCircleFill'} className="adm-component" size={'40px'} />
+        </Space>
+      </Space>
+      <Space direction = {'vertical'}>
+        <View>自定义颜色</View>
+        <Space>
+          <Icon type={'clockCircleFill'} className="adm-component" color={'#2db7f5'} />
+          <Icon type={'informationCircleFill'} className="adm-component" color={'#87d068'} />
+          <Icon type={'checkCircleFill'} className="adm-component" color={'#ff6430'} />
+        </Space>
+      </Space>
     </Space>
   );
 };
@@ -2001,4 +2023,14 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |---------|------|---------------------------------------------------------------|-----|
 | onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
 | span    | 跨度   | number                                                        | 1   |
+
+### Icon 图标
+
+#### 属性
+
+| 属性名        | 说明                       | 类型            | 默认值 |
+|------------|--------------------------|---------------|-----|
+| type       | 图标类型                     | ReactNode     | -   |
+| image      | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
+| imageStyle | 图片样式                     | CSSProperties | -   |
 

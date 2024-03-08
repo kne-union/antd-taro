@@ -278,3 +278,13 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |---------|------|---------------------------------------------------------------|-----|
 | onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
 | span    | 跨度   | number                                                        | 1   |
+
+### Icon 图标
+
+#### 属性
+
+| 属性名        | 说明                       | 类型            | 默认值 |
+|------------|--------------------------|---------------|-----|
+| type       | 图标类型                     | ReactNode     | -   |
+| image      | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
+| imageStyle | 图片样式                     | CSSProperties | -   |
