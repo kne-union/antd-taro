@@ -1970,9 +1970,35 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 #### 属性
 
-| 属性名             | 说明         | 类型              | 默认值   |
-|-----------------|------------|-----------------|-------|
-| description    | 图片下方的描述文字    | ReactNode | -     |
-| image      | 自定义图片，为 string 时表示图片 URL    | ReactNode       | -     |
-| imageStyle            | 图片样式       | CSSProperties          | -     |
+| 属性名         | 说明                       | 类型            | 默认值 |
+|-------------|--------------------------|---------------|-----|
+| description | 图片下方的描述文字                | ReactNode     | -   |
+| image       | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
+| imageStyle  | 图片样式                     | CSSProperties | -   |
+
+### Grid 栅格
+
+#### 属性
+
+| 属性名     | 说明      | 类型                                                        | 默认值 |
+|---------|---------|-----------------------------------------------------------|-----|
+| columns | 列数      | number                                                    | -   |
+| gap     | 格子之间的间距 | number \| string \| \[number \| string, number \| string] | 0   |
+
+#### CSS 变量
+
+| 属性名              | 说明        | 默认值        |
+|------------------|-----------|------------|
+| --gap            | 间距大小      | 0          |
+| --gap-horizontal | 水平方向的间距大小 | var(--gap) |
+| --gap-vertical   | 垂直方向的间距大小 | var(--gap) |
+
+### Grid.Item
+
+#### 属性
+
+| 属性名     | 说明   | 类型                                                            | 默认值 |
+|---------|------|---------------------------------------------------------------|-----|
+| onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
+| span    | 跨度   | number                                                        | 1   |
 
