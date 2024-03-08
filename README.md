@@ -802,7 +802,7 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Empty, Space} = antdTaro;
+const {Empty, Space, Icon} = antdTaro;
 const {View} = taroComponent;
 
 const BaseExample = ()=>{
@@ -815,6 +815,14 @@ const BaseExample = ()=>{
       <Space direction={'vertical'}>
         <View>描述文字</View>
         <Empty description={'空状态'} />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义样式</View>
+        <Empty description={'暂无数据'} imageStyle={{ width: 128 }} />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义图片</View>
+        <Empty description={'暂无数据'} image={<Icon className={"adm-component"} type="check-mark" size={'64px'} color={'#ff6700'} />}/>
       </Space>
     </Space>
   );
@@ -1957,4 +1965,14 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | rows            | 展示几行       | number          | 1     |
 | defaultExpanded | 是否默认展开     | boolean         | false |
 | showAction      | 是否显示展开收起操作 | boolean         | false |
+
+### Empty 空状态
+
+#### 属性
+
+| 属性名             | 说明         | 类型              | 默认值   |
+|-----------------|------------|-----------------|-------|
+| description    | 图片下方的描述文字    | ReactNode | -     |
+| image      | 自定义图片，为 string 时表示图片 URL    | ReactNode       | -     |
+| imageStyle            | 图片样式       | CSSProperties          | -     |
 
