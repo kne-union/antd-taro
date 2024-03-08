@@ -18,7 +18,8 @@ $class-prefix-empty: 'adm-empty';
 
   &-image {
     width: 128px;
-    height: 82px;
+    height: auto;
+    aspect-ratio: 25 / 16;
   }
 
   &-description {

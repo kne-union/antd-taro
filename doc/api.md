@@ -220,6 +220,8 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 ### DropdownItem
 
+#### 属性
+
 | 属性名       | 说明        | 类型                                | 默认值   |
 |-----------|-----------|-----------------------------------|-------|
 | arrow     | 自定义 arrow | React.ReactNode                   | -     |
@@ -227,3 +229,62 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | key       | 唯一值       | string                            | -     |
 | title     | 标题        | ReactNode                         | -     |
 | onClick   | 点击事件      | (event: React.MouseEvent) => void | -     |
+
+### Ellipsis 文本省略
+
+#### 属性
+
+| 属性名             | 说明         | 类型              | 默认值   |
+|-----------------|------------|-----------------|-------|
+| collapseText    | 收起操作的文案    | React.ReactNode | '收起'  |
+| content         | 文本内容       | string          | -     |
+| expandText      | 展开操作的文案    | ReactNode       | '展开'  |
+| rows            | 展示几行       | number          | 1     |
+| defaultExpanded | 是否默认展开     | boolean         | false |
+| showAction      | 是否显示展开收起操作 | boolean         | false |
+
+### Empty 空状态
+
+#### 属性
+
+| 属性名         | 说明                       | 类型            | 默认值 |
+|-------------|--------------------------|---------------|-----|
+| description | 图片下方的描述文字                | ReactNode     | -   |
+| image       | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
+| imageStyle  | 图片样式                     | CSSProperties | -   |
+
+### Grid 栅格
+
+#### 属性
+
+| 属性名     | 说明      | 类型                                                        | 默认值 |
+|---------|---------|-----------------------------------------------------------|-----|
+| columns | 列数      | number                                                    | -   |
+| gap     | 格子之间的间距 | number \| string \| \[number \| string, number \| string] | 0   |
+
+#### CSS 变量
+
+| 属性名              | 说明        | 默认值        |
+|------------------|-----------|------------|
+| --gap            | 间距大小      | 0          |
+| --gap-horizontal | 水平方向的间距大小 | var(--gap) |
+| --gap-vertical   | 垂直方向的间距大小 | var(--gap) |
+
+### Grid.Item
+
+#### 属性
+
+| 属性名     | 说明   | 类型                                                            | 默认值 |
+|---------|------|---------------------------------------------------------------|-----|
+| onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
+| span    | 跨度   | number                                                        | 1   |
+
+### Icon 图标
+
+#### 属性
+
+| 属性名        | 说明                       | 类型            | 默认值 |
+|------------|--------------------------|---------------|-----|
+| type       | 图标类型                     | ReactNode     | -   |
+| image      | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
+| imageStyle | 图片样式                     | CSSProperties | -   |
