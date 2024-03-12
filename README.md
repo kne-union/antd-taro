@@ -2119,6 +2119,14 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | height   | number | 键盘高度 |
 | duration | number | 持续时间 |
 
+#### Ref
+
+| 属性名   | 类型         | 说明       |
+|-------|------------|----------|
+| blur  | () => void | 让输入框失去焦点 |
+| clear | () => void | 清空输入内容   |
+| focus | () => void | 让输入框获得焦点 |
+
 ### List 列表
 
 #### 属性
@@ -2246,24 +2254,24 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 #### 属性
 
-| 属性名              | 说明              | 类型                                                               | 默认值       |
-|------------------|-----------------|------------------------------------------------------------------|-----------|
-| afterClose       | 完全关闭后触发         | () => void                                                       | -         |
-| afterShow        | 完全展示后触发         | () => void                                                       | -         |
-| bodyClassName    | 内容区域类名          | string                                                           | -         |
-| bodyStyle        | 内容区域样式          | React.CSSProperties                                              | -         |
-| className        | 容器类名            | string                                                           | -         |
-| closeOnMaskClick | 点击背景蒙层后是否关闭     | boolean                                                          | false     |
-| mask             | 是否展示蒙层          | boolean                                                          | true      |
-| maskClassName    | 遮罩类名            | string                                                           | -         |
-| onClick          | 点击时触发，常用于阻止事件冒泡 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void    | -         |
-| onClose          | 关闭时触发           | () => void                                                       | -         |
-| onMaskClick      | 点击蒙层触发          | (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | -         |
-| position         | 	指定弹出的位置        | 'bottom' \| 'top' \| 'left' \| 'right'                           | 'bottom'  |
-| showCloseButton  | 是否显示关闭按钮        | boolean                                                          | false     |
-| stopPropagation  | 阻止某些事件的冒泡       | PropagationEvent[]                                               | ['click'] |
-| style            | 容器样式            | React.CSSProperties                                              | -         |
-| open             | 	是否可见           | boolean                                                          | false     |
+| 属性名              | 说明              | 类型                                     | 默认值       |
+|------------------|-----------------|----------------------------------------|-----------|
+| afterClose       | 完全关闭后触发         | () => void                             | -         |
+| afterShow        | 完全展示后触发         | () => void                             | -         |
+| bodyClassName    | 内容区域类名          | string                                 | -         |
+| bodyStyle        | 内容区域样式          | React.CSSProperties                    | -         |
+| className        | 容器类名            | string                                 | -         |
+| closeOnMaskClick | 点击背景蒙层后是否关闭     | boolean                                | false     |
+| mask             | 是否展示蒙层          | boolean                                | true      |
+| maskClassName    | 遮罩类名            | string                                 | -         |
+| onClick          | 点击时触发，常用于阻止事件冒泡 | (event: React.MouseEvent) => void      | -         |
+| onClose          | 关闭时触发           | () => void                             | -         |
+| onMaskClick      | 点击蒙层触发          | (event: React.MouseEvent) => void      | -         |
+| position         | 	指定弹出的位置        | 'bottom' \| 'top' \| 'left' \| 'right' | 'bottom'  |
+| showCloseButton  | 是否显示关闭按钮        | boolean                                | false     |
+| stopPropagation  | 阻止某些事件的冒泡       | PropagationEvent[]                     | ['click'] |
+| style            | 容器样式            | React.CSSProperties                    | -         |
+| open             | 	是否可见           | boolean                                | false     |
 
 #### CSS 变量
 
@@ -2288,11 +2296,45 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 | 属性名      | 说明     | 类型    | 默认值      |
 |----------|--------|-------|----------|
-| position | 安全区的位置 | 'top' | 'bottom' | - |
+| position | 安全区的位置 | 'top' | 'bottom' |
 
 #### CSS 变量
 
 | 属性名        | 说明     | 默认值 | 全局变量                     |
 |------------|--------|-----|--------------------------|
 | --multiple | 	显示的倍数 | 1   | --adm-safe-area-multiple |
+
+### SearchBar 搜索框
+
+#### 属性
+
+| 属性名                    | 说明                                                       | 类型                                                      | 默认值                                                 |
+|------------------------|----------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|
+| searchText             | 搜索按钮的文案                                                  | string                                                  | '搜索'                                                |
+| clearOnCancel          | 点击取消按钮后是否清空输入框                                           | boolean                                                 | true                                                |
+| clearable              | 是否启用清除图标，点击清除图标后会清空输入框                                   | boolean                                                 | true                                                |
+| icon                   | 图标                                                       | ReactNode                                               | Icon type="searchOutline" className="adm-component" |
+| maxLength              | 输入的最大字符数                                                 | number                                                  | -                                                   |
+| onBlur                 | 输入框失去焦点时触发                                               | (e: React.FocusEvent) => void                           | -                                                   |
+| onChange               | 输入框内容变化时触发                                               | (value: string) => void                                 | -                                                   |
+| onClear                | 点击清除按钮后触发                                                | () => void                                              | -                                                   |
+| onFocus                | 输入框获得焦点时触发                                               | (e: React.FocusEvent) => void                           | -                                                   |
+| onSearch               | 输入框回车时触发或点击搜索按钮时触发                                       | (value: string) => void                                 | -                                                   |
+| onlyShowClearWhenFocus | 如果 true，那么只有输入框聚焦时才会显示清除按钮；如果为 false，那么输入框失去焦点后依旧会显示清除按钮 | boolean                                                 | false                                               |
+| placeholder            | 提示文本                                                     | string                                                  | -                                                   |
+| showSearchButton       | 是否在搜索框右侧显示搜索按钮                                           | boolean \| ((focus: boolean, value: string) => boolean) | false                                               |
+| value                  | 输入值                                                      | string                                                  | -                                                   |
+
+#### CSS 变量
+
+| 属性名                 | 说明               | 默认值                   |
+|---------------------|------------------|-----------------------|
+| --background        | 背景色              | #f5f5f5               |
+| --border-radius     | 圆角               | 12px                  |
+| --height            | 高度               | 64px                  |
+| --padding-left      | 搜索框的左侧 padding   | 16x                   |
+| --placeholder-color | placeholder 文字颜色 | var(--adm-color-weak) |
+
+#### Ref
+同Input。
 
