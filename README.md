@@ -2282,4 +2282,17 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | status      | 状态类型     | 'success' \| 'error' \| 'info' \| 'waiting' \| 'warning' | 'info'    |
 | title       | 标题       | ReactNode                                                | -         |
 
+### SafeArea 安全区
+
+#### 属性
+
+| 属性名      | 说明     | 类型    | 默认值      |
+|----------|--------|-------|----------|
+| position | 安全区的位置 | 'top' | 'bottom' | - |
+
+#### CSS 变量
+
+| 属性名        | 说明     | 默认值 | 全局变量                     |
+|------------|--------|-----|--------------------------|
+| --multiple | 	显示的倍数 | 1   | --adm-safe-area-multiple |
 
