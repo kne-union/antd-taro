@@ -2359,7 +2359,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | 属性名                  | 说明                          | 默认值                      |
 |----------------------|-----------------------------|--------------------------|
 | --border             | 边框样式                        | none                     |
-| --border-radius      | 	选项的圆角                      | 4px                      |
+| --border-radius      | 选项的圆角 	                     | 4px                      |
 | --checked-border     | 选中时的边框样式                    | none                     |
 | --checked-color      | 选中时的背景色                     | #e7f1ff                  |
 | --checked-text-color | 选中时的文字颜色                    | var(--adm-color-primary) |
@@ -2398,4 +2398,25 @@ type SelectorValue = string | number
   onChange={arr => console.log(arr)}
 />
 ```
+
+### Slider 滑动输入条
+
+#### 属性
+
+| 属性名             | 说明                            | 类型                                       | 默认值       |
+|-----------------|-------------------------------|------------------------------------------|-----------|
+| min             | 最小值                           | number                                   | 0         |
+| max             | 最大值                           | number                                   | 100       |
+| step            | 步长，取值必须大于 0，并且可被(max - min)整除 | number                                   | 1         |
+| disabled        | 是否禁用                          | boolean                                  | false     |
+| value           | 当前取值                          | number                                   | 0         |
+| color           | 背景条的颜色（请使用 backgroundColor）   | string                                   | "#e9e9e9" |
+| selectedColor   | 已选择的颜色（请使用 activeColor）       | string                                   | "#1aad19" |
+| activeColor     | 已选择的颜色                        | string                                   | "#1aad19" |
+| backgroundColor | 背景条的颜色                        | string                                   | "#1aad19" |
+| blockSize       | 滑块的大小，取值范围为 12 - 28           | number                                   | 28        |
+| blockColor      | 滑块的颜色                         | string                                   | "#ffffff" |
+| showValue       | 是否显示当前 value                  | boolean                                  | false     |
+| onChange        | 完成一次拖动后触发的事件                  | aseEventOrigFunction:onChangeEventDetail | -         |
+| onChanging      | 拖动过程中触发的事件                    | aseEventOrigFunction:onChangeEventDetail | -         |
 
