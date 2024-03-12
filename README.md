@@ -2165,3 +2165,23 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 支持 List 中的 --prefix-width、--active-background-color、--align-items
 
+### NavBar 导航栏
+
+#### 属性
+
+| 属性名       | 说明                                  | 类型                   | 默认值        |
+|-----------|-------------------------------------|----------------------|------------|
+| back      | 返回区域的文字，如果为 null 的话，backArrow 也不会渲染 | ReactNode \| null    | ''         |
+| backArrow | 支持默认和卡片两种模式                         | boolean \| ReactNode | true       |
+| children  | 	标题                                 | ReactNode            | ReactNode  |
+| left      | 	左侧内容，渲染在返回区域的右侧                    | ReactNode            | -          |
+| onBack    | 点击返回区域后的回调                          | ReactNode            | () => void |
+| right     | 右侧内容                                | ReactNode            | ReactNode  |
+
+#### CSS 变量
+
+| 属性名             | 说明     | 默认值  |
+|-----------------|--------|------|
+| --border-bottom | 导航栏下边框 | none |
+| --height        | 导航栏高度  | 90px |
+
