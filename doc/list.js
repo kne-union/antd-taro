@@ -1,6 +1,7 @@
 const {List,Switch,Icon} = antdTaro;
+const {View} = taroComponent;
 const BaseExample = () => {
-    return <>
+    return <View style={{ background: '#eee' }}>
         <List header='基础用法'>
             <List.Item>1</List.Item>
             <List.Item>2</List.Item>
@@ -43,7 +44,7 @@ const BaseExample = () => {
                 总资产
             </List.Item>
         </List>
-    </>;
+    </View>;
 };
 
 render(<BaseExample/>);

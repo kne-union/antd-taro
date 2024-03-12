@@ -11,7 +11,7 @@ npm i --save @kne/antd-taro
 
 ### 概述
 
-***antd-taro*** 是一个基于@tarojs/components的高级组件库，它提供基础的UI交互组件，它旨在解决小程序应用中的复杂场景问题，例如：
+***antd-taro*** 是一个基于@tarojs/components的高级组件库，重写了 Ant Design Mobile 中的部分组件以适配 Taro，部分它提供基础的UI交互组件，它旨在解决小程序应用中的复杂场景问题，例如：
 
 1. 列表展示问题
 2. 解决了项目中的components开发及调试问题
@@ -418,17 +418,46 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Collapse} = antdTaro;
+const {Collapse, Space, Icon} = antdTaro;
+const {View} = taroComponent;
+
+const items = [{
+  key: '1', title: '第一项', children: '第一项第一项第一项第一项第一项第一项第一项第一项'
+}, {
+  key: '2', title: '第二项', children: '第二项第二项第二项第二项第二项第二项第二项第二项'
+}, {
+  key: '3', title: '第三项', children: '第三项第三项第三项第三项第三项第三项第三项第三项第三项'
+}];
+
 const BaseExample = () => {
-    return <>
-        <Collapse defaultActiveKey={['1']} items={[{
-            key: '1', title: '第一项', children: '第一项第一项第一项第一项第一项第一项第一项第一项'
-        }, {
-            key: '2', title: '第二项', children: '第二项第二项第二项第二项第二项第二项第二项第二项'
-        }, {
-            key: '3', title: '第三项', children: '第三项第三项第三项第三项第三项第三项第三项第三项第三项'
-        }]}/>
-    </>;
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Collapse defaultActiveKey={['1']} items={items}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>手风琴模式</View>
+      <Collapse accordion items={items}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>禁用</View>
+      <Collapse accordion items={items.slice(0, 2).concat([Object.assign({}, items[2], {disabled: true})])}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>自定义折叠图标</View>
+      <Collapse
+        arrow={active => <Icon type={active ? "checkCircleFill" : 'closeCircleFill'} className="adm-component"/>}
+        items={[
+          items[0],
+          Object.assign({}, items[1], {arrow: <Icon type='exclamationCircleFill' className="adm-component"/>}),
+          Object.assign({}, items[2], {
+            arrow: active => <Icon type={active ? "informationCircleFill" : 'clockCircleFill'}
+                                   className="adm-component"/>
+          }),
+        ]}
+      />
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -437,44 +466,156 @@ render(<BaseExample/>);
 
 - DatePicker 日期选择器
 - DatePicker 日期选择器
-- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components),tarojsTaro(@tarojs/taro)
 
 ```jsx
-const {Button} = taroComponent;
+const {Button, View} = taroComponent;
 const {useState} = React;
-const {DatePicker} = antdTaro;
+const {DatePicker, Space} = antdTaro;
+const {showToast} = tarojsTaro;
 
 const BaseExample = () => {
-  const [open,setOpen] = useState(false);
-  return <>
-    <Button onClick={()=>{
-      setOpen(true);
-    }}>打开</Button>
-    <DatePicker open={open} onOpenChange={setOpen}/>
-  </>;
-};
-
-render(<BaseExample/>);
-
-```
-
-- DateRangePicker 日期范围选择器
-- DateRangePicker 日期范围选择器
-- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
-
-```jsx
-const {Button} = taroComponent;
-const {useState} = React;
-const {DateRangePicker} = antdTaro;
-
-const BaseExample = () => {
-    const [open,setOpen] = useState(false);
-    return <>
-        <Button onClick={()=>{
-            setOpen(true);
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
+  const [value, setValue] = useState('');
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Button onClick={() => {
+        setOpen(true);
+      }}>打开</Button>
+      <DatePicker
+        title='时间选择'
+        open={open}
+        onOpenChange={setOpen}
+        onChange={val => {
+          showToast({icon: 'none', title: val.toDateString()})
+        }}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>渲染所选值</View>
+      <Space>
+        <Button onClick={() => {
+          setOpen2(true);
         }}>打开</Button>
-        <DateRangePicker open={open} onOpenChange={setOpen}/>
-    </>;
+        <View>{value}</View>
+      </Space>
+      <DatePicker
+        open={open2}
+        onOpenChange={setOpen2}
+        onChange={val => setValue(val.toDateString())}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>控制选择精度</View>
+      <Button onClick={() => {
+        setOpen3(true);
+      }}>年-月</Button>
+      <DatePicker
+        title='时间选择'
+        open={open3}
+        onOpenChange={setOpen3}
+        precision='month'
+        onChange={val => {
+          showToast({icon: 'none', title: val.toDateString()})
+        }}
+      />
+      <Button onClick={() => {
+        setOpen4(true);
+      }}>年-月-日-时-分</Button>
+      <DatePicker
+        title='时间选择'
+        open={open4}
+        onOpenChange={setOpen4}
+        precision='minute'
+        onChange={val => {
+          showToast({icon: 'none', title: val.toDateString()})
+        }}
+      />
+    </Space>
+  </Space>;
+};
+
+render(<BaseExample/>);
+
+```
+
+- DateRangePicker 日期范围选择器
+- DateRangePicker 日期范围选择器
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components),tarojsTaro(@tarojs/taro)
+
+```jsx
+const {Button, View} = taroComponent;
+const {useState} = React;
+const {DateRangePicker, Space} = antdTaro;
+const {showToast} = tarojsTaro;
+
+const BaseExample = () => {
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
+  const [value, setValue] = useState([]);
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Button onClick={() => {
+        setOpen(true);
+      }}>打开</Button>
+      <DateRangePicker
+        title='时间选择'
+        open={open}
+        onOpenChange={setOpen}
+        onChange={val => {
+          showToast({icon: 'none', title: val?.map(item => item.toDateString())?.join(' ~ ')})
+        }}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>渲染所选值</View>
+      <Space>
+        <Button onClick={() => {
+          setOpen2(true);
+        }}>打开</Button>
+        <View>{(value || [])?.map(item => item.toLocaleDateString())?.join(' ~ ')}</View>
+      </Space>
+      <DateRangePicker
+        open={open2}
+        onOpenChange={setOpen2}
+        onChange={val => setValue(val)}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>控制选择精度</View>
+      <Button onClick={() => {
+        setOpen3(true);
+      }}>年-月</Button>
+      <DateRangePicker
+        title='时间选择'
+        open={open3}
+        onOpenChange={setOpen3}
+        precision='month'
+        onChange={val => {
+          showToast({icon: 'none', title: val?.map(item => item.toLocaleDateString())?.join(' ~ ')})
+        }}
+      />
+      <Button onClick={() => {
+        setOpen4(true);
+      }}>年-月-日-时-分</Button>
+      <DateRangePicker
+        title='时间选择'
+        open={open4}
+        onOpenChange={setOpen4}
+        precision='minute'
+        onChange={val => {
+          showToast({icon: 'none', title: val?.map(item => item.toTimeString())?.join(' ~ ')})
+        }}
+      />
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -491,16 +632,38 @@ const {View} = taroComponent;
 
 const BaseExample = ()=>{
   return (
-    <Space direction={'vertical'}>
-      <Space>
-        <View>horizontal</View>
-        <Divider direction={'horizontal'} />
-        <View>horizontal</View>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>基础分割线</View>
+        <Divider />
       </Space>
-      <Space>
-        <View>vertical</View>
-        <Divider direction={'vertical'} />
-        <View>vertical</View>
+      <Space direction={'vertical'}>
+        <View>带内容的分割线</View>
+        <Divider>内容在中间</Divider>
+        <Divider contentPosition='left'>左侧内容</Divider>
+        <Divider contentPosition='right'>右侧内容</Divider>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>竖向分割线1</View>
+        <Space>
+          <View>Text1</View>
+          <Divider direction={'vertical'} />
+          <View>Text2</View>
+          <Divider direction={'vertical'} />
+          <View>Text3</View>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义样式</View>
+        <Divider
+          style={{
+            color: '#1677ff',
+            borderColor: '#1677ff',
+            borderStyle: 'dashed',
+          }}
+        >
+          自定义样式
+        </Divider>
       </Space>
     </Space>
   );
@@ -510,15 +673,44 @@ render(<BaseExample />);
 
 ```
 
-- Dot Loading 点状加载图标
-- Dot Loading 点状加载图标
-- antdTaro(@kne/antd-taro)
+- DotLoading 点状加载图标
+- DotLoading 点状加载图标
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {DotLoading} = antdTaro;
+const {DotLoading, Space} = antdTaro;
+const {View} = taroComponent;
 const BaseExample = () => {
   return (
-    <DotLoading>loading dot</DotLoading>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>默认颜色 Loading</View>
+        <DotLoading/>
+        <View>主题色 Loading</View>
+        <DotLoading color='primary'/>
+        <View>白色 Loading</View>
+        <View style={{backgroundColor: '#ddd'}}>
+          <DotLoading color='white'/>
+        </View>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义颜色 Loading</View>
+        <Space>
+          <DotLoading color='#155ACF'/>
+          <DotLoading color='#00b578'/>
+          <DotLoading color='#ff8f1f'/>
+          <DotLoading color='#ff3141'/>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自动适配字号</View>
+        <Space>
+          <View style={{fontSize: 14}}><DotLoading/></View>
+          <View style={{fontSize: 18}}><DotLoading/></View>
+          <View style={{fontSize: 24}}><DotLoading/></View>
+        </Space>
+      </Space>
+    </Space>
   );
 };
 
@@ -531,19 +723,38 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Dropdown} = antdTaro;
+const {Dropdown, Space, Icon} = antdTaro;
 const {View} = taroComponent;
+
+const items = [
+  {key: 'apple', title: 'apple', children: 'apple'},
+  {key: 'banana', title: 'banana', children: 'banana'},
+  {key: 'orange', title: 'orange', children: 'orange'}
+];
 
 const BaseExample = () => {
   return (
-    <View>
-      <Dropdown items={[{key: 'apple', title: 'apple', children: 'apple'}]}/>
-      <Dropdown items={[{key: 'apple', title: 'apple', children: 'apple'}, {key: 'banana', title: 'banana', children: 'banana'}]}/>
-      <Dropdown
-        activeKey={'orange'}
-        items={[{key: 'apple', title: 'apple', children: 'apple'}, {key: 'banana', title: 'banana', children: 'banana'}, {key: 'orange', title: 'orange', children: 'orange'}]}
-      />
-    </View>
+    <Space direction={'vertical'} size={30}>
+      <Space direction={'vertical'}>
+        <View>一列</View>
+        <Dropdown items={items.slice(0, 1)}/>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>两列</View>
+        <Dropdown items={items.slice(0, 2)}/>
+      </Space>
+      <Space direction={'vertical'} closeOnMaskClick={false}>
+        <View>三列</View>
+        <Dropdown items={items}/>
+      </Space>
+      <Space direction={'vertical'} closeOnMaskClick={false}>
+        <View>自定义箭头</View>
+        <Dropdown
+          arrow={<Icon className={"adm-component"} type="check-mark"/>}
+          items={[...items.slice(0, 2), Object.assign({}, items[2], {arrow: <Icon className={"adm-component"} type="checkCircleFill"/>})]}
+        />
+      </Space>
+    </Space>
   );
 };
 
@@ -556,7 +767,7 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {View} = taroComponent;
+const {View, Text} = taroComponent;
 const {Ellipsis, Space} = antdTaro;
 
 const content = 'antd-taro 是一个基于@tarojs/components的高级组件库，它提供基础的UI交互组件，它旨在解决小程序应用中的复杂场景问题。Ellipsis是一个文本省略组件，展示空间不足时，隐去部分内容并用“...”替代。当文本内容长度或高度超过列宽或行高、图表中空间有限、文本内容无法完全显示、自适应调整时宽度变小时就可以考虑使用该组件。'
@@ -564,19 +775,19 @@ const content = 'antd-taro 是一个基于@tarojs/components的高级组件库�
 const BaseExample = () => {
   return <Space direction={'vertical'} size={30}>
     <Space direction={'vertical'}>
-      <View>单行省略</View>
+      <Text>单行省略</Text>
       <Ellipsis content={content} />
     </Space>
     <Space direction={'vertical'}>
-      <View>展开收起文本</View>
+      <Text>展开收起文本</Text>
       <Ellipsis expandText='展开文本' collapseText='收起文本' content={content} />
     </Space>
     <Space direction={'vertical'}>
-      <View>仅展开</View>
+      <Text>取消展开收起</Text>
       <Ellipsis showAction={false} content={content} />
     </Space>
     <Space direction={'vertical'}>
-      <View>默认展开</View>
+      <Text>默认展开</Text>
       <Ellipsis defaultExpanded content={content} />
     </Space>
   </Space>;
@@ -591,7 +802,7 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Empty, Space} = antdTaro;
+const {Empty, Space, Icon} = antdTaro;
 const {View} = taroComponent;
 
 const BaseExample = ()=>{
@@ -604,6 +815,14 @@ const BaseExample = ()=>{
       <Space direction={'vertical'}>
         <View>描述文字</View>
         <Empty description={'空状态'} />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义样式</View>
+        <Empty description={'暂无数据'} imageStyle={{ width: 128 }} />
+      </Space>
+      <Space direction={'vertical'}>
+        <View>自定义图片</View>
+        <Empty description={'暂无数据'} image={<Icon className={"adm-component"} type="check-mark" size={'64px'} color={'#ff6700'} />}/>
       </Space>
     </Space>
   );
@@ -684,17 +903,39 @@ render(<BaseExample />);
 
 - Icon 图标
 - Icon 图标
-- antdTaro(@kne/antd-taro)
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
 const {Icon, Space} = antdTaro;
+const {View} = taroComponent;
 
 const BaseExample = ()=>{
   return (
-    <Space>
-      <Icon type={'clockCircleFill'} />
-      <Icon type={'gongsi'} />
-      <Icon type={'down-outline'} />
+    <Space direction={'vertical'}>
+      <Space direction = {'vertical'}>
+        <View>基础用法</View>
+        <Space>
+          <Icon type={'clockCircleFill'} className="adm-component" />
+          <Icon type={'informationCircleFill'} className="adm-component" />
+          <Icon type={'checkCircleFill'} className="adm-component" />
+        </Space>
+      </Space>
+      <Space direction = {'vertical'}>
+        <View>自定义尺寸</View>
+        <Space>
+          <Icon type={'clockCircleFill'} className="adm-component" size={'24px'} />
+          <Icon type={'informationCircleFill'} className="adm-component" size={'32px'} />
+          <Icon type={'checkCircleFill'} className="adm-component" size={'40px'} />
+        </Space>
+      </Space>
+      <Space direction = {'vertical'}>
+        <View>自定义颜色</View>
+        <Space>
+          <Icon type={'clockCircleFill'} className="adm-component" color={'#2db7f5'} />
+          <Icon type={'informationCircleFill'} className="adm-component" color={'#87d068'} />
+          <Icon type={'checkCircleFill'} className="adm-component" color={'#ff6430'} />
+        </Space>
+      </Space>
     </Space>
   );
 };
@@ -708,14 +949,40 @@ render(<BaseExample />);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Input} = antdTaro;
-const {View} = taroComponent;
+const {Input, Space} = antdTaro;
+const {View, Text} = taroComponent;
 
 const BaseExample = () => {
-  return <View>
-    <Input placeholder={"请输入Input1"}/>
-    <Input placeholder={"请输入Input2"} disabled/>
-  </View>;
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <Text>可以自动聚焦的 input</Text>
+      <Input type='text' placeholder='将会获取焦点' focus/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>控制最大输入长度的 input</Text>
+      <Input type='text' placeholder='最大输入长度为 10' maxLength={10}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>数字输入的 input</Text>
+      <Input type='number' placeholder='这是一个数字输入框'/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>密码输入的 input</Text>
+      <Input type='password' password placeholder='这是一个密码输入框'/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>带小数点的 input</Text>
+      <Input type='digit' placeholder='带小数点的数字键盘'/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>身份证输入的 input</Text>
+      <Input type='idcard' placeholder='身份证输入键盘'/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>控制占位符颜色的 input</Text>
+      <Input type='text' placeholder='占位符字体是红色的' placeholderStyle='color:red'/>
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -724,12 +991,13 @@ render(<BaseExample/>);
 
 - List 列表
 - List 列表
-- antdTaro(@kne/antd-taro)
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
 const {List,Switch,Icon} = antdTaro;
+const {View} = taroComponent;
 const BaseExample = () => {
-    return <>
+    return <View style={{ background: '#eee' }}>
         <List header='基础用法'>
             <List.Item>1</List.Item>
             <List.Item>2</List.Item>
@@ -772,7 +1040,7 @@ const BaseExample = () => {
                 总资产
             </List.Item>
         </List>
-    </>;
+    </View>;
 };
 
 render(<BaseExample/>);
@@ -1569,7 +1837,7 @@ render(<BaseExample/>);
 | --border-width     | 边框样式 | 2px                                 | --adm-button-border-width     |
 | --text-color       | 文字颜色 | var(--adm-color-text) '#333333'     | --adm-button-text-color       |
 
-## Card 卡片
+### Card 卡片
 
 #### 属性
 
@@ -1585,7 +1853,7 @@ render(<BaseExample/>);
 | onHeaderClick   | header 区域点击事件 | (event: React.MouseEvent) => void | -   |
 | title           | header 左边区域   | ReactNode                         | -   |
 
-## CheckList 可勾选列表
+### CheckList 可勾选列表
 
 #### 属性
 
@@ -1613,6 +1881,7 @@ render(<BaseExample/>);
 | value    | 选项值  | string[] | []    |
 
 #### CSS 变量
+
 ***同 List.Item***
 
 | 属性名                       | 说明                   | 默认值                               |
@@ -1630,4 +1899,375 @@ render(<BaseExample/>);
 | --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
 | --prefix-width            | prefix 部分的宽度         | auto                              |
 
+### Collapse 折叠面板
+
+#### 属性
+
+| 属性名              | 说明                                               | 类型                                                                                  | 默认值                                          |
+|------------------|--------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+| accordion        | 是否开启手风琴模式                                        | boolean                                                                             | false                                        |
+| activeKey        | 当前展开面板的 key                                      | 手风琴模式：string \| null<br/> 非手风琴模式：string[]                                           | -                                            |
+| arrow            | 自定义箭头，如果是 ReactNode，那么 antd-mobile 会自动为你增加旋转动画效果 | ReactNode                                                                           | ((active: boolean) => React.ReactNode) \| [] | -|
+| defaultActiveKey | 默认展开面板的 key                                      | 手风琴模式：string \| null<br/> 非手风琴模式：string[] \| []                                     | -                                            |
+| onChange         | 切换面板时触发                                          | 手风琴模式：(activeKey: string \| null) => void<br/> 非手风琴模式：(activeKey: string[]) => void | -                                            |
+
+#### Collapse.Panel
+
+#### 属性
+
+| 属性名            | 说明              | 类型                                                  | 默认值   |
+|----------------|-----------------|-----------------------------------------------------|-------|
+| arrow          | 自定义箭头           | ReactNode \| ((active: boolean) => React.ReactNode) | -     |
+| destroyOnClose | 不可见时是否销毁 DOM 结构 | boolean                                             | false |
+| disabled       | 是否为禁用状态         | boolean                                             | false |
+| forceRender    | 被隐藏时是否渲染 DOM 结构 | boolean                                             | false |
+| key            | 唯一标识符           | string                                              | -     |
+| onClick        | 标题栏的点击事件        | (event: React.MouseEvent) => void                   | -     |
+| title          | 标题栏左侧内容         | ReactNode                                           | -     |
+
+### DatePicker日期选择器
+
+#### 属性
+
+| 属性名          | 说明                                                            | 类型                                                    | 默认值                    |
+|--------------|---------------------------------------------------------------|-------------------------------------------------------|------------------------|
+| defaultValue | 默认选中值                                                         | PickerDate                                            | new Date() 今天          |
+| max          | 最大值                                                           | PickerDate                                            | new Date() 今天          |
+| min          | 最小值                                                           | PickerDate                                            | new Date('1949-10-01') |
+| onChange     | 确认时触发                                                         | (value: PickerDate) => void                           | -                      |
+| precision    | 精度                                                            | 'month' \| 'day' \| 'hour' \| 'minute'                | -                      |
+| renderLabel  | 自定义渲染每列展示的内容。其中 type 参数为 precision 中的任意值或 now，data 参数为默认渲染的数字 | (type: Precision \| 'now', data: number) => ReactNode | -                      |
+| value        | 选中值                                                           | PickerDate                                            | -                      |
+
+此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
+
+### DateRangePicker 日期范围选择器
+
+#### 属性
+
+| 属性名          | 说明                                                            | 类型                                                    | 默认值                         |
+|--------------|---------------------------------------------------------------|-------------------------------------------------------|-----------------------------|
+| defaultValue | 默认选中值                                                         | [PickerDate, PickerDate]                              | [new Date(), new Date()] 今天 |
+| max          | 最大值                                                           | PickerDate                                            | new Date() 今天               |
+| min          | 最小值                                                           | PickerDate                                            | new Date('1949-10-01')      |
+| onChange     | 确认时触发                                                         | (value: PickerDate) => void                           | -                           |
+| precision    | 精度                                                            | 'month' \| 'day' \| 'hour' \| 'minute'                | -                           |
+| renderLabel  | 自定义渲染每列展示的内容。其中 type 参数为 precision 中的任意值或 now，data 参数为默认渲染的数字 | (type: Precision \| 'now', data: number) => ReactNode | -                           |
+| value        | 选中值                                                           | [PickerDate, PickerDate]                              | -                           |
+
+此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
+
+### DotLoading 点状加载图标
+
+#### 属性
+
+| 属性名   | 说明                          | 类型                                          | 默认值       |
+|-------|-----------------------------|---------------------------------------------|-----------|
+| color | 线条颜色，等效于手动设置 --color CSS 变量 | 'default' \| 'primary' \| 'white' \| string | 'default' |
+
+DotLoading 的大小会自动根据当前的文字大小进行调整。
+
+#### CSS 变量
+
+| 属性名     | 说明   | 默认值                   |
+|---------|------|-----------------------|
+| --color | 线条颜色 | var(--adm-color-weak) |
+| --size  | 大小   | 32px                  |
+
+### Dropdown 下拉菜单
+
+#### 属性
+
+| 属性名      | 说明              | 类型                                 | 默认值 |
+|----------|-----------------|------------------------------------|-----|
+| arrow    | 自定义 arrow       | React.ReactNode                    | -   |
+| onChange | activeKey 变化时触发 | (activeKey: string \| null)=> void | -   |
+| items    | 列               | DropdownItem[]                     | -   |
+
+#### Ref
+
+| 属性    | 说明     | 类型         |
+|-------|--------|------------|
+| close | 关闭下拉菜单 | () => void |
+
+### DropdownItem
+
+#### 属性
+
+| 属性名       | 说明        | 类型                                | 默认值   |
+|-----------|-----------|-----------------------------------|-------|
+| arrow     | 自定义 arrow | React.ReactNode                   | -     |
+| highlight | 高亮        | boolean                           | false |
+| key       | 唯一值       | string                            | -     |
+| title     | 标题        | ReactNode                         | -     |
+| onClick   | 点击事件      | (event: React.MouseEvent) => void | -     |
+
+### Ellipsis 文本省略
+
+#### 属性
+
+| 属性名             | 说明         | 类型              | 默认值   |
+|-----------------|------------|-----------------|-------|
+| collapseText    | 收起操作的文案    | React.ReactNode | '收起'  |
+| content         | 文本内容       | string          | -     |
+| expandText      | 展开操作的文案    | ReactNode       | '展开'  |
+| rows            | 展示几行       | number          | 1     |
+| defaultExpanded | 是否默认展开     | boolean         | false |
+| showAction      | 是否显示展开收起操作 | boolean         | false |
+
+### Empty 空状态
+
+#### 属性
+
+| 属性名         | 说明                       | 类型            | 默认值 |
+|-------------|--------------------------|---------------|-----|
+| description | 图片下方的描述文字                | ReactNode     | -   |
+| image       | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
+| imageStyle  | 图片样式                     | CSSProperties | -   |
+
+### Grid 栅格
+
+#### 属性
+
+| 属性名     | 说明      | 类型                                                        | 默认值 |
+|---------|---------|-----------------------------------------------------------|-----|
+| columns | 列数      | number                                                    | -   |
+| gap     | 格子之间的间距 | number \| string \| \[number \| string, number \| string] | 0   |
+
+#### CSS 变量
+
+| 属性名              | 说明        | 默认值        |
+|------------------|-----------|------------|
+| --gap            | 间距大小      | 0          |
+| --gap-horizontal | 水平方向的间距大小 | var(--gap) |
+| --gap-vertical   | 垂直方向的间距大小 | var(--gap) |
+
+### Grid.Item
+
+#### 属性
+
+| 属性名     | 说明   | 类型                                                            | 默认值 |
+|---------|------|---------------------------------------------------------------|-----|
+| onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
+| span    | 跨度   | number                                                        | 1   |
+
+### Icon 图标
+
+#### 属性
+
+| 属性名        | 说明                       | 类型            | 默认值 |
+|------------|--------------------------|---------------|-----|
+| type       | 图标类型                     | ReactNode     | -   |
+| image      | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
+| imageStyle | 图片样式                     | CSSProperties | -   |
+
+### Input 输入框
+
+#### 属性
+
+| 属性名                    | 说明                                                                                        | 类型                                                       | 默认值                 |
+|------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------|---------------------|
+| value                  | 输入框的初始内容                                                                                  | string                                                   | -                   |
+| type                   | input 的类型                                                                                 | "number" \| "text" \| "idcard" \| "digit"                | "text"              |
+| password               | 是否是密码类型                                                                                   | boolean                                                  | -                   |
+| placeholder            | 输入框为空时占位符                                                                                 | string                                                   | -                   |
+| placeholderStyle       | 指定 placeholder 的样式                                                                        | string                                                   | -                   |
+| placeholderClass       | 指定 placeholder 的样式类                                                                       | string                                                   | "input-placeholder" |
+| disabled               | 是否禁用                                                                                      | boolean                                                  | false               |
+| maxLength              | 最大输入长度，设置为 -1 的时候不限制最大长度                                                                  | number                                                   | 140                 |
+| cursorSpacing          | 指定光标与键盘的距离，单位 px 。取 input 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离                     | number                                                   | 0                   |
+| autoFocus              | (即将废弃，请直接使用 focus )自动聚焦，拉起键盘                                                              | boolean                                                  | false               |
+| focus                  | 获取焦点                                                                                      | boolean                                                  | false               |
+| confirmType            | 设置键盘右下角按钮的文字                                                                              | "send" \| "search" \| "next" \| "go" \| "done"           | done                |
+| confirmHold            | 点击键盘右下角按钮时是否保持键盘不收起                                                                       | boolean                                                  | false               |
+| cursor                 | 指定focus时的光标位置                                                                             | number                                                   |                     |
+| selectionStart         | 光标起始位置，自动聚集时有效，需与selection-end搭配使用                                                        | number                                                   | -1                  |
+| selectionEnd           | 光标结束位置，自动聚集时有效，需与selection-start搭配使用                                                      | number                                                   | -1                  |
+| adjustPosition         | 键盘弹起时，是否自动上推页面                                                                            | boolean                                                  | true                |
+| holdKeyboard           | focus 时，点击页面的时候不收起键盘                                                                      | boolean                                                  | false               |
+| onInput                | 当键盘输入时，触发input事件，event.detail = {value, cursor, keyCode}，处理函数可以直接 return 一个字符串，将替换输入框的内容。 | BaseEventOrigFunction: inputEventDetail                  | -                   |
+| onFocus                | 输入框聚焦时触发，event.detail = { value, height }，height 为键盘高度                                    | BaseEventOrigFunction: inputForceEventDetail             | -                   |
+| onBlur                 | 输入框失去焦点时触发 event.detail = {value: value}                                                  | BaseEventOrigFunction: inputValueEventDetail             | -                   |
+| onConfirm              | 点击完成按钮时触发 event.detail = {value: value}                                                   | BaseEventOrigFunction: inputValueEventDetail             | -                   |
+| onKeyboardHeightChange | 键盘高度发生变化的时候触发此事件 event.detail = {height: height, duration:                                | BaseEventOrigFunction: onKeyboardHeightChangeEventDetail | -                   |
+
+#### inputEventDetail
+
+| 属性名     | 类型     | 说明   |
+|---------|--------|------|
+| value   | string | 输入值  |
+| cursor  | number | 光标位置 |
+| keyCode | number | 键值   |
+
+#### inputForceEventDetail
+
+| 属性名    | 类型     | 说明   |
+|--------|--------|------|
+| value  | string | 输入值  |
+| height | number | 键盘高度 |
+
+#### inputValueEventDetail
+
+| 属性名   | 类型     | 说明  |
+|-------|--------|-----|
+| value | string | 输入值 |
+
+#### onKeyboardHeightChangeEventDetail
+
+| 属性名      | 类型     | 说明   |
+|----------|--------|------|
+| height   | number | 键盘高度 |
+| duration | number | 持续时间 |
+
+### List 列表
+
+#### 属性
+
+| 属性名    | 说明          | 类型                  | 默认值       |
+|--------|-------------|---------------------|-----------|
+| header | 标题内容        | ReactNode           | -         |
+| mode   | 支持默认和卡片两种模式 | 'default' \| 'card' | 'default' |
+
+#### CSS 变量
+
+| 属性名                       | 说明                    | 默认值                               |
+|---------------------------|-----------------------|-----------------------------------|
+| --active-background-color | 点击时的背景颜色              | var(--adm-border-color)           |
+| --align-items             | 列表项的 align-item       | center                            |
+| --border-bottom           | 列表容器底部的边框样式           | solid 1px var(--adm-border-color) |
+| --border-inner            | 列表项底部的边框样式            | solid 1px var(--adm-border-color) |
+| --border-top              | 列表容器顶部的边框样式           | solid 1px var(--adm-border-color) |
+| --extra-max-width         | extra 部分的最大宽度         | 70%                               |
+| --font-size               | Body 内容的字体大小          | 34px                              |
+| --header-font-size        | 头部的字体大小               | 30px                              |
+| --padding-left            | 列表项和列表头部左侧的 padding	  | 24px                              |
+| --padding-right           | 列表项和列表头部右侧的 padding	  | 24px                              |
+| --prefix-padding-right    | prefix 部分的右侧 padding	 | 24px                              |
+| --prefix-width            | prefix 部分的宽度	         | auto                              |
+
+### List.Item
+
+#### 属性
+
+| 属性名         | 说明                                  | 类型                            | 默认值                                  |
+|-------------|-------------------------------------|-------------------------------|--------------------------------------|
+| arrow       | 右侧是否显示箭头图标，也支持传入 ReactNode 来自定义图标   | boolean \| ReactNode          | 默认和 clickable 的值保持一致                 |
+| children    | 列表项中间的主内容区域                         | ReactNode                     | -                                    |
+| clickable   | 是否显示点击效果                            | boolean                       | 当 onClick 属性存在时，默认为 true，否则默认为 false |
+| description | 列表项中间下部的描述区域                        | ReactNode                     | -                                    |
+| disabled    | 是否禁用                                | boolean                       | false                                |
+| extra       | 列表项右侧区域                             | ReactNode                     | -                                    |
+| onClick     | 列表项的点击事件，当设置了 onClick 属性时，列表项会有点击效果 | (e: React.MouseEvent) => void | -                                    |
+| prefix      | 列表项左侧区域                             | ReactNode                     | -                                    |
+| title       | 列表项中间上部的标题区域                        | ReactNode                     | -                                    |
+
+#### CSS 变量
+
+支持 List 中的 --prefix-width、--active-background-color、--align-items
+
+### NavBar 导航栏
+
+#### 属性
+
+| 属性名       | 说明                                  | 类型                   | 默认值        |
+|-----------|-------------------------------------|----------------------|------------|
+| back      | 返回区域的文字，如果为 null 的话，backArrow 也不会渲染 | ReactNode \| null    | ''         |
+| backArrow | 支持默认和卡片两种模式                         | boolean \| ReactNode | true       |
+| children  | 	标题                                 | ReactNode            | ReactNode  |
+| left      | 	左侧内容，渲染在返回区域的右侧                    | ReactNode            | -          |
+| onBack    | 点击返回区域后的回调                          | ReactNode            | () => void |
+| right     | 右侧内容                                | ReactNode            | ReactNode  |
+
+#### CSS 变量
+
+| 属性名             | 说明     | 默认值  |
+|-----------------|--------|------|
+| --border-bottom | 导航栏下边框 | none |
+| --height        | 导航栏高度  | 90px |
+
+### Picker 选择器
+
+#### 属性
+
+| 属性名            | 说明               | 类型                                                           | 默认值                  |
+|----------------|------------------|--------------------------------------------------------------|----------------------|
+| cancelText     | 取消按钮的文字          | ReactNode                                                    | '取消'                 |
+| columns        | 配置每一列的选项         | PickerColumn[] \| ((value: PickerValue[]) => PickerColumn[]) | -                    |
+| confirmText    | 确定按钮的文字          | ReactNode                                                    | '确定'                 |
+| defaultValue   | 默认选中项            | PickerValue[]                                                | []                   |
+| onCancel       | 取消时触发            | () => void                                                   | -                    |
+| onClose        | 确认和取消时都会触发关闭事件   | () => void                                                   | -                    |
+| popupClassName | Popup 弹层容器的自定义类名 | string                                                       | -                    |
+| popupStyle     | Popup 弹层容器的自定义样式 | React.CSSProperties                                          | -                    |
+| renderLabel    | 自定义渲染每列展示的内容     | (item: PickerColumnItem) => ReactNode                        | (item) => item.label |
+| title          | 标题               | PickerValue[]                                                | -                    |
+| value          | 选中项              | PickerValue[]                                                | -                    |
+| open           | 是否显示选择器          | boolean                                                      | false                |
+| onOpenChange   | 确认时触发            | (value: boolean) => void                                     | -                    |
+| loading        | 是否处于加载状态         | boolean                                                      | boolean              |
+
+***此外还支持 Popup 的以下属性：getContainer onClick stopPropagation***
+
+***请留意，columns 属性的类型是二级数组，第一级对应的是每一列，而第二级对应的是某一列中的每一个选项。因此，下面的这种写法是错误的：
+***
+
+```jsx
+<Picker
+  columns={[
+    {label: 'Foo', value: 'foo'},
+    {label: 'Bar', value: 'bar'},
+  ]}
+/>
+```
+
+***需要写成：***
+
+```jsx
+<Picker
+  columns={[
+    [
+      {label: 'Foo', value: 'foo'},
+      {label: 'Bar', value: 'bar'},
+    ]
+  ]}
+/>
+```
+
+#### CSS 变量
+
+| 属性名                       | 说明                       | 默认值  |
+|---------------------------|--------------------------|------|
+| --header-button-font-size | 	确定和取消按钮的字号              | 30px |
+| --item-font-size          | 选择项的字号                   | 32px |
+| --item-height             | 选项的高度，仅支持 px rem 和 vw 单位 | 34px |
+| --title-font-size         | 	标题的字号                   | 30px |
+
+### Popup 弹出层
+
+#### 属性
+
+| 属性名              | 说明              | 类型                                                               | 默认值       |
+|------------------|-----------------|------------------------------------------------------------------|-----------|
+| afterClose       | 完全关闭后触发         | () => void                                                       | -         |
+| afterShow        | 完全展示后触发         | () => void                                                       | -         |
+| bodyClassName    | 内容区域类名          | string                                                           | -         |
+| bodyStyle        | 内容区域样式          | React.CSSProperties                                              | -         |
+| className        | 容器类名            | string                                                           | -         |
+| closeOnMaskClick | 点击背景蒙层后是否关闭     | boolean                                                          | false     |
+| mask             | 是否展示蒙层          | boolean                                                          | true      |
+| maskClassName    | 遮罩类名            | string                                                           | -         |
+| onClick          | 点击时触发，常用于阻止事件冒泡 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void    | -         |
+| onClose          | 关闭时触发           | () => void                                                       | -         |
+| onMaskClick      | 点击蒙层触发          | (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | -         |
+| position         | 	指定弹出的位置        | 'bottom' \| 'top' \| 'left' \| 'right'                           | 'bottom'  |
+| showCloseButton  | 是否显示关闭按钮        | boolean                                                          | false     |
+| stopPropagation  | 阻止某些事件的冒泡       | PropagationEvent[]                                               | ['click'] |
+| style            | 容器样式            | React.CSSProperties                                              | -         |
+| open             | 	是否可见           | boolean                                                          | false     |
+
+#### CSS 变量
+
+| 属性名       | 说明           | 默认值  | 全局变量                |
+|-----------|--------------|------|---------------------|
+| --z-index | 	元素的 z-index | 1000 | --adm-popup-z-index |
 

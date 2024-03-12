@@ -49,6 +49,7 @@ const Collapse = (props) => {
 
     const activeKeyList = activeKey === null ? [] : Array.isArray(activeKey) ? activeKey : [activeKey];
 
+
     return <View className={classnames(classPrefix, props.className)}>
         <List>
             {props.items.map(panel => {
@@ -73,20 +74,21 @@ const Collapse = (props) => {
 
                     panel.onClick?.(event);
                 }
+              const getArrow = (arrow) => arrow && typeof arrow === 'function' ? arrow(active) : arrow;
 
-
-                return (<React.Fragment key={key}>
+              return (<React.Fragment key={key}>
                     {<List.Item
                         className={classnames(`${classPrefix}-panel-header`, {
-                            'is-active': active
+                          [`${classPrefix}-active`]: active
                         })}
                         onClick={handleClick}
                         disabled={panel.disabled}
-                        arrow={<Icon type={active ? 'arrow-thin-up' : 'arrow-thin-down'}
+                        arrow={getArrow(panel?.arrow) || getArrow(props?.arrow) || <Icon type={active ? 'arrow-thin-up' : 'arrow-thin-down'}
                                      className={classnames("iconfont", "arrow-icon")}
                                      onClick={handleClick}/>}
                     >
                         {panel.title}
+                        {props?.arrow}
                     </List.Item>}
                     <CollapsePanelContent
                         visible={active}

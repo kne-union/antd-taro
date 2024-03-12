@@ -117,6 +117,10 @@
         {
           "name": "taroComponent",
           "packageName": "@tarojs/components"
+        },
+        {
+          "name": "tarojsTaro",
+          "packageName": "@tarojs/taro"
         }
       ]
     },
@@ -132,6 +136,10 @@
         {
           "name": "taroComponent",
           "packageName": "@tarojs/components"
+        },
+        {
+          "name": "tarojsTaro",
+          "packageName": "@tarojs/taro"
         }
       ]
     },
@@ -151,13 +159,17 @@
       ]
     },
     {
-      "title": "Dot Loading 点状加载图标",
-      "description": "Dot Loading 点状加载图标",
+      "title": "DotLoading 点状加载图标",
+      "description": "DotLoading 点状加载图标",
       "code": "./dot-loading.js",
       "scope": [
         {
           "name": "antdTaro",
           "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
         }
       ]
     },
@@ -229,6 +241,10 @@
         {
           "name": "antdTaro",
           "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
         }
       ]
     },
@@ -255,6 +271,10 @@
         {
           "name": "antdTaro",
           "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
         }
       ]
     },
