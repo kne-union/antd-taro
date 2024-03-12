@@ -991,12 +991,13 @@ render(<BaseExample/>);
 
 - List 列表
 - List 列表
-- antdTaro(@kne/antd-taro)
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
 const {List,Switch,Icon} = antdTaro;
+const {View} = taroComponent;
 const BaseExample = () => {
-    return <>
+    return <View style={{ background: '#eee' }}>
         <List header='基础用法'>
             <List.Item>1</List.Item>
             <List.Item>2</List.Item>
@@ -1039,7 +1040,7 @@ const BaseExample = () => {
                 总资产
             </List.Item>
         </List>
-    </>;
+    </View>;
 };
 
 render(<BaseExample/>);
@@ -1836,7 +1837,7 @@ render(<BaseExample/>);
 | --border-width     | 边框样式 | 2px                                 | --adm-button-border-width     |
 | --text-color       | 文字颜色 | var(--adm-color-text) '#333333'     | --adm-button-text-color       |
 
-## Card 卡片
+### Card 卡片
 
 #### 属性
 
@@ -1852,7 +1853,7 @@ render(<BaseExample/>);
 | onHeaderClick   | header 区域点击事件 | (event: React.MouseEvent) => void | -   |
 | title           | header 左边区域   | ReactNode                         | -   |
 
-## CheckList 可勾选列表
+### CheckList 可勾选列表
 
 #### 属性
 
@@ -1898,7 +1899,7 @@ render(<BaseExample/>);
 | --prefix-padding-right    | prefix 部分的右侧 padding | 24px                              |
 | --prefix-width            | prefix 部分的宽度         | auto                              |
 
-## Collapse 折叠面板
+### Collapse 折叠面板
 
 #### 属性
 
@@ -1924,7 +1925,7 @@ render(<BaseExample/>);
 | onClick        | 标题栏的点击事件        | (event: React.MouseEvent) => void                   | -     |
 | title          | 标题栏左侧内容         | ReactNode                                           | -     |
 
-## DatePicker日期选择器
+### DatePicker日期选择器
 
 #### 属性
 
@@ -1940,7 +1941,7 @@ render(<BaseExample/>);
 
 此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
 
-## DateRangePicker 日期范围选择器
+### DateRangePicker 日期范围选择器
 
 #### 属性
 
@@ -1956,7 +1957,7 @@ render(<BaseExample/>);
 
 此外还支持 Picker 的以下属性：onCancel onClose confirmText cancelText title loading loadingContent。
 
-## DotLoading 点状加载图标
+### DotLoading 点状加载图标
 
 #### 属性
 
@@ -1973,7 +1974,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | --color | 线条颜色 | var(--adm-color-weak) |
 | --size  | 大小   | 32px                  |
 
-## Dropdown 下拉菜单
+### Dropdown 下拉菜单
 
 #### 属性
 
@@ -1989,7 +1990,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |-------|--------|------------|
 | close | 关闭下拉菜单 | () => void |
 
-## DropdownItem
+### DropdownItem
 
 #### 属性
 
@@ -2001,7 +2002,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | title     | 标题        | ReactNode                         | -     |
 | onClick   | 点击事件      | (event: React.MouseEvent) => void | -     |
 
-## Ellipsis 文本省略
+### Ellipsis 文本省略
 
 #### 属性
 
@@ -2014,7 +2015,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | defaultExpanded | 是否默认展开     | boolean         | false |
 | showAction      | 是否显示展开收起操作 | boolean         | false |
 
-## Empty 空状态
+### Empty 空状态
 
 #### 属性
 
@@ -2024,7 +2025,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | image       | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
 | imageStyle  | 图片样式                     | CSSProperties | -   |
 
-## Grid 栅格
+### Grid 栅格
 
 #### 属性
 
@@ -2050,7 +2051,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
 | span    | 跨度   | number                                                        | 1   |
 
-## Icon 图标
+### Icon 图标
 
 #### 属性
 
@@ -2060,7 +2061,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | image      | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
 | imageStyle | 图片样式                     | CSSProperties | -   |
 
-## Input 输入框
+### Input 输入框
 
 #### 属性
 
@@ -2117,4 +2118,50 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |----------|--------|------|
 | height   | number | 键盘高度 |
 | duration | number | 持续时间 |
+
+### List 列表
+
+#### 属性
+
+| 属性名    | 说明          | 类型                  | 默认值       |
+|--------|-------------|---------------------|-----------|
+| header | 标题内容        | ReactNode           | -         |
+| mode   | 支持默认和卡片两种模式 | 'default' \| 'card' | 'default' |
+
+#### CSS 变量
+
+| 属性名                       | 说明                    | 默认值                               |
+|---------------------------|-----------------------|-----------------------------------|
+| --active-background-color | 点击时的背景颜色              | var(--adm-border-color)           |
+| --align-items             | 列表项的 align-item       | center                            |
+| --border-bottom           | 列表容器底部的边框样式           | solid 1px var(--adm-border-color) |
+| --border-inner            | 列表项底部的边框样式            | solid 1px var(--adm-border-color) |
+| --border-top              | 列表容器顶部的边框样式           | solid 1px var(--adm-border-color) |
+| --extra-max-width         | extra 部分的最大宽度         | 70%                               |
+| --font-size               | Body 内容的字体大小          | 34px                              |
+| --header-font-size        | 头部的字体大小               | 30px                              |
+| --padding-left            | 列表项和列表头部左侧的 padding	  | 24px                              |
+| --padding-right           | 列表项和列表头部右侧的 padding	  | 24px                              |
+| --prefix-padding-right    | prefix 部分的右侧 padding	 | 24px                              |
+| --prefix-width            | prefix 部分的宽度	         | auto                              |
+
+### List.Item
+
+#### 属性
+
+| 属性名         | 说明                                  | 类型                            | 默认值                                  |
+|-------------|-------------------------------------|-------------------------------|--------------------------------------|
+| arrow       | 右侧是否显示箭头图标，也支持传入 ReactNode 来自定义图标   | boolean \| ReactNode          | 默认和 clickable 的值保持一致                 |
+| children    | 列表项中间的主内容区域                         | ReactNode                     | -                                    |
+| clickable   | 是否显示点击效果                            | boolean                       | 当 onClick 属性存在时，默认为 true，否则默认为 false |
+| description | 列表项中间下部的描述区域                        | ReactNode                     | -                                    |
+| disabled    | 是否禁用                                | boolean                       | false                                |
+| extra       | 列表项右侧区域                             | ReactNode                     | -                                    |
+| onClick     | 列表项的点击事件，当设置了 onClick 属性时，列表项会有点击效果 | (e: React.MouseEvent) => void | -                                    |
+| prefix      | 列表项左侧区域                             | ReactNode                     | -                                    |
+| title       | 列表项中间上部的标题区域                        | ReactNode                     | -                                    |
+
+#### CSS 变量
+
+支持 List 中的 --prefix-width、--active-background-color、--align-items
 
