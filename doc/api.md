@@ -470,3 +470,31 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | --item-height             | 选项的高度，仅支持 px rem 和 vw 单位 | 34px |
 | --title-font-size         | 	标题的字号                   | 30px |
 
+### Popup 弹出层
+
+#### 属性
+
+| 属性名              | 说明              | 类型                                                               | 默认值       |
+|------------------|-----------------|------------------------------------------------------------------|-----------|
+| afterClose       | 完全关闭后触发         | () => void                                                       | -         |
+| afterShow        | 完全展示后触发         | () => void                                                       | -         |
+| bodyClassName    | 内容区域类名          | string                                                           | -         |
+| bodyStyle        | 内容区域样式          | React.CSSProperties                                              | -         |
+| className        | 容器类名            | string                                                           | -         |
+| closeOnMaskClick | 点击背景蒙层后是否关闭     | boolean                                                          | false     |
+| mask             | 是否展示蒙层          | boolean                                                          | true      |
+| maskClassName    | 遮罩类名            | string                                                           | -         |
+| onClick          | 点击时触发，常用于阻止事件冒泡 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void    | -         |
+| onClose          | 关闭时触发           | () => void                                                       | -         |
+| onMaskClick      | 点击蒙层触发          | (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | -         |
+| position         | 	指定弹出的位置        | 'bottom' \| 'top' \| 'left' \| 'right'                           | 'bottom'  |
+| showCloseButton  | 是否显示关闭按钮        | boolean                                                          | false     |
+| stopPropagation  | 阻止某些事件的冒泡       | PropagationEvent[]                                               | ['click'] |
+| style            | 容器样式            | React.CSSProperties                                              | -         |
+| open             | 	是否可见           | boolean                                                          | false     |
+
+#### CSS 变量
+
+| 属性名       | 说明           | 默认值  | 全局变量                |
+|-----------|--------------|------|---------------------|
+| --z-index | 	元素的 z-index | 1000 | --adm-popup-z-index |

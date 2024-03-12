@@ -1,6 +1,6 @@
 {
   "name": "@kne/antd-taro",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "dependencies": {
     "@kne/lodash-wechat": "^4.17.21",
     "@kne/use-control-value": "^0.1.8",
