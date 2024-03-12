@@ -1,4 +1,4 @@
-***antd-taro*** 是一个基于@tarojs/components的高级组件库，它提供基础的UI交互组件，它旨在解决小程序应用中的复杂场景问题，例如：
+***antd-taro*** 是一个基于@tarojs/components的高级组件库，重写了 Ant Design Mobile 中的部分组件以适配 Taro，部分它提供基础的UI交互组件，它旨在解决小程序应用中的复杂场景问题，例如：
 
 1. 列表展示问题
 2. 解决了项目中的components开发及调试问题

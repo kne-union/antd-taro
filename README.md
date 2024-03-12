@@ -11,7 +11,7 @@ npm i --save @kne/antd-taro
 
 ### 概述
 
-***antd-taro*** 是一个基于@tarojs/components的高级组件库，它提供基础的UI交互组件，它旨在解决小程序应用中的复杂场景问题，例如：
+***antd-taro*** 是一个基于@tarojs/components的高级组件库，重写了 Ant Design Mobile 中的部分组件以适配 Taro，部分它提供基础的UI交互组件，它旨在解决小程序应用中的复杂场景问题，例如：
 
 1. 列表展示问题
 2. 解决了项目中的components开发及调试问题
@@ -949,14 +949,40 @@ render(<BaseExample />);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Input} = antdTaro;
-const {View} = taroComponent;
+const {Input, Space} = antdTaro;
+const {View, Text} = taroComponent;
 
 const BaseExample = () => {
-  return <View>
-    <Input placeholder={"请输入Input1"}/>
-    <Input placeholder={"请输入Input2"} disabled/>
-  </View>;
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <Text>可以自动聚焦的 input</Text>
+      <Input type='text' placeholder='将会获取焦点' focus/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>控制最大输入长度的 input</Text>
+      <Input type='text' placeholder='最大输入长度为 10' maxLength={10}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>数字输入的 input</Text>
+      <Input type='number' placeholder='这是一个数字输入框'/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>密码输入的 input</Text>
+      <Input type='password' password placeholder='这是一个密码输入框'/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>带小数点的 input</Text>
+      <Input type='digit' placeholder='带小数点的数字键盘'/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>身份证输入的 input</Text>
+      <Input type='idcard' placeholder='身份证输入键盘'/>
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>控制占位符颜色的 input</Text>
+      <Input type='text' placeholder='占位符字体是红色的' placeholderStyle='color:red'/>
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -1963,7 +1989,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |-------|--------|------------|
 | close | 关闭下拉菜单 | () => void |
 
-### DropdownItem
+## DropdownItem
 
 #### 属性
 
@@ -1975,7 +2001,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | title     | 标题        | ReactNode                         | -     |
 | onClick   | 点击事件      | (event: React.MouseEvent) => void | -     |
 
-### Ellipsis 文本省略
+## Ellipsis 文本省略
 
 #### 属性
 
@@ -1988,7 +2014,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | defaultExpanded | 是否默认展开     | boolean         | false |
 | showAction      | 是否显示展开收起操作 | boolean         | false |
 
-### Empty 空状态
+## Empty 空状态
 
 #### 属性
 
@@ -1998,7 +2024,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | image       | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
 | imageStyle  | 图片样式                     | CSSProperties | -   |
 
-### Grid 栅格
+## Grid 栅格
 
 #### 属性
 
@@ -2024,7 +2050,7 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
 | span    | 跨度   | number                                                        | 1   |
 
-### Icon 图标
+## Icon 图标
 
 #### 属性
 
@@ -2033,4 +2059,62 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | type       | 图标类型                     | ReactNode     | -   |
 | image      | 自定义图片，为 string 时表示图片 URL | ReactNode     | -   |
 | imageStyle | 图片样式                     | CSSProperties | -   |
+
+## Input 输入框
+
+#### 属性
+
+| 属性名                    | 说明                                                                                        | 类型                                                       | 默认值                 |
+|------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------|---------------------|
+| value                  | 输入框的初始内容                                                                                  | string                                                   | -                   |
+| type                   | input 的类型                                                                                 | "number" \| "text" \| "idcard" \| "digit"                | "text"              |
+| password               | 是否是密码类型                                                                                   | boolean                                                  | -                   |
+| placeholder            | 输入框为空时占位符                                                                                 | string                                                   | -                   |
+| placeholderStyle       | 指定 placeholder 的样式                                                                        | string                                                   | -                   |
+| placeholderClass       | 指定 placeholder 的样式类                                                                       | string                                                   | "input-placeholder" |
+| disabled               | 是否禁用                                                                                      | boolean                                                  | false               |
+| maxLength              | 最大输入长度，设置为 -1 的时候不限制最大长度                                                                  | number                                                   | 140                 |
+| cursorSpacing          | 指定光标与键盘的距离，单位 px 。取 input 距离底部的距离和 cursor-spacing 指定的距离的最小值作为光标与键盘的距离                     | number                                                   | 0                   |
+| autoFocus              | (即将废弃，请直接使用 focus )自动聚焦，拉起键盘                                                              | boolean                                                  | false               |
+| focus                  | 获取焦点                                                                                      | boolean                                                  | false               |
+| confirmType            | 设置键盘右下角按钮的文字                                                                              | "send" \| "search" \| "next" \| "go" \| "done"           | done                |
+| confirmHold            | 点击键盘右下角按钮时是否保持键盘不收起                                                                       | boolean                                                  | false               |
+| cursor                 | 指定focus时的光标位置                                                                             | number                                                   |                     |
+| selectionStart         | 光标起始位置，自动聚集时有效，需与selection-end搭配使用                                                        | number                                                   | -1                  |
+| selectionEnd           | 光标结束位置，自动聚集时有效，需与selection-start搭配使用                                                      | number                                                   | -1                  |
+| adjustPosition         | 键盘弹起时，是否自动上推页面                                                                            | boolean                                                  | true                |
+| holdKeyboard           | focus 时，点击页面的时候不收起键盘                                                                      | boolean                                                  | false               |
+| onInput                | 当键盘输入时，触发input事件，event.detail = {value, cursor, keyCode}，处理函数可以直接 return 一个字符串，将替换输入框的内容。 | BaseEventOrigFunction: inputEventDetail                  | -                   |
+| onFocus                | 输入框聚焦时触发，event.detail = { value, height }，height 为键盘高度                                    | BaseEventOrigFunction: inputForceEventDetail             | -                   |
+| onBlur                 | 输入框失去焦点时触发 event.detail = {value: value}                                                  | BaseEventOrigFunction: inputValueEventDetail             | -                   |
+| onConfirm              | 点击完成按钮时触发 event.detail = {value: value}                                                   | BaseEventOrigFunction: inputValueEventDetail             | -                   |
+| onKeyboardHeightChange | 键盘高度发生变化的时候触发此事件 event.detail = {height: height, duration:                                | BaseEventOrigFunction: onKeyboardHeightChangeEventDetail | -                   |
+
+#### inputEventDetail
+
+| 属性名     | 类型     | 说明   |
+|---------|--------|------|
+| value   | string | 输入值  |
+| cursor  | number | 光标位置 |
+| keyCode | number | 键值   |
+
+#### inputForceEventDetail
+
+| 属性名    | 类型     | 说明   |
+|--------|--------|------|
+| value  | string | 输入值  |
+| height | number | 键盘高度 |
+
+#### inputValueEventDetail
+
+| 属性名   | 类型     | 说明  |
+|-------|--------|-----|
+| value | string | 输入值 |
+
+#### onKeyboardHeightChangeEventDetail
+
+| 属性名      | 类型     | 说明   |
+|----------|--------|------|
+| height   | number | 键盘高度 |
+| duration | number | 持续时间 |
 
