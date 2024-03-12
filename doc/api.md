@@ -412,3 +412,61 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |-----------------|--------|------|
 | --border-bottom | 导航栏下边框 | none |
 | --height        | 导航栏高度  | 90px |
+
+### Picker 选择器
+
+#### 属性
+
+| 属性名            | 说明               | 类型                                                           | 默认值                  |
+|----------------|------------------|--------------------------------------------------------------|----------------------|
+| cancelText     | 取消按钮的文字          | ReactNode                                                    | '取消'                 |
+| columns        | 配置每一列的选项         | PickerColumn[] \| ((value: PickerValue[]) => PickerColumn[]) | -                    |
+| confirmText    | 确定按钮的文字          | ReactNode                                                    | '确定'                 |
+| defaultValue   | 默认选中项            | PickerValue[]                                                | []                   |
+| onCancel       | 取消时触发            | () => void                                                   | -                    |
+| onClose        | 确认和取消时都会触发关闭事件   | () => void                                                   | -                    |
+| popupClassName | Popup 弹层容器的自定义类名 | string                                                       | -                    |
+| popupStyle     | Popup 弹层容器的自定义样式 | React.CSSProperties                                          | -                    |
+| renderLabel    | 自定义渲染每列展示的内容     | (item: PickerColumnItem) => ReactNode                        | (item) => item.label |
+| title          | 标题               | PickerValue[]                                                | -                    |
+| value          | 选中项              | PickerValue[]                                                | -                    |
+| open           | 是否显示选择器          | boolean                                                      | false                |
+| onOpenChange   | 确认时触发            | (value: boolean) => void                                     | -                    |
+| loading        | 是否处于加载状态         | boolean                                                      | boolean              |
+
+***此外还支持 Popup 的以下属性：getContainer onClick stopPropagation***
+
+***请留意，columns 属性的类型是二级数组，第一级对应的是每一列，而第二级对应的是某一列中的每一个选项。因此，下面的这种写法是错误的：
+***
+
+```jsx
+<Picker
+  columns={[
+    {label: 'Foo', value: 'foo'},
+    {label: 'Bar', value: 'bar'},
+  ]}
+/>
+```
+
+***需要写成：***
+
+```jsx
+<Picker
+  columns={[
+    [
+      {label: 'Foo', value: 'foo'},
+      {label: 'Bar', value: 'bar'},
+    ]
+  ]}
+/>
+```
+
+#### CSS 变量
+
+| 属性名                       | 说明                       | 默认值  |
+|---------------------------|--------------------------|------|
+| --header-button-font-size | 	确定和取消按钮的字号              | 30px |
+| --item-font-size          | 选择项的字号                   | 32px |
+| --item-height             | 选项的高度，仅支持 px rem 和 vw 单位 | 34px |
+| --title-font-size         | 	标题的字号                   | 30px |
+
