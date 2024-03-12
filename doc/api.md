@@ -274,10 +274,10 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 #### 属性
 
-| 属性名     | 说明   | 类型                                                            | 默认值 |
-|---------|------|---------------------------------------------------------------|-----|
-| onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
-| span    | 跨度   | number                                                        | 1   |
+| 属性名     | 说明   | 类型                                | 默认值 |
+|---------|------|-----------------------------------|-----|
+| onClick | 点击事件 | (event: React.MouseEvent) => void | -   |
+| span    | 跨度   | number                            | 1   |
 
 ### Icon 图标
 
@@ -498,3 +498,15 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | 属性名       | 说明           | 默认值  | 全局变量                |
 |-----------|--------------|------|---------------------|
 | --z-index | 	元素的 z-index | 1000 | --adm-popup-z-index |
+
+### Result 结果
+
+#### 属性
+
+| 属性名         | 说明       | 类型                                                       | 默认值       |
+|-------------|----------|----------------------------------------------------------|-----------|
+| description | 描述       | ReactNode                                                | -         |
+| icon        | 自定义 icon | ReactNode                                                | ReactNode |
+| status      | 状态类型     | 'success' \| 'error' \| 'info' \| 'waiting' \| 'warning' | 'info'    |
+| title       | 标题       | ReactNode                                                | -         |
+
