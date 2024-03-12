@@ -603,7 +603,8 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 #### SelectorValue
 
 ```jsx
-type SelectorValue = string | number
+type
+SelectorValue = string | number
 ```
 
 #### 属性
@@ -647,3 +648,24 @@ type SelectorValue = string | number
 | showValue       | 是否显示当前 value                  | boolean                                  | false     |
 | onChange        | 完成一次拖动后触发的事件                  | aseEventOrigFunction:onChangeEventDetail | -         |
 | onChanging      | 拖动过程中触发的事件                    | aseEventOrigFunction:onChangeEventDetail | -         |
+
+### Space 间距
+
+#### 属性
+
+| 属性名       | 说明                       | 类型                                                                             | 默认值          |
+|-----------|--------------------------|--------------------------------------------------------------------------------|--------------|
+| align     | 交叉轴对齐方式                  | 'start' \| 'end' \| 'center' \| 'baseline'                                     | -            |
+| block     | 是否渲染为块级元素                | boolean                                                                        | false        |
+| direction | 间距方向                     | 'vertical' \| 'horizontal'                                                     | 'horizontal' |
+| justify   | 主轴对齐方式                   | 'start' \| 'end' \| 'center' \| 'between' \| 'around' \| 'evenly' \| 'stretch' | -            |
+| onClick   | 点击事件                     | (event: React.MouseEvent) => void                                              | -            |
+| wrap      | 是否自动换行，仅在 horizontal 时有效 | boolean                                                                        | false        |
+
+#### CSS 变量
+
+| 属性名              | 说明          | 默认值        |
+|------------------|-------------|------------|
+| --gap            | 间距大小        | 16px       |
+| --gap-horizontal | 水平方向的间距大小 	 | var(--gap) |
+| --gap-vertical   | 垂直方向的间距大小 	 | var(--gap) |
