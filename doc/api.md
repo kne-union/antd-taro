@@ -795,3 +795,22 @@ type SelectorValue = string | number
 | stretch          | 选项卡头部是否拉伸                     | boolean               | false      |
 | showMore         | 选项卡是否展示更多按钮                   | boolean               | false      |
 
+### Tag
+
+#### 属性
+
+| 属性名     | 说明     | 类型                                                                     | 默认值       |
+|---------|--------|------------------------------------------------------------------------|-----------|
+| color   | 标签色    | 'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| string | 'default' |
+| fill    | 填充模式   | 'solid' \| 'outline'                                                   | 'solid'   |
+| onClick | 标签点击事件 | (event: React.MouseEvent) => void                                      | -         |
+| round   | 是否圆角   | boolean                                                                | false     |
+
+#### CSS 变量
+
+| 属性名                | 说明                 | 默认值                                                              | 全局变量                    |
+|--------------------|--------------------|------------------------------------------------------------------|-------------------------|
+| --background-color | 背景颜色               | 当 fill=solid 时，默认值为 color 属性对应的颜色；当 fill=outline 时，默认值为 #ffffff  | -                       |
+| --border-color     | 边框颜色               | color 属性对应的颜色                                                    | -                       |
+| --border-radius    | round=false 时的圆角大小 | 4px                                                              | --adm-tag-border-radius |
+| --text-color       | 文字颜色               | 当 fill=solid 时，默认值为 #ffffff；当 fill=outline 时，默认值为 color 属性对应的颜色	 | -                       |
