@@ -344,6 +344,21 @@
       ]
     },
     {
+      "title": "ScrollHeader 滚动标头",
+      "description": "ScrollHeader 滚动标头",
+      "code": "./scroll-header.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
       "title": "SearchBar 搜索框",
       "description": "SearchBar 搜索框",
       "code": "./search-bar.js",

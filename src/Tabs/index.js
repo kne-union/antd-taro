@@ -53,7 +53,7 @@ const TabsHeader = (props) => {
   const defaultSelectedItemId = activeKey ? `${containerId}_${activeKey}` : null;
 
   return <ScrollHeader
-    className={classnames(`${classPrefix}-header`, `${containerId}-phase-count-wrap-scroll-view`)}
+    className={classnames(`${classPrefix}-header`, `${containerId}-tabs-header-wrap-scroll-view`)}
     showMore={props?.showMore}
     defaultSelected={defaultSelectedItemId}
     icon={props?.moreIcon}
