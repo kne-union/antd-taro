@@ -2672,7 +2672,7 @@ type SelectorValue = string | number
 | stretch          | 选项卡头部是否拉伸                     | boolean               | false      |
 | showMore         | 选项卡是否展示更多按钮                   | boolean               | false      |
 
-### Tag
+### Tag 标签
 
 #### 属性
 
@@ -2691,4 +2691,78 @@ type SelectorValue = string | number
 | --border-color     | 边框颜色               | color 属性对应的颜色                                                    | -                       |
 | --border-radius    | round=false 时的圆角大小 | 4px                                                              | --adm-tag-border-radius |
 | --text-color       | 文字颜色               | 当 fill=solid 时，默认值为 #ffffff；当 fill=outline 时，默认值为 color 属性对应的颜色	 | -                       |
+
+#### TextArea 多行输入框
+
+#### 属性
+
+| 属性名                    | 说明                                                                                               | 类型                                                      | 默认值                    |
+|------------------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------|------------------------|
+| value                  | 输入框的内容                                                                                           | string                                                  | -                      |
+| placeholder            | 输入框为空时占位符                                                                                        | string                                                  | -                      |
+| placeholderStyle       | 指定 placeholder 的样式                                                                               | string                                                  | -                      |
+| placeholderClass       | 指定 placeholder 的样式类                                                                              | string                                                  | "textarea-placeholder" |
+| disabled               | 是否禁用                                                                                             | boolean                                                 | false                  |
+| maxLength              | 最大输入长度，设置为 -1 的时候不限制最大长度                                                                         | number                                                  | 140                    |
+| autoFocus              | 自动聚焦，拉起键盘                                                                                        | boolean                                                 | false                  |
+| focus                  | 获取焦点                                                                                             | boolean                                                 | false                  |
+| autoHeight             | 是否自动增高，设置 autoHeight 时，style.height不生效                                                           | boolean                                                 | false                  |
+| fixed                  | 如果 Textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true                                        | boolean                                                 | false                  |
+| cursorSpacing          | 指定光标与键盘的距离，单位 px 。取 Textarea 距离底部的距离和 cursorSpacing 指定的距离的最小值作为光标与键盘的距离                          | number                                                  | 0                      |
+| cursor                 | 指定 focus 时的光标位置                                                                                  | number                                                  | 1                      |
+| showConfirmBar         | 是否显示键盘上方带有”完成“按钮那一栏                                                                              | boolean                                                 | true                   |
+| selectionStart         | 光标起始位置，自动聚集时有效，需与 selectionEnd 搭配使用                                                              | number                                                  | -1                     |
+| selectionEnd           | 光标结束位置，自动聚集时有效，需与 selectionStart 搭配使用                                                            | number                                                  | -1                     |
+| adjustPosition         | 键盘弹起时，是否自动上推页面                                                                                   | boolean                                                 | true                   |
+| holdKeyboard           | focus 时，点击页面的时候不收起键盘                                                                             | boolean                                                 | false                  |
+| disableDefaultPadding  | 是否去掉 iOS 下的默认内边距                                                                                 | boolean                                                 | false                  |
+| onFocus                | 输入框聚焦时触发                                                                                         | BaseEventOrigFunction:onFocusEventDetail                | -                      |
+| onBlur                 | 输入框失去焦点时触发                                                                                       | BaseEventOrigFunction:onBlurEventDetail                 | -                      |
+| onLineChange           | 输入框行数变化时调用，event.detail = {height: 0, heightRpx: 0, lineCount: 0}                                | BaseEventOrigFunction:onLineChangeEventDetail           | -                      |
+| onInput                | 当键盘输入时，触发 input 事件，event.detail = {value, cursor, keyCode} **onInput 处理函数的返回值并不会反映到 textarea 上** | BaseEventOrigFunction:onInputEventDetail                | -                      |
+| onConfirm              | 点击完成时， 触发 confirm 事件，event.detail = {value: value}                                               | BaseEventOrigFunction:onConfirmEventDetail              | -                      |
+| onKeyboardHeightChange | 键盘高度发生变化的时候触发此事件                                                                                 | BaseEventOrigFunction:onKeyboardHeightChangeEventDetail | -                      |
+
+#### onFocusEventDetail
+
+| 属性名    | 类型     | 说明   |
+|--------|--------|------|
+| value  | string | 输入值  |
+| height | number | 键盘高度 |
+
+#### onBlurEventDetail
+
+| 属性名    | 类型     | 说明   |
+|--------|--------|------|
+| value  | string | 输入值  |
+| cursor | number | 光标位置 |
+
+#### onLineChangeEventDetail
+
+| 属性名       | 类型     |
+|-----------|--------|
+| height    | string |
+| heightRpx | number |
+| lineCount | number |
+
+#### onInputEventDetail
+
+| 属性名     | 类型     | 说明   |
+|---------|--------|------|
+| value   | string | 输入值  |
+| cursor  | number | 光标位置 |
+| keyCode | number | 键值   |
+
+#### onConfirmEventDetail
+
+| 属性名   | 类型     | 说明  |
+|-------|--------|-----|
+| value | string | 输入值 |
+
+#### onKeyboardHeightChangeEventDetail
+
+| 属性名      | 类型     | 说明   |
+|----------|--------|------|
+| height   | number | 键盘高度 |
+| duration | number | 持续时间 |
 
