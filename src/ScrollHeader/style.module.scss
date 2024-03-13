@@ -13,15 +13,11 @@
 
 .open-btn {
   width: 60px;
-
-  :global(.adm-icon) {
-    line-height: 50px;
-  }
-
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #FFFFFF;
   border: none;
-  display: block;
   position: relative;
   z-index: 1;
 

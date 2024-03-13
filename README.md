@@ -1631,27 +1631,78 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Tabs} = antdTaro;
+const {Tabs, Space, Icon, Badge} = antdTaro;
 const {View} = taroComponent;
+const {useState} = React;
 const BaseExample = () => {
-    return <>
-        <Tabs.Header items={[{key: 'tab1', title: 'tab1'}, {key: 'tab2', title: 'tab2'}]}/>
-        <Tabs swiperOpen items={[{
-            key: 'tab1', title: 'tab1', children: <View>
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-            </View>
-        }, {
-            key: 'tab2', title: 'tab2', children: <>
-                tab2
-            </>
-        }]}/>
-    </>;
+  const [activeKey, setActiveKey] = useState('tab2');
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Tabs swiperOpen items={[{
+        key: 'tab1', title: 'tab1', children: <View>
+          哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
+        </View>
+      }, {key: 'tab2', title: 'tab2', children: <>tab2</>}]}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>没有内容区</View>
+      <Tabs.Header items={[{key: 'tab1', title: 'tab1'}, {key: 'tab2', title: 'tab2'}]}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>禁用状态</View>
+      <Tabs.Header items={[{key: 'tab1', title: 'tab1'}, {key: 'tab2', title: 'tab2', disabled: true}]}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>超长自动滚动</View>
+      <Tabs
+        swiperOpen
+        items={[
+          {key: 'tab1', title: '超长自动滚动tab1', children: <>tab1</>},
+          {key: 'tab2', title: '超长自动滚动tab2', children: <>tab2</>},
+          {key: 'tab3', title: '超长自动滚动tab3', children: <>tab3</>},
+          {key: 'tab4', title: '超长自动滚动tab4', children: <>tab4</>},
+        ]}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>默认选中值</View>
+      <Tabs.Header
+        defaultActiveKey={activeKey}
+        onChange={setActiveKey}
+        items={[
+          {key: 'tab1', title: '超长自动滚动tab1', children: <>tab1</>},
+          {key: 'tab2', title: '超长自动滚动tab2', children: <>tab2</>},
+          {key: 'tab3', title: '超长自动滚动tab3', children: <>tab3</>},
+          {key: 'tab4', title: '超长自动滚动tab4', children: <>tab4</>},
+        ]}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>自定义拓展图标</View>
+      <Tabs
+        showMore
+        moreIcon={<Icon className={"adm-component"} type="right-outline"/>}
+        items={[
+          {key: 'tab1', title: '超长自动滚动tab1', children: <>tab1</>},
+          {key: 'tab2', title: '超长自动滚动tab2', children: <>tab2</>},
+          {key: 'tab3', title: '超长自动滚动tab3', children: <>tab3</>},
+          {key: 'tab4', title: '超长自动滚动tab4', children: <>tab4</>},
+        ]}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>搭配 Badge 使用</View>
+      <Tabs
+        items={[
+          {key: 'tab1', title: 'tab1', children: <>tab1</>},
+          {key: 'tab2', title: 'tab2', children: <>tab2</>},
+          {key: 'tab3', title: 'tab3', children: <>tab3</>},
+          {key: 'tab4', title: <Badge content={1}>tab4</Badge>, children: <>tab4</>},
+        ]}
+      />
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -2506,4 +2557,51 @@ type SelectorValue = string | number
 | 属性名                   | 说明    | 默认值 |
 |-----------------------|-------|-----|
 | --tab-bar-padding-top | 距顶部间距 | 0   |
+
+### Tabs 标签页
+
+#### 属性
+
+| 属性名              | 说明                            | 类型                    | 默认值        |
+|------------------|-------------------------------|-----------------------|------------|
+| activeKey        | 当前激活 tab 面板的 key              | string \| null        | -          |
+| defaultActiveKey | 初始化选中面板的 key，如果没有设置 activeKey | string \| null        | 第一个面板的 key |
+| onChange         | 切换面板的回调                       | (key: string) => void | -          |
+| stretch          | 选项卡头部是否拉伸                     | boolean               | true       |
+| swiperOpen       | 选项卡面板内容是否可滑动                  | boolean               | false      |
+| showMore         | 选项卡是否展示更多按钮                   | boolean               | false      |
+| items            | 标签项                           | TabsItem[]            | []         |
+
+#### TabsItem
+
+| 属性名      | 说明                      | 类型                  | 默认值   |
+|----------|-------------------------|---------------------|-------|
+| key      | 选项卡面板的唯一标识，对应 activeKey | string              | -     |
+| title    | 选项卡头显示文字                | string \| ReactNode | -     |
+| disabled | 是否禁用                    | boolean             | false |
+| children | 选项卡面板内容                 | string \| ReactNode | -     |
+
+#### CSS 变量
+
+| 属性名                         | 说明               | 默认值                       |
+|-----------------------------|------------------|---------------------------|
+| --active-line-border-radius | 当前激活 tab 下划线的圆角  | var(--active-line-height) |
+| --active-line-color         | 当前激活 tab 下划线的颜色  | var(--adm-color-primary)  |
+| --active-line-height        | 当前激活 tab 下划线的高度  | 4px                       |
+| --active-title-color        | 当前激活 tab 选项文字颜色  | var(--adm-color-primary)  |
+| --content-padding           | tab 内容区的 padding | 24px                      |
+| --title-font-size           | 选项卡头文字的大小        | 34px                      |
+
+### Tabs.Header
+
+#### 属性 extend TabsItem
+
+| 属性名              | 说明                            | 类型                    | 默认值        |
+|------------------|-------------------------------|-----------------------|------------|
+| activeKey        | 当前激活 tab 面板的 key              | string \| null        | -          |
+| defaultActiveKey | 初始化选中面板的 key，如果没有设置 activeKey | string \| null        | 第一个面板的 key |
+| onChange         | 切换面板的回调                       | (key: string) => void | -          |
+| stretch          | 选项卡头部是否拉伸                     | boolean               | false      |
+| showMore         | 选项卡是否展示更多按钮                   | boolean               | false      |
+
 
