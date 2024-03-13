@@ -1596,12 +1596,12 @@ const BaseExample = () => {
       <TabBar items={tabs}/>
     </Space>
     <Space direction={'vertical'}>
-      <View>徽标</View>
+      <View>带有路由</View>
       <TabBar items={tabsPath}/>
     </Space>
     <Space direction={'vertical'}>
       <View>徽标</View>
-      <TabBar items={tabsBadge}/>
+      <TabBar items={tabsBadge} style={{'--tab-bar-padding-top': '4px'}}/>
     </Space>
     <Space direction={'vertical'}>
       <View>仅图标</View>
@@ -2370,9 +2370,8 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 #### SelectorValue
 
-```jsx
-type
-SelectorValue = string | number
+```md
+type SelectorValue = string | number
 ```
 
 #### 属性
@@ -2446,6 +2445,7 @@ SelectorValue = string | number
 |-----------|------------------------------------------------|----------------------------|--------------|
 | current   | 指定当前步骤，从 0 开始记数。在子 Step 元素中，可以通过 status 属性覆盖状态 | number                     | 0            |
 | direction | 指定步骤条方向。目前支持水平（horizontal）和竖直（vertical）两种方向    | 'horizontal' \| 'vertical' | 'horizontal' |
+| items     | 参数项                                            | StepsItem[]                | []           |
 
 #### CSS 变量
 
@@ -2456,14 +2456,12 @@ SelectorValue = string | number
 | --indicator-margin-right | 左边的指示器和右边的文字内容之间的额外间距 | 0    |
 | --title-font-size        | 标题的字号                 | 26px |
 
-#### items
+#### StepsItem
 
-| 属性名         | 说明                                                                           | 类型                                         | 默认值    |
-|-------------|------------------------------------------------------------------------------|--------------------------------------------|--------|
-| description | 步骤的详情描述，可选                                                                   | ReactNode                                  | -      |
-| icon        | 步骤图标的类型                                                                      | ReactNode                                  | -      |
-| status      | 指定状态。当不配置该属性时，会使用 Steps 的 current 来自动指定状态；如果该属性与 current 指定的状态不匹配会覆盖自动匹配的状态。 | 'wait' \| 'process' \| 'finish' \| 'error' | 'wait' |
-| title       | 标题                                                                           | ReactNode                                  | -      |
+| 属性名         | 说明         | 类型        | 默认值 |
+|-------------|------------|-----------|-----|
+| description | 步骤的详情描述，可选 | ReactNode | -   |
+| title       | 标题         | ReactNode | -   |
 
 ### Switch 开关
 
@@ -2481,4 +2479,31 @@ SelectorValue = string | number
 | 属性名   | 类型      |
 |-------|---------|
 | value | boolean |
+
+### TabBar 标签栏
+
+#### 属性
+
+| 属性名              | 说明                                | 类型                    | 默认值                   |
+|------------------|-----------------------------------|-----------------------|-----------------------|
+| activeKey        | 当前激活 item 的 key                   | string \| null        | -                     |
+| defaultActiveKey | 初始化选中 item 的 key，如果没有设置 activeKey | string \| null        | 第一个 TabBar.Item 的 key |
+| onChange         | 切换面板的回调                           | (key: string) => void | -                     |
+| safeArea         | 是否开启安全区适配                         | boolean               | false                 |
+| items            | 参数项                               | TabBarItem[]          | []                    |
+
+#### TabBarItem
+
+| 属性名   | 说明                      | 类型                                            | 默认值 |
+|-------|-------------------------|-----------------------------------------------|-----|
+| badge | 徽标，同 Badge 的 content 属性 | React.ReactNode \| typeof Badge.dot           | -   |
+| icon  | 图标                      | ReactNode \| ((active: boolean) => ReactNode) | -   |
+| key   | 对应 activeKey            | string                                        | -   |
+| title | 标题                      | ReactNode \| ((active: boolean) => ReactNode) | -   |
+
+#### CSS 变量
+
+| 属性名                   | 说明    | 默认值 |
+|-----------------------|-------|-----|
+| --tab-bar-padding-top | 距顶部间距 | 0   |
 
