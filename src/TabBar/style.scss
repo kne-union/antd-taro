@@ -7,6 +7,8 @@ $class-prefix-tab-bar: 'adm-tab-bar';
     align-items: stretch;
     overflow: hidden;
     min-height: 96px;
+    padding-top: var(--tab-bar-padding-top, 0);
+    box-sizing: border-box;
   }
 
   &-item {

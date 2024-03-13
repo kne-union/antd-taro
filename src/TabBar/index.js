@@ -41,14 +41,14 @@ const TabBarItem = (props) => {
   return null;
 };
 
-const TabBar = ({className, openType, onChange, children, ...props}) => {
+const TabBar = ({className, openType, onChange, children, style, ...props}) => {
   const [activeKeyBase, setActiveKey] = useControlValue(props, {
     defaultValue: 'defaultActiveKey', value: 'activeKey'
   });
 
   const activeKey = activeKeyBase || props.items[0].key;
 
-  return <View className={classnames(classPrefix, className)}>
+  return <View className={classnames(classPrefix, className)} style={style}>
     <View className={`${classPrefix}-wrap`}>
       {props.items.map((item) => {
         const active = item.key === activeKey;

@@ -22,6 +22,7 @@ export {default as Picker} from './Picker';
 export {default as Popup} from './Popup';
 export {default as Result} from './Result';
 export {default as SafeArea} from './SafeArea';
+export {default as ScrollHeader} from './ScrollHeader';
 export {default as SearchBar} from './SearchBar';
 export {default as Selector} from './Selector';
 export {default as Slider} from './Slider';

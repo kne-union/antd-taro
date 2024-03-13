@@ -29,12 +29,12 @@ const BaseExample = () => {
       <TabBar items={tabs}/>
     </Space>
     <Space direction={'vertical'}>
-      <View>徽标</View>
+      <View>带有路由</View>
       <TabBar items={tabsPath}/>
     </Space>
     <Space direction={'vertical'}>
       <View>徽标</View>
-      <TabBar items={tabsBadge}/>
+      <TabBar items={tabsBadge} style={{'--tab-bar-padding-top': '4px'}}/>
     </Space>
     <Space direction={'vertical'}>
       <View>仅图标</View>

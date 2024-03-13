@@ -39,6 +39,7 @@ $class-prefix-tabs: 'adm-tabs';
 
   &-tab-wrapper {
     padding: 0 24px;
+    display: inline-block;
 
     &-stretch {
       flex: auto;
