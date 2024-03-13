@@ -1,0 +1,68 @@
+.scroll-view {
+  white-space: nowrap;
+  width: calc(100% - 60px);
+
+  &.scroll-view-no-more {
+    width: 100%;
+  }
+}
+
+.scroll-header-close {
+  display: flex;
+}
+
+.open-btn {
+  width: 60px;
+
+  :global(.adm-icon) {
+    line-height: 50px;
+  }
+
+  text-align: center;
+  background: #FFFFFF;
+  border: none;
+  display: block;
+  position: relative;
+  z-index: 1;
+
+  &:not(.no-more) {
+    box-shadow: -8px 0px 8px -4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.close-btn {
+  text-align: center;
+  font-size: var(--adm-font-size-4);
+  color: var(--adm-color-weak);
+  line-height: 72px;
+  border-top: solid 2px var(--adm-color-border);
+}
+
+.open-content {
+  padding: 0 32px;
+}
+
+.popup {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.popup-mask {
+  position: absolute;
+  transition: visibility 100ms 100ms ease, opacity 150ms ease;
+}
+
+.popup-body {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 200ms ease, opacity 150ms ease;
+  @at-root :global(.adm-popup.is-active) .popup-body {
+    visibility: visible;
+    opacity: 1;
+  }
+}
