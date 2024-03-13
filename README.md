@@ -2465,3 +2465,20 @@ SelectorValue = string | number
 | status      | 指定状态。当不配置该属性时，会使用 Steps 的 current 来自动指定状态；如果该属性与 current 指定的状态不匹配会覆盖自动匹配的状态。 | 'wait' \| 'process' \| 'finish' \| 'error' | 'wait' |
 | title       | 标题                                                                           | ReactNode                                  | -      |
 
+### Switch 开关
+
+#### 属性
+
+| 属性名      | 说明                      | 类型                                        | 默认值      |
+|----------|-------------------------|-------------------------------------------|----------|
+| checked  | 是否选中                    | boolean                                   | false    |
+| disabled | 是否禁用                    | boolean                                   | false    |
+| type     | 样式，有效值：switch, checkbox | "switch" \| "checkbox"                    | "switch" |
+| value    | checked 改变时触发 change 事件 | BaseEventOrigFunction:onChangeEventDetail | -        |
+
+#### onChangeEventDetail
+
+| 属性名   | 类型      |
+|-------|---------|
+| value | boolean |
+
