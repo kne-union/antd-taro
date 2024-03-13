@@ -98,19 +98,6 @@ components内的组件命名尽量可以看出派生关系和业务所属。
 
 #### 示例代码
 
-- 这里填写示例标题
-- 这里填写示例说明
-- 
-
-```jsx
-const BaseExample = ()=>{
-    return '我是一个示例组件';
-};
-
-render(<BaseExample />);
-
-```
-
 - Avatar 头像
 - Avatar 头像
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
@@ -1258,6 +1245,64 @@ render(<BaseExample />);
 
 ```
 
+- ScrollHeader 滚动标头
+- ScrollHeader 滚动标头
+- antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
+
+```jsx
+const {View,Text} = taroComponent;
+const {ScrollHeader, Space, Icon} = antdTaro;
+const {useId, useState} = React;
+
+const ScrollHeaderComponent = (props) => {
+  const containerId = useId().replace(/:/g, '_');
+  const [activeKey, setActiveKey] = useState('0');
+  return (
+    <ScrollHeader className={`${containerId}-scroll-header-scroll-view`} {...props}>
+      {
+        ({scrollTo}) => Array(10).fill('').map((_item, index) => (
+          <View
+            key={`index-${index}`}
+            id={`${containerId}_${index}`}
+            style={Object.assign({padding: '20px', textAlign: 'center', display: 'inline-block'}, index.toString() === activeKey ? {color: '#ff6700', border: '1px solid #ff6700'} : {})}
+            onClick={() => {
+              setActiveKey(index.toString());
+              scrollTo(`${containerId}_${index.toString()}`);
+            }}
+          >
+            View-{index}
+          </View>
+        ))
+      }
+    </ScrollHeader>
+  );
+};
+
+const BaseExample = () => {
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <Text>基础用法</Text>
+      <ScrollHeaderComponent />
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>不展示更多按钮</Text>
+      <ScrollHeaderComponent showMore={false} />
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>自定义更多按钮</Text>
+      <ScrollHeaderComponent showMore icon={<Icon className={"adm-component"} type="right-outline"/>} />
+    </Space>
+    <Space direction={'vertical'}>
+      <Text>默认打开更多选项</Text>
+      <ScrollHeaderComponent defaultOpen/>
+    </Space>
+  </Space>;
+};
+
+render(<BaseExample/>);
+
+```
+
 - SearchBar 搜索框
 - SearchBar 搜索框
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components),tarojsTaro(@tarojs/taro)
@@ -1499,28 +1544,37 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Steps} = antdTaro;
+const {Steps, Space} = antdTaro;
+const {Text} = taroComponent;
+
+const items = [
+  {title: '第一步', description: '完成时间：2020-12-01 12:30'},
+  {title: '第二步', description: '完成时间：2020-12-01 12:30'},
+  {title: '第三步', description: '完成时间：2020-12-01 12:30'},
+  {title: '第四步', description: '完成时间：2020-12-01 12:30'}
+];
+
 const BaseExample = () => {
-    return <>
-        <Steps current={2} items={[{
-            title: '第一步', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第二步', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第三步', status: 'error', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第四步', description: '完成时间：2020-12-01 12:30'
-        }]}/>
-        <Steps direction="vertical" current={2} items={[{
-            title: '第一步', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第二步', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第三步', status: 'error', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第四步', description: '完成时间：2020-12-01 12:30'
-        }]}/>
-    </>;
+  return (
+    <Space direction='vertical'>
+      <Space direction='vertical'>
+        <Text>横向步骤条</Text>
+        <Steps current={2} items={items}/>
+      </Space>
+      <Space direction='vertical'>
+        <Text>横向步骤条失败</Text>
+        <Steps current={2} items={[...items.slice(0, 3), Object.assign({}, items[3], {status: 'error'})]}/>
+      </Space>
+      <Space direction='vertical'>
+        <Text>纵向步骤条</Text>
+        <Steps direction='vertical' current={2} items={items}/>
+      </Space>
+      <Space direction='vertical'>
+        <Text>纵向步骤条失败</Text>
+        <Steps direction='vertical' current={2} items={[...items.slice(0, 3), Object.assign({}, items[3], {status: 'error'})]}/>
+      </Space>
+    </Space>
+  );
 };
 
 render(<BaseExample/>);
@@ -1600,12 +1654,12 @@ const BaseExample = () => {
       <TabBar items={tabs}/>
     </Space>
     <Space direction={'vertical'}>
-      <View>徽标</View>
+      <View>带有路由</View>
       <TabBar items={tabsPath}/>
     </Space>
     <Space direction={'vertical'}>
       <View>徽标</View>
-      <TabBar items={tabsBadge}/>
+      <TabBar items={tabsBadge} style={{'--tab-bar-padding-top': '4px'}}/>
     </Space>
     <Space direction={'vertical'}>
       <View>仅图标</View>
@@ -1635,27 +1689,78 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Tabs} = antdTaro;
+const {Tabs, Space, Icon, Badge} = antdTaro;
 const {View} = taroComponent;
+const {useState} = React;
 const BaseExample = () => {
-    return <>
-        <Tabs.Header items={[{key: 'tab1', title: 'tab1'}, {key: 'tab2', title: 'tab2'}]}/>
-        <Tabs swiperOpen items={[{
-            key: 'tab1', title: 'tab1', children: <View>
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-                哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
-            </View>
-        }, {
-            key: 'tab2', title: 'tab2', children: <>
-                tab2
-            </>
-        }]}/>
-    </>;
+  const [activeKey, setActiveKey] = useState('tab2');
+  return <Space direction={'vertical'} size={30}>
+    <Space direction={'vertical'}>
+      <View>基础用法</View>
+      <Tabs swiperOpen items={[{
+        key: 'tab1', title: 'tab1', children: <View>
+          哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈
+        </View>
+      }, {key: 'tab2', title: 'tab2', children: <>tab2</>}]}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>没有内容区</View>
+      <Tabs.Header items={[{key: 'tab1', title: 'tab1'}, {key: 'tab2', title: 'tab2'}]}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>禁用状态</View>
+      <Tabs.Header items={[{key: 'tab1', title: 'tab1'}, {key: 'tab2', title: 'tab2', disabled: true}]}/>
+    </Space>
+    <Space direction={'vertical'}>
+      <View>超长自动滚动</View>
+      <Tabs
+        swiperOpen
+        items={[
+          {key: 'tab1', title: '超长自动滚动tab1', children: <>tab1</>},
+          {key: 'tab2', title: '超长自动滚动tab2', children: <>tab2</>},
+          {key: 'tab3', title: '超长自动滚动tab3', children: <>tab3</>},
+          {key: 'tab4', title: '超长自动滚动tab4', children: <>tab4</>},
+        ]}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>默认选中值</View>
+      <Tabs.Header
+        defaultActiveKey={activeKey}
+        onChange={setActiveKey}
+        items={[
+          {key: 'tab1', title: '超长自动滚动tab1', children: <>tab1</>},
+          {key: 'tab2', title: '超长自动滚动tab2', children: <>tab2</>},
+          {key: 'tab3', title: '超长自动滚动tab3', children: <>tab3</>},
+          {key: 'tab4', title: '超长自动滚动tab4', children: <>tab4</>},
+        ]}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>自定义拓展图标</View>
+      <Tabs
+        showMore
+        moreIcon={<Icon className={"adm-component"} type="right-outline"/>}
+        items={[
+          {key: 'tab1', title: '超长自动滚动tab1', children: <>tab1</>},
+          {key: 'tab2', title: '超长自动滚动tab2', children: <>tab2</>},
+          {key: 'tab3', title: '超长自动滚动tab3', children: <>tab3</>},
+          {key: 'tab4', title: '超长自动滚动tab4', children: <>tab4</>},
+        ]}
+      />
+    </Space>
+    <Space direction={'vertical'}>
+      <View>搭配 Badge 使用</View>
+      <Tabs
+        items={[
+          {key: 'tab1', title: 'tab1', children: <>tab1</>},
+          {key: 'tab2', title: 'tab2', children: <>tab2</>},
+          {key: 'tab3', title: 'tab3', children: <>tab3</>},
+          {key: 'tab4', title: <Badge content={1}>tab4</Badge>, children: <>tab4</>},
+        ]}
+      />
+    </Space>
+  </Space>;
 };
 
 render(<BaseExample/>);
@@ -2046,10 +2151,10 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 #### 属性
 
-| 属性名     | 说明   | 类型                                                            | 默认值 |
-|---------|------|---------------------------------------------------------------|-----|
-| onClick | 点击事件 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void | -   |
-| span    | 跨度   | number                                                        | 1   |
+| 属性名     | 说明   | 类型                                | 默认值 |
+|---------|------|-----------------------------------|-----|
+| onClick | 点击事件 | (event: React.MouseEvent) => void | -   |
+| span    | 跨度   | number                            | 1   |
 
 ### Icon 图标
 
@@ -2118,6 +2223,14 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |----------|--------|------|
 | height   | number | 键盘高度 |
 | duration | number | 持续时间 |
+
+#### Ref
+
+| 属性名   | 类型         | 说明       |
+|-------|------------|----------|
+| blur  | () => void | 让输入框失去焦点 |
+| clear | () => void | 清空输入内容   |
+| focus | () => void | 让输入框获得焦点 |
 
 ### List 列表
 
@@ -2246,28 +2359,410 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 #### 属性
 
-| 属性名              | 说明              | 类型                                                               | 默认值       |
-|------------------|-----------------|------------------------------------------------------------------|-----------|
-| afterClose       | 完全关闭后触发         | () => void                                                       | -         |
-| afterShow        | 完全展示后触发         | () => void                                                       | -         |
-| bodyClassName    | 内容区域类名          | string                                                           | -         |
-| bodyStyle        | 内容区域样式          | React.CSSProperties                                              | -         |
-| className        | 容器类名            | string                                                           | -         |
-| closeOnMaskClick | 点击背景蒙层后是否关闭     | boolean                                                          | false     |
-| mask             | 是否展示蒙层          | boolean                                                          | true      |
-| maskClassName    | 遮罩类名            | string                                                           | -         |
-| onClick          | 点击时触发，常用于阻止事件冒泡 | (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void    | -         |
-| onClose          | 关闭时触发           | () => void                                                       | -         |
-| onMaskClick      | 点击蒙层触发          | (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | -         |
-| position         | 	指定弹出的位置        | 'bottom' \| 'top' \| 'left' \| 'right'                           | 'bottom'  |
-| showCloseButton  | 是否显示关闭按钮        | boolean                                                          | false     |
-| stopPropagation  | 阻止某些事件的冒泡       | PropagationEvent[]                                               | ['click'] |
-| style            | 容器样式            | React.CSSProperties                                              | -         |
-| open             | 	是否可见           | boolean                                                          | false     |
+| 属性名              | 说明              | 类型                                     | 默认值       |
+|------------------|-----------------|----------------------------------------|-----------|
+| afterClose       | 完全关闭后触发         | () => void                             | -         |
+| afterShow        | 完全展示后触发         | () => void                             | -         |
+| bodyClassName    | 内容区域类名          | string                                 | -         |
+| bodyStyle        | 内容区域样式          | React.CSSProperties                    | -         |
+| className        | 容器类名            | string                                 | -         |
+| closeOnMaskClick | 点击背景蒙层后是否关闭     | boolean                                | false     |
+| mask             | 是否展示蒙层          | boolean                                | true      |
+| maskClassName    | 遮罩类名            | string                                 | -         |
+| onClick          | 点击时触发，常用于阻止事件冒泡 | (event: React.MouseEvent) => void      | -         |
+| onClose          | 关闭时触发           | () => void                             | -         |
+| onMaskClick      | 点击蒙层触发          | (event: React.MouseEvent) => void      | -         |
+| position         | 	指定弹出的位置        | 'bottom' \| 'top' \| 'left' \| 'right' | 'bottom'  |
+| showCloseButton  | 是否显示关闭按钮        | boolean                                | false     |
+| stopPropagation  | 阻止某些事件的冒泡       | PropagationEvent[]                     | ['click'] |
+| style            | 容器样式            | React.CSSProperties                    | -         |
+| open             | 	是否可见           | boolean                                | false     |
 
 #### CSS 变量
 
 | 属性名       | 说明           | 默认值  | 全局变量                |
 |-----------|--------------|------|---------------------|
 | --z-index | 	元素的 z-index | 1000 | --adm-popup-z-index |
+
+### Result 结果
+
+#### 属性
+
+| 属性名         | 说明       | 类型                                                       | 默认值       |
+|-------------|----------|----------------------------------------------------------|-----------|
+| description | 描述       | ReactNode                                                | -         |
+| icon        | 自定义 icon | ReactNode                                                | ReactNode |
+| status      | 状态类型     | 'success' \| 'error' \| 'info' \| 'waiting' \| 'warning' | 'info'    |
+| title       | 标题       | ReactNode                                                | -         |
+
+### SafeArea 安全区
+
+#### 属性
+
+| 属性名      | 说明     | 类型    | 默认值      |
+|----------|--------|-------|----------|
+| position | 安全区的位置 | 'top' | 'bottom' |
+
+#### CSS 变量
+
+| 属性名        | 说明     | 默认值 | 全局变量                     |
+|------------|--------|-----|--------------------------|
+| --multiple | 	显示的倍数 | 1   | --adm-safe-area-multiple |
+
+### ScrollHeader 滚动标头
+
+#### 属性
+
+| 属性名         | 说明       | 类型        | 默认值                                       |
+|-------------|----------|-----------|-------------------------------------------|
+| showMore    | 是否展示更多按钮 | boolean   | true                                      |
+| icon        | 更多按钮     | ReactNode | Icon type="gengduo2" className="iconfont" |
+| defaultOpen | 默认打开更多选项 | boolean   | false                                     |
+
+### SearchBar 搜索框
+
+#### 属性
+
+| 属性名                    | 说明                                                       | 类型                                                      | 默认值                                                 |
+|------------------------|----------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|
+| searchText             | 搜索按钮的文案                                                  | string                                                  | '搜索'                                                |
+| clearOnCancel          | 点击取消按钮后是否清空输入框                                           | boolean                                                 | true                                                |
+| clearable              | 是否启用清除图标，点击清除图标后会清空输入框                                   | boolean                                                 | true                                                |
+| icon                   | 图标                                                       | ReactNode                                               | Icon type="searchOutline" className="adm-component" |
+| maxLength              | 输入的最大字符数                                                 | number                                                  | -                                                   |
+| onBlur                 | 输入框失去焦点时触发                                               | (e: React.FocusEvent) => void                           | -                                                   |
+| onChange               | 输入框内容变化时触发                                               | (value: string) => void                                 | -                                                   |
+| onClear                | 点击清除按钮后触发                                                | () => void                                              | -                                                   |
+| onFocus                | 输入框获得焦点时触发                                               | (e: React.FocusEvent) => void                           | -                                                   |
+| onSearch               | 输入框回车时触发或点击搜索按钮时触发                                       | (value: string) => void                                 | -                                                   |
+| onlyShowClearWhenFocus | 如果 true，那么只有输入框聚焦时才会显示清除按钮；如果为 false，那么输入框失去焦点后依旧会显示清除按钮 | boolean                                                 | false                                               |
+| placeholder            | 提示文本                                                     | string                                                  | -                                                   |
+| showSearchButton       | 是否在搜索框右侧显示搜索按钮                                           | boolean \| ((focus: boolean, value: string) => boolean) | false                                               |
+| value                  | 输入值                                                      | string                                                  | -                                                   |
+
+#### CSS 变量
+
+| 属性名                 | 说明               | 默认值                   |
+|---------------------|------------------|-----------------------|
+| --background        | 背景色              | #f5f5f5               |
+| --border-radius     | 圆角               | 12px                  |
+| --height            | 高度               | 64px                  |
+| --padding-left      | 搜索框的左侧 padding   | 16x                   |
+| --placeholder-color | placeholder 文字颜色 | var(--adm-color-weak) |
+
+#### Ref
+
+同Input。
+
+### Selector 选择组
+
+#### 属性
+
+| 属性名           | 说明                         | 类型                                                                    | 默认值   |
+|---------------|----------------------------|-----------------------------------------------------------------------|-------|
+| columns       | 列数（注意 grid 布局在 IOS 9 下不支持） | number                                                                | -     |
+| defaultValue  | 默认项                        | SelectorValue[]                                                       | []    |
+| disabled      | 是否全部禁止选中                   | boolean                                                               | false |
+| multiple      | 是否允许多选                     | boolean                                                               | false |
+| onChange      | 选项改变时触发                    | (value: SelectorValue[], extend: { items: SelectorOption[] }) => void | -     |
+| options       | 可选项                        | SelectorOption[]                                                      | -     |
+| showCheckMark | 是否显示对勾角标                   | boolean                                                               | true  |
+| value         | 选中项                        | SelectorValue[]                                                       | -     |
+
+#### CSS 变量
+
+| 属性名                  | 说明                          | 默认值                      |
+|----------------------|-----------------------------|--------------------------|
+| --border             | 边框样式                        | none                     |
+| --border-radius      | 选项的圆角 	                     | 4px                      |
+| --checked-border     | 选中时的边框样式                    | none                     |
+| --checked-color      | 选中时的背景色                     | #e7f1ff                  |
+| --checked-text-color | 选中时的文字颜色                    | var(--adm-color-primary) |
+| --color              | 背景色                         | #f5f5f5                  |
+| --padding            | 选项的 padding                 | 16px 32px                |
+| --text-color         | 文字颜色                        | var(--adm-color-text)    |
+| --gap                | 间距大小，仅在 columns 存在时生效       | 16px                     |
+| --gap-horizontal     | 水平方向的间距大小，，仅在 columns 存在时生效 | var(--gap)               |
+| --gap-vertical       | 垂直方向的间距大小，仅在 columns 存在时生效  | var(--gap)               |
+
+#### 类型定义
+
+#### SelectorValue
+
+```md
+type SelectorValue = string | number
+```
+
+#### 属性
+
+| 属性名         | 说明   | 类型            | 默认值   |
+|-------------|------|---------------|-------|
+| description | 描述   | ReactNode     | -     |
+| disabled    | 是否禁用 | boolean       | false |
+| label       | 文字   | ReactNode     | -     |
+| value       | 选项的值 | SelectorValue | -     |
+
+#### 泛型
+
+`Selector` 支持泛型，你可以通过下面的这种方式手动控制 `value` `onChange` 等属性的类型：
+
+```jsx
+<Selector
+  options={options}
+  defaultValue={['a']}
+  onChange={arr => console.log(arr)}
+/>
+```
+
+### Slider 滑动输入条
+
+#### 属性
+
+| 属性名             | 说明                            | 类型                                       | 默认值       |
+|-----------------|-------------------------------|------------------------------------------|-----------|
+| min             | 最小值                           | number                                   | 0         |
+| max             | 最大值                           | number                                   | 100       |
+| step            | 步长，取值必须大于 0，并且可被(max - min)整除 | number                                   | 1         |
+| disabled        | 是否禁用                          | boolean                                  | false     |
+| value           | 当前取值                          | number                                   | 0         |
+| color           | 背景条的颜色（请使用 backgroundColor）   | string                                   | "#e9e9e9" |
+| selectedColor   | 已选择的颜色（请使用 activeColor）       | string                                   | "#1aad19" |
+| activeColor     | 已选择的颜色                        | string                                   | "#1aad19" |
+| backgroundColor | 背景条的颜色                        | string                                   | "#1aad19" |
+| blockSize       | 滑块的大小，取值范围为 12 - 28           | number                                   | 28        |
+| blockColor      | 滑块的颜色                         | string                                   | "#ffffff" |
+| showValue       | 是否显示当前 value                  | boolean                                  | false     |
+| onChange        | 完成一次拖动后触发的事件                  | aseEventOrigFunction:onChangeEventDetail | -         |
+| onChanging      | 拖动过程中触发的事件                    | aseEventOrigFunction:onChangeEventDetail | -         |
+
+### Space 间距
+
+#### 属性
+
+| 属性名       | 说明                       | 类型                                                                             | 默认值          |
+|-----------|--------------------------|--------------------------------------------------------------------------------|--------------|
+| align     | 交叉轴对齐方式                  | 'start' \| 'end' \| 'center' \| 'baseline'                                     | -            |
+| block     | 是否渲染为块级元素                | boolean                                                                        | false        |
+| direction | 间距方向                     | 'vertical' \| 'horizontal'                                                     | 'horizontal' |
+| justify   | 主轴对齐方式                   | 'start' \| 'end' \| 'center' \| 'between' \| 'around' \| 'evenly' \| 'stretch' | -            |
+| onClick   | 点击事件                     | (event: React.MouseEvent) => void                                              | -            |
+| wrap      | 是否自动换行，仅在 horizontal 时有效 | boolean                                                                        | false        |
+
+#### CSS 变量
+
+| 属性名              | 说明          | 默认值        |
+|------------------|-------------|------------|
+| --gap            | 间距大小        | 16px       |
+| --gap-horizontal | 水平方向的间距大小 	 | var(--gap) |
+| --gap-vertical   | 垂直方向的间距大小 	 | var(--gap) |
+
+### Steps 步骤条
+
+#### 属性
+
+| 属性名       | 说明                                             | 类型                         | 默认值          |
+|-----------|------------------------------------------------|----------------------------|--------------|
+| current   | 指定当前步骤，从 0 开始记数。在子 Step 元素中，可以通过 status 属性覆盖状态 | number                     | 0            |
+| direction | 指定步骤条方向。目前支持水平（horizontal）和竖直（vertical）两种方向    | 'horizontal' \| 'vertical' | 'horizontal' |
+| items     | 参数项                                            | StepsItem[]                | []           |
+
+#### CSS 变量
+
+| 属性名                      | 说明                    | 默认值  |
+|--------------------------|-----------------------|------|
+| --description-font-size  | 描述的字号                 | 24px |
+| --icon-size              | 指示器上图标的大小 	           | 36px |
+| --indicator-margin-right | 左边的指示器和右边的文字内容之间的额外间距 | 0    |
+| --title-font-size        | 标题的字号                 | 26px |
+
+#### StepsItem
+
+| 属性名         | 说明         | 类型        | 默认值 |
+|-------------|------------|-----------|-----|
+| description | 步骤的详情描述，可选 | ReactNode | -   |
+| title       | 标题         | ReactNode | -   |
+
+### Switch 开关
+
+#### 属性
+
+| 属性名      | 说明                      | 类型                                        | 默认值      |
+|----------|-------------------------|-------------------------------------------|----------|
+| checked  | 是否选中                    | boolean                                   | false    |
+| disabled | 是否禁用                    | boolean                                   | false    |
+| type     | 样式，有效值：switch, checkbox | "switch" \| "checkbox"                    | "switch" |
+| value    | checked 改变时触发 change 事件 | BaseEventOrigFunction:onChangeEventDetail | -        |
+
+#### onChangeEventDetail
+
+| 属性名   | 类型      |
+|-------|---------|
+| value | boolean |
+
+### TabBar 标签栏
+
+#### 属性
+
+| 属性名              | 说明                                | 类型                    | 默认值                   |
+|------------------|-----------------------------------|-----------------------|-----------------------|
+| activeKey        | 当前激活 item 的 key                   | string \| null        | -                     |
+| defaultActiveKey | 初始化选中 item 的 key，如果没有设置 activeKey | string \| null        | 第一个 TabBar.Item 的 key |
+| onChange         | 切换面板的回调                           | (key: string) => void | -                     |
+| safeArea         | 是否开启安全区适配                         | boolean               | false                 |
+| items            | 参数项                               | TabBarItem[]          | []                    |
+
+#### TabBarItem
+
+| 属性名   | 说明                      | 类型                                            | 默认值 |
+|-------|-------------------------|-----------------------------------------------|-----|
+| badge | 徽标，同 Badge 的 content 属性 | React.ReactNode \| typeof Badge.dot           | -   |
+| icon  | 图标                      | ReactNode \| ((active: boolean) => ReactNode) | -   |
+| key   | 对应 activeKey            | string                                        | -   |
+| title | 标题                      | ReactNode \| ((active: boolean) => ReactNode) | -   |
+
+#### CSS 变量
+
+| 属性名                   | 说明    | 默认值 |
+|-----------------------|-------|-----|
+| --tab-bar-padding-top | 距顶部间距 | 0   |
+
+### Tabs 标签页
+
+#### 属性
+
+| 属性名              | 说明                            | 类型                    | 默认值        |
+|------------------|-------------------------------|-----------------------|------------|
+| activeKey        | 当前激活 tab 面板的 key              | string \| null        | -          |
+| defaultActiveKey | 初始化选中面板的 key，如果没有设置 activeKey | string \| null        | 第一个面板的 key |
+| onChange         | 切换面板的回调                       | (key: string) => void | -          |
+| stretch          | 选项卡头部是否拉伸                     | boolean               | true       |
+| swiperOpen       | 选项卡面板内容是否可滑动                  | boolean               | false      |
+| showMore         | 选项卡是否展示更多按钮                   | boolean               | false      |
+| items            | 标签项                           | TabsItem[]            | []         |
+
+#### TabsItem
+
+| 属性名      | 说明                      | 类型                  | 默认值   |
+|----------|-------------------------|---------------------|-------|
+| key      | 选项卡面板的唯一标识，对应 activeKey | string              | -     |
+| title    | 选项卡头显示文字                | string \| ReactNode | -     |
+| disabled | 是否禁用                    | boolean             | false |
+| children | 选项卡面板内容                 | string \| ReactNode | -     |
+
+#### CSS 变量
+
+| 属性名                         | 说明               | 默认值                       |
+|-----------------------------|------------------|---------------------------|
+| --active-line-border-radius | 当前激活 tab 下划线的圆角  | var(--active-line-height) |
+| --active-line-color         | 当前激活 tab 下划线的颜色  | var(--adm-color-primary)  |
+| --active-line-height        | 当前激活 tab 下划线的高度  | 4px                       |
+| --active-title-color        | 当前激活 tab 选项文字颜色  | var(--adm-color-primary)  |
+| --content-padding           | tab 内容区的 padding | 24px                      |
+| --title-font-size           | 选项卡头文字的大小        | 34px                      |
+
+### Tabs.Header
+
+#### 属性 extend TabsItem
+
+| 属性名              | 说明                            | 类型                    | 默认值        |
+|------------------|-------------------------------|-----------------------|------------|
+| activeKey        | 当前激活 tab 面板的 key              | string \| null        | -          |
+| defaultActiveKey | 初始化选中面板的 key，如果没有设置 activeKey | string \| null        | 第一个面板的 key |
+| onChange         | 切换面板的回调                       | (key: string) => void | -          |
+| stretch          | 选项卡头部是否拉伸                     | boolean               | false      |
+| showMore         | 选项卡是否展示更多按钮                   | boolean               | false      |
+
+### Tag 标签
+
+#### 属性
+
+| 属性名     | 说明     | 类型                                                                     | 默认值       |
+|---------|--------|------------------------------------------------------------------------|-----------|
+| color   | 标签色    | 'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| string | 'default' |
+| fill    | 填充模式   | 'solid' \| 'outline'                                                   | 'solid'   |
+| onClick | 标签点击事件 | (event: React.MouseEvent) => void                                      | -         |
+| round   | 是否圆角   | boolean                                                                | false     |
+
+#### CSS 变量
+
+| 属性名                | 说明                 | 默认值                                                              | 全局变量                    |
+|--------------------|--------------------|------------------------------------------------------------------|-------------------------|
+| --background-color | 背景颜色               | 当 fill=solid 时，默认值为 color 属性对应的颜色；当 fill=outline 时，默认值为 #ffffff  | -                       |
+| --border-color     | 边框颜色               | color 属性对应的颜色                                                    | -                       |
+| --border-radius    | round=false 时的圆角大小 | 4px                                                              | --adm-tag-border-radius |
+| --text-color       | 文字颜色               | 当 fill=solid 时，默认值为 #ffffff；当 fill=outline 时，默认值为 color 属性对应的颜色	 | -                       |
+
+#### TextArea 多行输入框
+
+#### 属性
+
+| 属性名                    | 说明                                                                                               | 类型                                                      | 默认值                    |
+|------------------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------|------------------------|
+| value                  | 输入框的内容                                                                                           | string                                                  | -                      |
+| placeholder            | 输入框为空时占位符                                                                                        | string                                                  | -                      |
+| placeholderStyle       | 指定 placeholder 的样式                                                                               | string                                                  | -                      |
+| placeholderClass       | 指定 placeholder 的样式类                                                                              | string                                                  | "textarea-placeholder" |
+| disabled               | 是否禁用                                                                                             | boolean                                                 | false                  |
+| maxLength              | 最大输入长度，设置为 -1 的时候不限制最大长度                                                                         | number                                                  | 140                    |
+| autoFocus              | 自动聚焦，拉起键盘                                                                                        | boolean                                                 | false                  |
+| focus                  | 获取焦点                                                                                             | boolean                                                 | false                  |
+| autoHeight             | 是否自动增高，设置 autoHeight 时，style.height不生效                                                           | boolean                                                 | false                  |
+| fixed                  | 如果 Textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true                                        | boolean                                                 | false                  |
+| cursorSpacing          | 指定光标与键盘的距离，单位 px 。取 Textarea 距离底部的距离和 cursorSpacing 指定的距离的最小值作为光标与键盘的距离                          | number                                                  | 0                      |
+| cursor                 | 指定 focus 时的光标位置                                                                                  | number                                                  | 1                      |
+| showConfirmBar         | 是否显示键盘上方带有”完成“按钮那一栏                                                                              | boolean                                                 | true                   |
+| selectionStart         | 光标起始位置，自动聚集时有效，需与 selectionEnd 搭配使用                                                              | number                                                  | -1                     |
+| selectionEnd           | 光标结束位置，自动聚集时有效，需与 selectionStart 搭配使用                                                            | number                                                  | -1                     |
+| adjustPosition         | 键盘弹起时，是否自动上推页面                                                                                   | boolean                                                 | true                   |
+| holdKeyboard           | focus 时，点击页面的时候不收起键盘                                                                             | boolean                                                 | false                  |
+| disableDefaultPadding  | 是否去掉 iOS 下的默认内边距                                                                                 | boolean                                                 | false                  |
+| onFocus                | 输入框聚焦时触发                                                                                         | BaseEventOrigFunction:onFocusEventDetail                | -                      |
+| onBlur                 | 输入框失去焦点时触发                                                                                       | BaseEventOrigFunction:onBlurEventDetail                 | -                      |
+| onLineChange           | 输入框行数变化时调用，event.detail = {height: 0, heightRpx: 0, lineCount: 0}                                | BaseEventOrigFunction:onLineChangeEventDetail           | -                      |
+| onInput                | 当键盘输入时，触发 input 事件，event.detail = {value, cursor, keyCode} **onInput 处理函数的返回值并不会反映到 textarea 上** | BaseEventOrigFunction:onInputEventDetail                | -                      |
+| onConfirm              | 点击完成时， 触发 confirm 事件，event.detail = {value: value}                                               | BaseEventOrigFunction:onConfirmEventDetail              | -                      |
+| onKeyboardHeightChange | 键盘高度发生变化的时候触发此事件                                                                                 | BaseEventOrigFunction:onKeyboardHeightChangeEventDetail | -                      |
+
+#### onFocusEventDetail
+
+| 属性名    | 类型     | 说明   |
+|--------|--------|------|
+| value  | string | 输入值  |
+| height | number | 键盘高度 |
+
+#### onBlurEventDetail
+
+| 属性名    | 类型     | 说明   |
+|--------|--------|------|
+| value  | string | 输入值  |
+| cursor | number | 光标位置 |
+
+#### onLineChangeEventDetail
+
+| 属性名       | 类型     |
+|-----------|--------|
+| height    | string |
+| heightRpx | number |
+| lineCount | number |
+
+#### onInputEventDetail
+
+| 属性名     | 类型     | 说明   |
+|---------|--------|------|
+| value   | string | 输入值  |
+| cursor  | number | 光标位置 |
+| keyCode | number | 键值   |
+
+#### onConfirmEventDetail
+
+| 属性名   | 类型     | 说明  |
+|-------|--------|-----|
+| value | string | 输入值 |
+
+#### onKeyboardHeightChangeEventDetail
+
+| 属性名      | 类型     | 说明   |
+|----------|--------|------|
+| height   | number | 键盘高度 |
+| duration | number | 持续时间 |
 

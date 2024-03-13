@@ -2,16 +2,6 @@
   "isFull": false,
   "list": [
     {
-      "title": "这里填写示例标题",
-      "description": "这里填写示例说明",
-      "code": "./base.js",
-      "scope": [],
-      "__scope_notes": {
-        "name": "这里填写包导出名称(这是一个注释字段，需要添加到[scope]中)",
-        "packageName": "这里填写包名(这是一个注释字段，需要添加到[scope]中)"
-      }
-    },
-    {
       "title": "Avatar 头像",
       "description": "Avatar 头像",
       "code": "./avatar.js",
@@ -342,6 +332,21 @@
       "title": "SafeArea 安全区",
       "description": "SafeArea 安全区",
       "code": "./safe-area.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
+      "title": "ScrollHeader 滚动标头",
+      "description": "ScrollHeader 滚动标头",
+      "code": "./scroll-header.js",
       "scope": [
         {
           "name": "antdTaro",
