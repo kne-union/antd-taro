@@ -98,19 +98,6 @@ components内的组件命名尽量可以看出派生关系和业务所属。
 
 #### 示例代码
 
-- 这里填写示例标题
-- 这里填写示例说明
-- 
-
-```jsx
-const BaseExample = ()=>{
-    return '我是一个示例组件';
-};
-
-render(<BaseExample />);
-
-```
-
 - Avatar 头像
 - Avatar 头像
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
@@ -1499,28 +1486,37 @@ render(<BaseExample/>);
 - antdTaro(@kne/antd-taro),taroComponent(@tarojs/components)
 
 ```jsx
-const {Steps} = antdTaro;
+const {Steps, Space} = antdTaro;
+const {Text} = taroComponent;
+
+const items = [
+  {title: '第一步', description: '完成时间：2020-12-01 12:30'},
+  {title: '第二步', description: '完成时间：2020-12-01 12:30'},
+  {title: '第三步', description: '完成时间：2020-12-01 12:30'},
+  {title: '第四步', description: '完成时间：2020-12-01 12:30'}
+];
+
 const BaseExample = () => {
-    return <>
-        <Steps current={2} items={[{
-            title: '第一步', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第二步', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第三步', status: 'error', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第四步', description: '完成时间：2020-12-01 12:30'
-        }]}/>
-        <Steps direction="vertical" current={2} items={[{
-            title: '第一步', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第二步', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第三步', status: 'error', description: '完成时间：2020-12-01 12:30'
-        }, {
-            title: '第四步', description: '完成时间：2020-12-01 12:30'
-        }]}/>
-    </>;
+  return (
+    <Space direction='vertical'>
+      <Space direction='vertical'>
+        <Text>横向步骤条</Text>
+        <Steps current={2} items={items}/>
+      </Space>
+      <Space direction='vertical'>
+        <Text>横向步骤条失败</Text>
+        <Steps current={2} items={[...items.slice(0, 3), Object.assign({}, items[3], {status: 'error'})]}/>
+      </Space>
+      <Space direction='vertical'>
+        <Text>纵向步骤条</Text>
+        <Steps direction='vertical' current={2} items={items}/>
+      </Space>
+      <Space direction='vertical'>
+        <Text>纵向步骤条失败</Text>
+        <Steps direction='vertical' current={2} items={[...items.slice(0, 3), Object.assign({}, items[3], {status: 'error'})]}/>
+      </Space>
+    </Space>
+  );
 };
 
 render(<BaseExample/>);
@@ -2441,4 +2437,31 @@ SelectorValue = string | number
 | --gap            | 间距大小        | 16px       |
 | --gap-horizontal | 水平方向的间距大小 	 | var(--gap) |
 | --gap-vertical   | 垂直方向的间距大小 	 | var(--gap) |
+
+### Steps 步骤条
+
+#### 属性
+
+| 属性名       | 说明                                             | 类型                         | 默认值          |
+|-----------|------------------------------------------------|----------------------------|--------------|
+| current   | 指定当前步骤，从 0 开始记数。在子 Step 元素中，可以通过 status 属性覆盖状态 | number                     | 0            |
+| direction | 指定步骤条方向。目前支持水平（horizontal）和竖直（vertical）两种方向    | 'horizontal' \| 'vertical' | 'horizontal' |
+
+#### CSS 变量
+
+| 属性名                      | 说明                    | 默认值  |
+|--------------------------|-----------------------|------|
+| --description-font-size  | 描述的字号                 | 24px |
+| --icon-size              | 指示器上图标的大小 	           | 36px |
+| --indicator-margin-right | 左边的指示器和右边的文字内容之间的额外间距 | 0    |
+| --title-font-size        | 标题的字号                 | 26px |
+
+#### items
+
+| 属性名         | 说明                                                                           | 类型                                         | 默认值    |
+|-------------|------------------------------------------------------------------------------|--------------------------------------------|--------|
+| description | 步骤的详情描述，可选                                                                   | ReactNode                                  | -      |
+| icon        | 步骤图标的类型                                                                      | ReactNode                                  | -      |
+| status      | 指定状态。当不配置该属性时，会使用 Steps 的 current 来自动指定状态；如果该属性与 current 指定的状态不匹配会覆盖自动匹配的状态。 | 'wait' \| 'process' \| 'finish' \| 'error' | 'wait' |
+| title       | 标题                                                                           | ReactNode                                  | -      |
 
