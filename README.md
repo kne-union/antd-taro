@@ -2409,6 +2409,16 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |------------|--------|-----|--------------------------|
 | --multiple | 	显示的倍数 | 1   | --adm-safe-area-multiple |
 
+### ScrollHeader 滚动标头
+
+#### 属性
+
+| 属性名         | 说明       | 类型        | 默认值                                       |
+|-------------|----------|-----------|-------------------------------------------|
+| showMore    | 是否展示更多按钮 | boolean   | true                                      |
+| icon        | 更多按钮     | ReactNode | Icon type="gengduo2" className="iconfont" |
+| defaultOpen | 默认打开更多选项 | boolean   | false                                     |
+
 ### SearchBar 搜索框
 
 #### 属性
