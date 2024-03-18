@@ -1,4 +1,4 @@
-const {DotLoading, Space} = antdTaro;
+const {DotLoading, Space, Button} = antdTaro;
 const {View} = taroComponent;
 const BaseExample = () => {
   return (
@@ -28,6 +28,13 @@ const BaseExample = () => {
           <View style={{fontSize: 14}}><DotLoading/></View>
           <View style={{fontSize: 18}}><DotLoading/></View>
           <View style={{fontSize: 24}}><DotLoading/></View>
+        </Space>
+      </Space>
+      <Space direction={'vertical'}>
+        <View>在 Button 中使用</View>
+        <Space>
+          <Button><DotLoading color='#ff3141'/></Button>
+          <Button color={'primary'}><DotLoading /></Button>
         </Space>
       </Space>
     </Space>
