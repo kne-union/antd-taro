@@ -38,6 +38,10 @@
   &-card {
     margin: 24px;
 
+    .adm-list-item:first-child {
+      border-top: none;
+    }
+
     .adm-list-body {
       border-radius: 16px;
     }
