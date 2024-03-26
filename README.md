@@ -2248,8 +2248,8 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 |-----------|-------------------------------------|----------------------|------------|
 | back      | 返回区域的文字，如果为 null 的话，backArrow 也不会渲染 | ReactNode \| null    | ''         |
 | backArrow | 支持默认和卡片两种模式                         | boolean \| ReactNode | true       |
-| children  | 	标题                                 | ReactNode            | ReactNode  |
-| left      | 	左侧内容，渲染在返回区域的右侧                    | ReactNode            | -          |
+| children  | 标题                                  | ReactNode            | ReactNode  |
+| left      | 左侧内容，渲染在返回区域的右侧                     | ReactNode            | -          |
 | onBack    | 点击返回区域后的回调                          | ReactNode            | () => void |
 | right     | 右侧内容                                | ReactNode            | ReactNode  |
 
@@ -2312,10 +2312,10 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 
 | 属性名                       | 说明                       | 默认值  |
 |---------------------------|--------------------------|------|
-| --header-button-font-size | 	确定和取消按钮的字号              | 30px |
+| --header-button-font-size | 确定和取消按钮的字号               | 30px |
 | --item-font-size          | 选择项的字号                   | 32px |
 | --item-height             | 选项的高度，仅支持 px rem 和 vw 单位 | 34px |
-| --title-font-size         | 	标题的字号                   | 30px |
+| --title-font-size         | 标题的字号                    | 30px |
 
 ### Popup 弹出层
 
@@ -2334,11 +2334,11 @@ DotLoading 的大小会自动根据当前的文字大小进行调整。
 | onClick          | 点击时触发，常用于阻止事件冒泡 | (event: React.MouseEvent) => void      | -         |
 | onClose          | 关闭时触发           | () => void                             | -         |
 | onMaskClick      | 点击蒙层触发          | (event: React.MouseEvent) => void      | -         |
-| position         | 	指定弹出的位置        | 'bottom' \| 'top' \| 'left' \| 'right' | 'bottom'  |
+| position         | 指定弹出的位置         | 'bottom' \| 'top' \| 'left' \| 'right' | 'bottom'  |
 | showCloseButton  | 是否显示关闭按钮        | boolean                                | false     |
 | stopPropagation  | 阻止某些事件的冒泡       | PropagationEvent[]                     | ['click'] |
 | style            | 容器样式            | React.CSSProperties                    | -         |
-| open             | 	是否可见           | boolean                                | false     |
+| open             | 是否可见            | boolean                                | false     |
 
 #### CSS 变量
 
