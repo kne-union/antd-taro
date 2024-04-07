@@ -1,0 +1,18 @@
+name: Publish
+on:
+  pull_request:
+    branches: [master]
+    types:
+      - closed
+jobs:
+  node-npm:
+    if: github.event.pull_request.merged == true
+    uses: kne-union/actions/.github/workflows/publish-miniprogram-libs-workflow.yml@master
+    secrets: inherit
+    with:
+      package_name: '@kne/antd-taro'
+      APP_ID: wx66bb88142df0830e
+      PRIVATE_KEY_NAME: KNEUI_PRIVATE_KEY
+      TOKEN_SECRET_NAME: KNEUI_SECRET
+
+

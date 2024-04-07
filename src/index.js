@@ -16,6 +16,7 @@ export {default as Empty} from './Empty';
 export {default as Grid} from './Grid';
 export {default as Icon} from './Icon';
 export {default as Input} from './Input';
+export {default as InputNumber} from './InputNumber';
 export {default as List} from './List';
 export {default as NavBar} from './NavBar';
 export {default as Picker} from './Picker';

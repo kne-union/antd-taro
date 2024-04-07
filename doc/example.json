@@ -254,6 +254,21 @@
       ]
     },
     {
+      "title": "InputNumber 数字输入框",
+      "description": "InputNumber 数字输入框",
+      "code": "./input-number.js",
+      "scope": [
+        {
+          "name": "antdTaro",
+          "packageName": "@kne/antd-taro"
+        },
+        {
+          "name": "taroComponent",
+          "packageName": "@tarojs/components"
+        }
+      ]
+    },
+    {
       "title": "List 列表",
       "description": "List 列表",
       "code": "./list.js",
