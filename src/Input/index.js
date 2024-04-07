@@ -4,6 +4,7 @@ import {Input as TaroInput, View} from '@tarojs/components';
 import classnames from 'classnames';
 import useControlValue from '@kne/use-control-value';
 import Icon from '../Icon';
+import isNil from 'lodash/isNil';
 
 const classPrefix = `adm-input`;
 
@@ -15,7 +16,7 @@ const Input = forwardRef((props, ref) => {
     valueRef.current = value;
     useEffect(() => {
         if (nativeInputRef.current.value !== value) {
-            nativeInputRef.current.value = value;
+            nativeInputRef.current.value = isNil(value) ? '' : value;
         }
     }, [value, setValue]);
 
