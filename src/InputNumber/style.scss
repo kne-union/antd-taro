@@ -1,0 +1,45 @@
+$class-prefix-input: 'adm-input-number';
+
+.#{$class-prefix-input} {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-inner {
+    flex: 1;
+    padding-left: var(--padding-left);
+    padding-right: var(--padding-left);
+  }
+
+  .adm-input-element {
+    text-align: center;
+  }
+
+  $root: &;
+
+  &.is-controller-hidden {
+    #{$root}-inner {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    #{$root}-left, #{$root}-right {
+      display: none;
+    }
+
+    .adm-input-element {
+      text-align: left;
+    }
+  }
+
+  &-left, &-right {
+    width: 48px;
+    height: 48px;
+    background: #F3F3F3;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--adm-font-size-6);
+  }
+}

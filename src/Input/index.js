@@ -14,12 +14,10 @@ const Input = forwardRef((props, ref) => {
     const valueRef = useRef(value);
     valueRef.current = value;
     useEffect(() => {
-        setTimeout(() => {
-            if (props.value !== valueRef.current) {
-                setValue(props.value);
-            }
-        }, 0);
-    }, [props.value, setValue]);
+        if (nativeInputRef.current.value !== value) {
+            nativeInputRef.current.value = value;
+        }
+    }, [value, setValue]);
 
     useImperativeHandle(ref, () => ({
         get value() {
@@ -45,13 +43,12 @@ const Input = forwardRef((props, ref) => {
     })()
 
     return <View
-        className={classnames(`${classPrefix}`, props.disabled && `${classPrefix}-disabled`)}
+        className={classnames(`${classPrefix}`, props.disabled && `${classPrefix}-disabled`, props.className)}
     >
         <TaroInput
             controlled
             ref={nativeInputRef}
             className={`${classPrefix}-element`}
-            //value={value}
             onInput={(e) => {
                 setValue(e.detail.value);
             }}
@@ -100,7 +97,7 @@ const Input = forwardRef((props, ref) => {
             })}
             hoverStopPropagation
             onClick={(e) => {
-                setValue('')
+                setValue('');
                 props.onClear && props.onClear()
             }}
         >
