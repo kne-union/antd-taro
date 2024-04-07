@@ -952,6 +952,14 @@ const BaseExample = () => {
             <Text>设置最大值为5和最小值为2</Text>
             <InputNumber placeholder='数字输入' min={2} max={5}/>
         </Space>
+        <Space direction={'vertical'}>
+            <Text>带有小数点的数字键盘</Text>
+            <InputNumber placeholder='数字输入' type="digit"/>
+        </Space>
+        <Space direction={'vertical'}>
+            <Text>step间隔</Text>
+            <InputNumber placeholder='数字输入' type="digit" step={0.1}/>
+        </Space>
     </Space>;
 };
 
