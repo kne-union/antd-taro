@@ -9,6 +9,12 @@ import useControlValue from "@kne/use-control-value";
 
 const classPrefix = `adm-input-number`;
 
+const getDecimalDigits = (num) => {
+    const str = num.toString();
+    const parts = str.split('.');
+    return parts.length > 1 ? parts[1].length : 0;
+}
+
 const numberRegExp = /[^0-9.-]/g;
 
 const formatInputString = (value) => {
@@ -22,8 +28,8 @@ const formatInputString = (value) => {
 };
 
 const formatNumber = (value, options) => {
-    const {max, min} = Object.assign({
-        max: Number.MAX_SAFE_INTEGER, min: Number.MIN_SAFE_INTEGER
+    const {max, min, precision} = Object.assign({
+        max: Number.MAX_SAFE_INTEGER, min: Number.MIN_SAFE_INTEGER, precision: 0.01
     }, options);
     if (isNil(value)) {
         return value;
@@ -35,8 +41,8 @@ const formatNumber = (value, options) => {
     //去除小数点以外的.并且将value转为数字类型
     value = Number(value.split('.').filter(item => item !== '').slice(0, 2).join('.'));
     //去除浮点数溢出
-    value = Number(value.toFixed(10));
-    
+    value = Number(value.toFixed(getDecimalDigits(precision)));
+
     if (value < min) {
         return min;
     }
@@ -55,7 +61,9 @@ const InputNumber = (props) => {
         'is-controller-hidden': props.hiddenController
     }))}>
         <View className={`${classPrefix}-left`} onClick={() => {
-            setValue((value) => formatNumber(Number(value || 0) - props.step, {min: props.min, max: props.max}));
+            setValue((value) => formatNumber(Number(value || 0) - props.step, {
+                min: props.min, max: props.max, precision: props.precision
+            }));
         }}>
             <Icon type="subtraction" className="adm-component"/>
         </View>
@@ -64,13 +72,15 @@ const InputNumber = (props) => {
                    value={formatInputString(value, {min: props.min, max: props.max})} onChange={setValue}
                    onBlur={(e) => {
                        setValue((value) => {
-                           return formatNumber(value, {min: props.min, max: props.max});
+                           return formatNumber(value, {min: props.min, max: props.max, precision: props.precision});
                        });
                        props.onBlur && props.onBlur(e);
                    }}/>
         </View>
         <View className={`${classPrefix}-right`} onClick={() => {
-            setValue((value) => formatNumber(Number(value || 0) + props.step, {min: props.min, max: props.max}));
+            setValue((value) => formatNumber(Number(value || 0) + props.step, {
+                min: props.min, max: props.max, precision: props.precision
+            }));
         }}>
             <Icon type="add" className="adm-component"/>
         </View>
@@ -78,7 +88,12 @@ const InputNumber = (props) => {
 };
 
 InputNumber.defaultProps = {
-    step: 1, max: Number.MAX_SAFE_INTEGER, min: Number.MIN_SAFE_INTEGER, defaultValue: '', type: 'number'
+    step: 1,
+    max: Number.MAX_SAFE_INTEGER,
+    min: Number.MIN_SAFE_INTEGER,
+    defaultValue: '',
+    type: 'number',
+    precision: 0.01
 };
 
 export default InputNumber;
