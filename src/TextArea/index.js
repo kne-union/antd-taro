@@ -1,19 +1,29 @@
 import './style.scss';
-import React, {forwardRef, useImperativeHandle, useRef} from 'react';
+import React, {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import useControlValue from '@kne/use-control-value';
-import {View, Textarea} from '@tarojs/components';
+import {Textarea, View} from '@tarojs/components';
+import isNil from 'lodash/isNil';
 
 const classPrefix = 'adm-text-area';
 const TextArea = forwardRef((props, ref) => {
     const {showCount, maxLength} = props;
     const [value, setValue] = useControlValue(props);
-    const nativeTextAreaRef = useRef(null)
+    const nativeTextAreaRef = useRef(null);
+    const valueRef = useRef(value);
+    valueRef.current = value;
     const valueLength = value ? value.length : 0;
     const hasMaxLength = Number.isInteger(maxLength) && maxLength > 0;
     const count = showCount === 'function' ? showCount(valueLength, maxLength) :
         <View className={`${classPrefix}-count`}>
             {!hasMaxLength ? valueLength : Math.min(valueLength, maxLength) + '/' + maxLength}
         </View>;
+
+    useEffect(() => {
+        if (nativeTextAreaRef.current.value !== value) {
+            nativeTextAreaRef.current.value = isNil(value) ? '' : value;
+        }
+    }, [value, setValue]);
+
     useImperativeHandle(ref, () => ({
         get value() {
             return value
@@ -32,8 +42,9 @@ const TextArea = forwardRef((props, ref) => {
         <Textarea
             ref={nativeTextAreaRef}
             className={`${classPrefix}-element`}
-            value={value}
+            //value={value}
             onInput={(e) => {
+                valueRef.current = value;
                 setValue(e.detail.value);
             }}
             onFocus={props.onFocus}
