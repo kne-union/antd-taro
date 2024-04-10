@@ -14,6 +14,7 @@ const Input = forwardRef((props, ref) => {
     const nativeInputRef = useRef(null);
     const valueRef = useRef(value);
     valueRef.current = value;
+
     useEffect(() => {
         if (nativeInputRef.current.value !== value) {
             nativeInputRef.current.value = isNil(value) ? '' : value;
@@ -51,6 +52,7 @@ const Input = forwardRef((props, ref) => {
             ref={nativeInputRef}
             className={`${classPrefix}-element`}
             onInput={(e) => {
+                valueRef.current = value;
                 setValue(e.detail.value);
             }}
             onFocus={e => {
