@@ -19,7 +19,8 @@
     "build": "run-s build:lib build:md build:doc build:example",
     "test": "run-s test:unit test:lint test:build",
     "eject": "react-scripts eject",
-    "init": "mini-example install && create-md && mini-example build",
+    "init": "husky && npm run init-example",
+    "init-example": "mini-example install && create-md && mini-example build",
     "build:lib": "microbundle --no-compress --format modern,cjs --jsx React.createElement --jsxFragment React.Fragment --alias lodash=@kne/lodash-wechat --assertType inline",
     "build:md": "create-md",
     "start:md": "create-md --watch",
@@ -33,7 +34,8 @@
     "build:example": "cd example && npm run build:weapp",
     "start:example": "cd example && cross-env NODE_ENV=production npm run build:weapp -- --watch",
     "deploy": "gh-pages -d example/build",
-    "prettier": "prettier --config .prettierrc --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+    "prettier": "prettier --config .prettierrc --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss}'",
+    "lint-staged": "npx lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -68,7 +70,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss}": [
       "prettier --config .prettierrc --write",
       "git add"
     ]
