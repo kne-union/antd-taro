@@ -4,17 +4,17 @@ $class-prefix-item: 'adm-grid-item';
 @mixin loop-grid-columns($index,$class,$grid-columns) {
   .#{$class-prefix-item}#{$class}-#{$index} {
     display: block;
-    flex: 0 0 percentage(($index / $grid-columns));
-    max-width: percentage(($index / $grid-columns));
+    flex: 0 0 percentage(calc($index / $grid-columns));
+    max-width: percentage(calc($index / $grid-columns));
   }
   .#{$class-prefix-item}#{$class}-push-#{$index} {
-    left: percentage(($index / $grid-columns));
+    left: percentage(calc($index / $grid-columns));
   }
   .#{$class-prefix-item}#{$class}-pull-#{$index} {
-    right: percentage(($index / $grid-columns));
+    right: percentage(calc($index / $grid-columns));
   }
   .#{$class-prefix-item}#{$class}-offset-#{$index} {
-    margin-left: percentage(($index / $grid-columns));
+    margin-left: percentage(calc($index / $grid-columns));
   }
   .#{$class-prefix-item}#{$class}-order-#{$index} {
     order: $index;
