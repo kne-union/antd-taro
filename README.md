@@ -11,7 +11,7 @@ npm i --save @kne/antd-taro
 
 ### 概述
 
-<img title="" src="https://www.kne-union.top/static-data/antd-taro/index.jpg" alt="" width="200" style="margin: 2em auto;display: block;">
+<img title="" src="https://www.kne-union.top/static-data/antd-taro/index.jpg" alt="" style="margin: 2em auto;display: block; width: 200px; height: 200px">
 
 ***antd-taro*** 是一个参考 [antd-mobile](https://mobile.ant.design/) api和组件设计样式实现的用于Taro框架进行微信小程序的开发的组件库。
 
