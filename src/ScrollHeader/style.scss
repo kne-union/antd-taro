@@ -1,17 +1,20 @@
-.scroll-view {
+$class-prefix-picker: 'adm-scroll-header';
+
+.#{$class-prefix-picker} {
+  display: flex;
+}
+
+.#{$class-prefix-picker}-scroll-view {
   white-space: nowrap;
   width: calc(100% - 60px);
+  display: flex;
 
-  &.scroll-view-no-more {
+  &.-no-more {
     width: 100%;
   }
 }
 
-.scroll-header-close {
-  display: flex;
-}
-
-.open-btn {
+.#{$class-prefix-picker}-open-btn {
   width: 60px;
   display: flex;
   align-items: center;
@@ -26,7 +29,7 @@
   }
 }
 
-.close-btn {
+.#{$class-prefix-picker}-close-btn {
   text-align: center;
   font-size: var(--adm-font-size-4);
   color: var(--adm-color-weak);
@@ -34,25 +37,31 @@
   border-top: solid 2px var(--adm-color-border);
 }
 
-.open-content {
+.#{$class-prefix-picker}-open-content {
   padding: 0 32px;
 }
 
-.popup {
+.#{$class-prefix-picker}-popup {
   position: fixed;
   overflow: hidden;
   width: 100%;
   right: 0;
   bottom: 0;
   left: 0;
+  &.is-active {
+    .#{$class-prefix-picker}-popup-body {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 }
 
-.popup-mask {
+.#{$class-prefix-picker}-popup-mask {
   position: absolute;
   transition: visibility 100ms 100ms ease, opacity 150ms ease;
 }
 
-.popup-body {
+.#{$class-prefix-picker}-popup-body {
   position: absolute;
   opacity: 0;
   visibility: hidden;
