@@ -21,6 +21,9 @@ const ScrollHeader = (props) => {
     const scrollRef = useRef(0);
 
     useEffect(() => {
+        if (!open) {
+            return;
+        }
         const query = Taro.createSelectorQuery();
         query.select(`#${containerId}`)
             .boundingClientRect()
@@ -30,7 +33,7 @@ const ScrollHeader = (props) => {
                 }
                 setTop(res[0].top);
             })
-    }, [containerId]);
+    }, [containerId, open]);
 
     const computedNeedScroll = useCallback(() => {
         const query = Taro.createSelectorQuery();
