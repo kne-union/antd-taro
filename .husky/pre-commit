@@ -1,0 +1,2 @@
+npm run build:md
+npm run lint-staged
